@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Личный кабинет</title>
+    <title>Регистрация</title>
     <style>
         /* Анимированный градиентный фон */
         body {
@@ -167,12 +167,12 @@
 
     <!-- Основное содержимое страницы -->
     <div>
-        <h1>Личный кабинет</h1>
+        <h1>Регистрация</h1>
     </div>
 
-    <!-- Форма входа -->
+    <!-- Форма регистрации -->
     <div class="form-container">
-        <h2>Вход</h2>
+        <h2>Регистрация</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -180,12 +180,13 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <form method="POST" action="{{ url_for('personal') }}">
+        <form method="POST" action="{{ url_for('register') }}">
             <input type="text" name="username" placeholder="Имя пользователя" required>
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Пароль" required>
-            <button type="submit">Войти</button>
+            <button type="submit">Зарегистрироваться</button>
         </form>
-        <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a>.</p>
+        <p>Уже есть аккаунт? <a href="{{ url_for('personal') }}">Войдите</a>.</p>
     </div>
 
     <!-- Нижняя чёрная полоса -->

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Личный кабинет</title>
+    <title>Профиль</title>
     <style>
         /* Анимированный градиентный фон */
         body {
@@ -95,65 +95,6 @@
                 opacity: 1; /* Конечное состояние: полностью видимый */
             }
         }
-
-        /* Стили для формы */
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            opacity: 0; /* Начальная прозрачность */
-            animation: fadeIn 1s ease-in-out 1.5s forwards; /* Анимация с задержкой */
-        }
-
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            color: #333;
-        }
-
-        .form-container input {
-            width: 95%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #0ABAB5; /* Цвет кнопки */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-container button:hover {
-            background-color: #0A9AB5; /* Цвет кнопки при наведении */
-        }
-
-        .form-container p {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 16px;
-        }
-
-        .form-container a {
-            color: #0ABAB5;
-            text-decoration: none;
-        }
-
-        .form-container a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -167,25 +108,9 @@
 
     <!-- Основное содержимое страницы -->
     <div>
-        <h1>Личный кабинет</h1>
-    </div>
-
-    <!-- Форма входа -->
-    <div class="form-container">
-        <h2>Вход</h2>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <form method="POST" action="{{ url_for('personal') }}">
-            <input type="text" name="username" placeholder="Имя пользователя" required>
-            <input type="password" name="password" placeholder="Пароль" required>
-            <button type="submit">Войти</button>
-        </form>
-        <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a>.</p>
+        <h1>Профиль</h1>
+        <p>Добро пожаловать, {{ username }}!</p>
+        <a href="{{ url_for('logout') }}">Выйти</a>
     </div>
 
     <!-- Нижняя чёрная полоса -->
