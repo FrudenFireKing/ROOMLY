@@ -6,13 +6,12 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/contacts')
-def contacts():
-    return render_template('contacts.html')
-
 @app.route('/about')
 def about():
     return render_template('about.html')
+@app.route('/personal')
+def personal():
+    return render_template('personal.html')
 
 @app.route('/rooms')
 def rooms():
