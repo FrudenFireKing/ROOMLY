@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import sqlite3
 from bcrypt import hashpw, gensalt, checkpw
+import json
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Секретный ключ для сессий
+
+# Путь к файлу metadata.txt
+METADATA_FILE = 'metadata.txt'
 
 # Подключение к SQLite базе данных
 def get_db_connection():
@@ -24,6 +29,26 @@ def init_db():
     ''')
     conn.commit()
     conn.close()
+
+# Загрузка данных пользователей из файла metadata.txt
+def load_users_metadata():
+    if os.path.exists(METADATA_FILE):
+        try:
+            with open(METADATA_FILE, 'r') as file:
+                content = file.read()
+                if content.strip():  # Проверяем, не пустой ли файл
+                    return json.loads(content)
+                else:
+                    return []  # Возвращаем пустой массив, если файл пуст
+        except json.JSONDecodeError:
+            return []  # Возвращаем пустой массив, если файл содержит некорректный JSON
+    else:
+        return []  # Возвращаем пустой массив, если файл не существует
+
+# Сохранение данных пользователей в файл metadata.txt
+def save_users_metadata(users):
+    with open(METADATA_FILE, 'w') as file:
+        json.dump(users, file)
 
 # Главная страница
 @app.route('/')
@@ -73,6 +98,16 @@ def register():
             conn.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
                          (username, email, hashed_password))
             conn.commit()
+
+            # Сохранение данных в metadata.txt
+            users_metadata = load_users_metadata()
+            users_metadata.append({
+                'username': username,
+                'email': email,
+                'password': hashed_password.decode('utf-8')  # Сохраняем хешированный пароль
+            })
+            save_users_metadata(users_metadata)
+
             flash('Регистрация прошла успешно! Теперь вы можете войти.', 'success')
             return redirect(url_for('personal'))
         except sqlite3.IntegrityError:
