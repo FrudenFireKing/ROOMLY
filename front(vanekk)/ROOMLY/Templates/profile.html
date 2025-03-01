@@ -16,10 +16,17 @@
     </nav>
 
     <!-- Основное содержимое страницы -->
-    <div>
+    <div class="profile-container">
         <h1>Профиль</h1>
-        <p>Добро пожаловать, {{ username }}!</p>
-        <a href="{{ url_for('logout') }}">Выйти</a>
+        <div class="profile-info">
+            <h2>Добро пожаловать, {{ username }}!</h2>
+            <p class="email">Email: {{ email }}</p>
+            <p class="joined-date">Дата регистрации: {{ joined_date }}</p>
+            <div class="actions">
+                <a href="{{ url_for('edit_profile') }}">Редактировать профиль</a>
+                <a href="{{ url_for('logout') }}" class="logout-btn">Выйти</a>
+            </div>
+        </div>
     </div>
 
     <!-- Нижняя чёрная полоса -->
