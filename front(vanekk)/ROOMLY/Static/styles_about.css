@@ -1,3 +1,5 @@
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
          /* Анимированный градиентный фон */
         body {
             width: 100%;
@@ -8,12 +10,12 @@
 
             /* Градиентный фон с анимацией */
             background: linear-gradient(
-                -80deg,
-                #0A9AB5,  /* Основной цвет Tiffany */
-                #FFFFFF,  /* Светлый оттенок Tiffany */
-                #0A9AB5,  /* Тёмный оттенок Tiffany */
-                #4fc3f7,  /* Голубоватый оттенок */
-                #0ABAB5
+                -45deg,
+                #7FFFD4,  /* Основной цвет Tiffany */
+                #AFEEEE,  /* Светлый оттенок Tiffany */
+                #7FFFD4,  /* Тёмный оттенок Tiffany */
+                #00FFFF,  /* Голубоватый оттенок */
+                #7FFFD4
             );
             background-size: 400% 400%;
             animation: gradient 10s ease infinite;
@@ -66,6 +68,7 @@
             font-size: 90px;
             text-align: center;
             margin-top: 75px;
+            font-family: 'Russo One', sans-serif;
             color: #333;
             opacity: 0; /* Начальная прозрачность */
             animation: fadeIn 1s ease-in-out forwards; /* Анимация появления */

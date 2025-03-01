@@ -1,3 +1,5 @@
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
         body {
             width: 100%;
             height: 100vh; /* На всю высоту экрана */
@@ -8,11 +10,11 @@
             /* Градиентный фон с анимацией */
             background: linear-gradient(
                 -45deg,
-                #0ABAB5,  /* Основной цвет Tiffany */
-                #FFFFFF,  /* Светлый оттенок Tiffany */
-                #0A9AB5,  /* Тёмный оттенок Tiffany */
-                #0ABAD5,  /* Голубоватый оттенок */
-                #0ABAB5
+                #7FFFD4,  /* Основной цвет Tiffany */
+                #AFEEEE,  /* Светлый оттенок Tiffany */
+                #7FFFD4,  /* Тёмный оттенок Tiffany */
+                #00FFFF,  /* Голубоватый оттенок */
+                #7FFFD4
             );
             background-size: 400% 400%;
             animation: gradient 10s ease infinite;
@@ -76,7 +78,7 @@
             font-size: 90px;
             text-align: center;
             margin-top: 45px;
-            font-family: 'Stencil Std', fantasy;
+            font-family: 'Russo One', sans-serif;
             color: #333;
             opacity: 0; /* Начальная прозрачность */
             animation: fadeIn 1s ease-in-out forwards; /* Анимация появления */
@@ -253,7 +255,7 @@
 
         .form-container h2, .profile-container h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-botto: 20px;
             font-family: 'Courier New', monospace;
             color: #333;
         }

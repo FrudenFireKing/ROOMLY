@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="511eefc0-e156-4729-9841-bbf263977230" name="Changes" comment="update with css">
+      <change afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_rooms.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_about.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_about.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_pers.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_pers.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_prof.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_prof.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_reg.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_reg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/Rooms.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/Rooms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/users.db" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="FrudenFireKing &lt;fedorgorbacev942@gmail.com&gt;" />
+        <option value="Laflame(vanekk) &lt;vanya.stalnoy@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;FrudenFireKing&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FrudenFireKing/ROOMLY.git&quot;,
+    &quot;accountId&quot;: &quot;3bd87436-03ab-4f00-b23e-77cb89aabe09&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2tjI4eizJaVwdI5sNQIOWRdVdz8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ROOMLY" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/front(vanekk)/ROOMLY" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/front(vanekk)/ROOMLY/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="511eefc0-e156-4729-9841-bbf263977230" name="Changes" comment="" />
+      <created>1740858866736</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740858866736</updated>
+    </task>
+    <task id="LOCAL-00001" summary="update with css">
+      <option name="closed" value="true" />
+      <created>1740862201599</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740862201599</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update with css">
+      <option name="closed" value="true" />
+      <created>1740865147791</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865147791</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update with css">
+      <option name="closed" value="true" />
+      <created>1740865170671</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865170671</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update with css">
+      <option name="closed" value="true" />
+      <created>1740865183215</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865183215</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update with css">
+      <option name="closed" value="true" />
+      <created>1740867887937</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740867887937</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update with css">
+      <option name="closed" value="true" />
+      <created>1740867927499</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740867927499</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/Templates/profile.html" />
+    <MESSAGE value="update with css" />
+    <option name="LAST_COMMIT_MESSAGE" value="update with css" />
+  </component>
+</project>
