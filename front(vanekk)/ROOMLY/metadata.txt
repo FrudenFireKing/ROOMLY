@@ -1,1 +1,0 @@
-[{"username": "V", "email": "123@mail.ru", "password": "$2b$12$TRAm/Td6cP7bQB99zt8fnON.1rCt4mggyfroFFbDHJhmvv6ohgYfu"}, {"username": "Fedor", "email": "fedorgorbacev942@gmail.com", "password": "$2b$12$E9bi7Y/Urnab1BGMjJDw3uX3XfrEBL62hebG2pmv4meJLoDzKwqy."}]
