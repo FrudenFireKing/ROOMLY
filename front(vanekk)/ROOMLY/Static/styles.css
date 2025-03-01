@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Профиль</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <style>
         /* Анимированный градиентный фон */
         body {
             width: 100%;
@@ -17,7 +10,7 @@
             background: linear-gradient(
                 -45deg,
                 #0ABAB5,  /* Основной цвет Tiffany */
-                #FFFFFF,  /* Светлый оттенок Tiffany */
+                #0ACAB5,  /* Светлый оттенок Tiffany */
                 #0A9AB5,  /* Тёмный оттенок Tiffany */
                 #0ABAD5,  /* Голубоватый оттенок */
                 #0ABAB5
@@ -44,6 +37,11 @@
             background-color: #333; /* Цвет фона меню */
             padding: 10px; /* Отступы внутри меню */
             text-align: center; /* Выравнивание по центру */
+            position: fixed; /* Фиксированное положение */
+            top: 0;
+            left: 0;
+            width: 100%; /* Ширина на всю страницу */
+            z-index: 3; /* Чтобы навигация была поверх фона */
         }
         nav a {
             color: white; /* Цвет текста ссылок */
@@ -67,27 +65,39 @@
             left: 0;
             bottom: 0;
             width: 100%; /* Ширина на всю страницу */
+            z-index: 3; /* Чтобы футер был поверх фона */
+        }
+
+        /* Стили для основного содержимого */
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* На всю высоту экрана */
+            text-align: center;
+            z-index: 2; /* Чтобы текст был поверх фона */
         }
 
         h1 {
-            font-size: 90px;
+            font-size: 180px;
             text-align: center;
-            margin-top: 45px;
-            font-family: 'Stencil Std', fantasy;
+            margin-top: 150px;
+            font-family: 'Black Ops One', cursive;
             color: #333;
             opacity: 0; /* Начальная прозрачность */
-            animation: fadeIn 1s ease-in-out forwards; /* Анимация появления */
+            animation: fadeIn 2s ease-in-out forwards; /* Анимация появления */
         }
 
         p {
-            text-align: center;
-            font-size: 24px;
+            font-size: 36px;
             margin-top: 20px;
+            font-family: Andale Mono, monospace;
             opacity: 0; /* Начальная прозрачность */
             animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
         }
 
-        /* Анимация появления */
+        /* Анимация появления текста */
         @keyframes fadeIn {
             from {
                 opacity: 0; /* Начальное состояние: полностью прозрачный */
@@ -96,27 +106,3 @@
                 opacity: 1; /* Конечное состояние: полностью видимый */
             }
         }
-    </style>
-</head>
-<body>
-    <!-- Навигационное меню -->
-    <nav>
-        <a href="/">Главная</a>
-        <a href="/rooms">Комнаты</a>
-        <a href="/personal">Личный кабинет</a>
-        <a href="/about">О нас</a>
-    </nav>
-
-    <!-- Основное содержимое страницы -->
-    <div>
-        <h1>Профиль</h1>
-        <p>Добро пожаловать, {{ username }}!</p>
-        <a href="{{ url_for('logout') }}">Выйти</a>
-    </div>
-
-    <!-- Нижняя чёрная полоса -->
-    <footer>
-        &copy; 2025 ROOMLY.
-    </footer>
-</body>
-</html>
