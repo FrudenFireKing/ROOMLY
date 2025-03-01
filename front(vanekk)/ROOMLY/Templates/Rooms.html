@@ -7,43 +7,43 @@
     <style>
         /* Стили для навигационного меню */
         nav {
-            background-color: #333; /* Цвет фона меню */
-            padding: 10px; /* Отступы внутри меню */
-            text-align: center; /* Выравнивание по центру */
-            position: relative; /* Для z-index */
-            z-index: 3; /* Чтобы навигация была поверх градиентов */
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
         }
         nav a {
-            color: white; /* Цвет текста ссылок */
-            margin: 0 15px; /* Отступы между ссылками */
-            text-decoration: none; /* Убираем подчёркивание */
-            font-size: 18px; /* Размер шрифта */
-            font-family: Courier New, monospace; /* Шрифт */
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: Courier New, monospace;
         }
         nav a:hover {
-            color: #ffcc00; /* Цвет текста при наведении */
+            color: #ffcc00;
         }
 
         /* Стили для нижней чёрной полосы */
         footer {
-            background-color: #333; /* Цвет фона */
-            color: white; /* Цвет текста */
-            text-align: center; /* Выравнивание по центру */
+            background-color: #333;
+            color: white;
+            text-align: center;
             font-family: Courier New, monospace;
-            padding: 10px; /* Отступы внутри */
-            position: fixed; /* Фиксированное положение */
+            padding: 10px;
+            position: fixed;
             left: 0;
             bottom: 0;
-            width: 100%; /* Ширина на всю страницу */
-            z-index: 3; /* Чтобы футер был поверх градиентов */
+            width: 100%;
+            z-index: 3;
         }
 
         /* Стили для основного содержимого */
         body {
-            background-color: powderblue; /* Основной цвет фона */
+            background-color: powderblue;
             margin: 0;
-            padding-bottom: 60px; /* Отступ для footer */
-            position: relative; /* Для позиционирования псевдоэлементов */
+            padding-bottom: 60px;
+            position: relative;
         }
 
         /* Градиент сверху */
@@ -53,41 +53,172 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 300px; /* Высота градиента */
-            background: linear-gradient(to bottom, white, transparent); /* Градиент сверху */
-            z-index: 1; /* Чтобы градиент был под навигацией и футером */
+            height: 300px;
+            background: linear-gradient(to bottom, white, transparent);
+            z-index: 1;
         }
 
         h1 {
-
             font-size: 90px;
             text-align: center;
             margin-top: 150px;
-            Stencil Std, fantasy
+            font-family: 'Stencil Std', fantasy;
             color: #333;
-            opacity: 0; /* Начальная прозрачность */
-            animation: fadeIn 2s ease-in-out forwards; /* Анимация появления */
-            position: relative; /* Для z-index */
-            z-index: 2; /* Чтобы текст был поверх градиентов */
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            position: relative;
+            z-index: 2;
         }
+
         p {
             text-align: center;
             font-size: 24px;
             margin-top: 20px;
-            opacity: 0; /* Начальная прозрачность */
-            animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
-            position: relative; /* Для z-index */
-            z-index: 2; /* Чтобы текст был поверх градиентов */
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 1s forwards;
+            position: relative;
+            z-index: 2;
         }
 
         /* Анимация появления */
         @keyframes fadeIn {
             from {
-                opacity: 0; /* Начальное состояние: полностью прозрачный */
+                opacity: 0;
             }
             to {
-                opacity: 1; /* Конечное состояние: полностью видимый */
+                opacity: 1;
             }
+        }
+
+        /* Стили для карточек с комнатами */
+        .rooms-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            padding: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .room-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .room-card p {
+            font-size: 16px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .room-card button {
+            background-color: #0ABAB5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .room-card button:hover {
+            background-color: #0A9AB5;
+        }
+
+        .admin-actions {
+            margin-top: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50; /* Зелёный */
+        }
+
+        .delete-btn {
+            background-color: #f44336; /* Красный */
+        }
+
+        .edit-btn:hover, .delete-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Новые улучшения */
+        .room-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .room-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0ABAB5;
+            margin: 10px 0;
+        }
+
+        .room-card .description {
+            font-size: 14px;
+            color: #888;
+            margin: 10px 0;
+        }
+
+        .room-card .rating {
+            font-size: 16px;
+            color: #ffcc00;
+            margin: 10px 0;
+        }
+
+        .room-card .rating span {
+            color: #333;
+        }
+
+        .room-card .features {
+            font-size: 14px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .room-card .features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .room-card .features ul li {
+            margin: 5px 0;
+        }
+
+        .room-card .features ul li::before {
+            content: "✔";
+            color: #4CAF50;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -104,6 +235,35 @@
     <div>
         <h1>Комнаты</h1>
         <p>Здесь вы можете ознакомиться с комнатами и забронировать их</p>
+    </div>
+
+    <!-- Контейнер для карточек с комнатами -->
+    <div class="rooms-container">
+        {% for room in rooms %}
+        <div class="room-card">
+            <img src="{{ room.image_url }}" alt="{{ room.name }}">
+            <h2>{{ room.name }}</h2>
+            <p class="price">{{ room.price }} руб./ночь</p>
+            <p class="description">{{ room.description }}</p>
+            <p class="rating">★ {{ room.rating }} <span>({{ room.reviews }} отзывов)</span></p>
+            <p>Вместимость: {{ room.capacity }} человек</p>
+            <p>Оснащение: {{ room.equipment }}</p>
+            <div class="features">
+                <ul>
+                    {% for feature in room.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button>Забронировать</button>
+            {% if session.get('is_admin') %}
+            <div class="admin-actions">
+                <a href="{{ url_for('edit_room', room_id=room.id) }}" class="edit-btn">Редактировать</a>
+                <a href="{{ url_for('delete_room', room_id=room.id) }}" class="delete-btn">Удалить</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
 
     <!-- Нижняя чёрная полоса -->

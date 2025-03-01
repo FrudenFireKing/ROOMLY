@@ -1,10 +1,208 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles_about.css') }}">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>О нас</title>
+    <style>
+        /* Анимированный градиентный фон */
+        body {
+            width: 100%;
+            height: 100vh; /* На всю высоту экрана */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Чтобы избежать скролла */
+
+            /* Градиентный фон с анимацией */
+            background: linear-gradient(
+                -80deg,
+                #0A9AB5,  /* Основной цвет Tiffany */
+                #FFFFFF,  /* Светлый оттенок Tiffany */
+                #0A9AB5,  /* Тёмный оттенок Tiffany */
+                #4fc3f7,  /* Голубоватый оттенок */
+                #0ABAB5
+            );
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
+
+        /* Анимация градиента */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Стили для навигационного меню */
+        nav {
+            background-color: #333; /* Цвет фона меню */
+            padding: 10px; /* Отступы внутри меню */
+            text-align: center; /* Выравнивание по центру */
+        }
+        nav a {
+            color: white; /* Цвет текста ссылок */
+            margin: 0 15px; /* Отступы между ссылками */
+            text-decoration: none; /* Убираем подчёркивание */
+            font-size: 18px; /* Размер шрифта */
+            font-family: Courier New, monospace; /* Шрифт */
+        }
+        nav a:hover {
+            color: #ffcc00; /* Цвет текста при наведении */
+        }
+
+        /* Стили для нижней чёрной полосы */
+        footer {
+            background-color: #333; /* Цвет фона */
+            color: white; /* Цвет текста */
+            text-align: center; /* Выравнивание по центру */
+            font-family: Courier New, monospace;
+            padding: 10px; /* Отступы внутри */
+            position: fixed; /* Фиксированное положение */
+            left: 0;
+            bottom: 0;
+            width: 100%; /* Ширина на всю страницу */
+        }
+
+        h1 {
+            font-size: 90px;
+            text-align: center;
+            margin-top: 75px;
+            color: #333;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 1s ease-in-out forwards; /* Анимация появления */
+        }
+
+        p {
+            text-align: center;
+            font-size: 42px;
+            margin-top: 20px;
+            font-family: FreeMono, monospace;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
+        }
+
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Начальное состояние: полностью прозрачный */
+            }
+            to {
+                opacity: 1; /* Конечное состояние: полностью видимый */
+            }
+        }
+
+        /* Стили для карточек */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            margin-top: 70px;
+            padding: 20px;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 0.5s ease-in-out 1s forwards; /* Анимация с задержкой 1 секунда */
+        }
+
+        .card {
+            width: 18em;
+            height: 23.5em;
+            background: #171717;
+            transition: 1s ease-in-out;
+            clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 0.5s ease-in-out forwards; /* Анимация появления (0.5 секунды) */
+        }
+
+        /* Задержка для каждой карточки */
+        .card:nth-child(1) {
+            animation-delay: 1s; /* Первая карточка появляется через 1 секунду */
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 1.25s; /* Вторая карточка появляется через 1.25 секунды */
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 1.5s; /* Третья карточка появляется через 1.5 секунды */
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 1.75s; /* Четвёртая карточка появляется через 1.75 секунды */
+        }
+
+        .card span {
+            font-weight: bold;
+            color: white;
+            font-family: FreeMono, monospace;
+            text-align: center;
+            display: block;
+            font-size: 1em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .card .info {
+            font-weight: 400;
+            color: white;
+            display: block;
+            text-align: center;
+            font-size: 0.92em;
+            margin: 0.5em;
+        }
+
+        .card .img {
+            width: 8em;
+            height: 8em;
+            background: white;
+            border-radius: 15px;
+            margin: auto;
+        }
+
+        .card .share {
+            margin-top: 1em;
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+        }
+
+        .card a {
+            color: white;
+            transition: 0.4s ease-in-out;
+        }
+
+        .card a:hover {
+            color: #4fc3f7; /* цвет приложений */
+        }
+
+        .card button {
+            padding: 0.8em 1.7em;
+            display: block;
+            margin: auto;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            background: #ffffff;
+            color: rgb(0, 0, 0);
+            transition: 0.4s ease-in-out;
+        }
+
+        .card button:hover {
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <!-- Навигационное меню -->
@@ -17,7 +215,7 @@
 
     <!-- Основное содержимое страницы -->
     <div>
-        <h1></h1>
+        <h1>О нас</h1>
         <p>Мы — команда ROOMLY, предоставляющая лучшие переговорные комнаты.</p>
     </div>
 

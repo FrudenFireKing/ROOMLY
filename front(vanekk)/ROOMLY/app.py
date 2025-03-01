@@ -7,8 +7,13 @@ import os
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Секретный ключ для сессий
 
+# Логин и пароль суперпользователя
+SUPERUSER_USERNAME = "superadmin"
+SUPERUSER_PASSWORD = "superpassword123"
+
 # Путь к файлу metadata.txt
 METADATA_FILE = 'metadata.txt'
+
 
 # Подключение к SQLite базе данных
 def get_db_connection():
@@ -16,7 +21,8 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-# Создание таблицы пользователей, если её нет
+
+# Создание таблиц пользователей и комнат, если их нет
 def init_db():
     conn = get_db_connection()
     conn.execute('''
@@ -24,11 +30,32 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL UNIQUE,
             email TEXT NOT NULL UNIQUE,
-            password TEXT NOT NULL
+            password TEXT NOT NULL,
+            is_admin BOOLEAN DEFAULT 0
         )
     ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS rooms (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            capacity INTEGER NOT NULL,
+            equipment TEXT NOT NULL
+        )
+    ''')
+
+    # Добавляем начальные данные о комнатах, если таблица пуста
+    rooms = conn.execute('SELECT COUNT(*) FROM rooms').fetchone()[0]
+    if rooms == 0:
+        conn.execute('''
+            INSERT INTO rooms (name, capacity, equipment) VALUES
+            ('Комната 1', 4, 'Проектор, доска'),
+            ('Комната 2', 6, 'Телевизор, Wi-Fi'),
+            ('Комната 3', 8, 'Кондиционер, кофе-машина')
+        ''')
+
     conn.commit()
     conn.close()
+
 
 # Загрузка данных пользователей из файла metadata.txt
 def load_users_metadata():
@@ -45,29 +72,41 @@ def load_users_metadata():
     else:
         return []  # Возвращаем пустой массив, если файл не существует
 
+
 # Сохранение данных пользователей в файл metadata.txt
 def save_users_metadata(users):
     with open(METADATA_FILE, 'w') as file:
         json.dump(users, file)
+
 
 # Главная страница
 @app.route('/')
 def home():
     return render_template('index.html')
 
+
 # Страница "О нас"
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 # Личный кабинет (страница входа)
 @app.route('/personal', methods=['GET', 'POST'])
 def personal():
     if request.method == 'POST':
-        # Логика для входа
         username = request.form['username']
         password = request.form['password']
 
+        # Проверка на суперпользователя
+        if username == SUPERUSER_USERNAME and password == SUPERUSER_PASSWORD:
+            session['user_id'] = 0  # Идентификатор суперпользователя
+            session['username'] = SUPERUSER_USERNAME
+            session['is_admin'] = True
+            flash('Вход выполнен успешно как суперпользователь!', 'success')
+            return redirect(url_for('profile'))
+
+        # Обычная проверка для других пользователей
         conn = get_db_connection()
         user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
         conn.close()
@@ -75,12 +114,15 @@ def personal():
         if user and checkpw(password.encode('utf-8'), user['password']):
             session['user_id'] = user['id']
             session['username'] = user['username']
+            session['email'] = user['email']
+            session['is_admin'] = user['is_admin']
             flash('Вход выполнен успешно!', 'success')
             return redirect(url_for('profile'))
         else:
             flash('Неверное имя пользователя или пароль.', 'error')
 
     return render_template('personal.html')
+
 
 # Регистрация нового пользователя
 @app.route('/register', methods=['GET', 'POST'])
@@ -117,6 +159,7 @@ def register():
 
     return render_template('register.html')
 
+
 # Страница профиля (после успешного входа)
 @app.route('/profile')
 def profile():
@@ -125,6 +168,7 @@ def profile():
         return redirect(url_for('personal'))
     return render_template('profile.html', username=session['username'])
 
+
 # Выход из системы
 @app.route('/logout')
 def logout():
@@ -132,10 +176,85 @@ def logout():
     flash('Вы вышли из системы.', 'success')
     return redirect(url_for('personal'))
 
+
 # Страница "Комнаты"
 @app.route('/rooms')
 def rooms():
-    return render_template('rooms.html')
+    if 'user_id' not in session:
+        flash('Пожалуйста, войдите в систему.', 'error')
+        return redirect(url_for('personal'))
+
+    # Логика для отображения комнат
+    conn = get_db_connection()
+    rooms = conn.execute('SELECT * FROM rooms').fetchall()
+    conn.close()
+    return render_template('rooms.html', rooms=rooms)
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    if 'user_id' not in session:
+        flash('Пожалуйста, войдите в систему.', 'error')
+        return redirect(url_for('personal'))
+
+    if request.method == 'POST':
+        new_username = request.form['username']
+        new_email = request.form['email']
+
+        conn = get_db_connection()
+        conn.execute('UPDATE users SET username = ?, email = ? WHERE id = ?',
+                     (new_username, new_email, session['user_id']))
+        conn.commit()
+        conn.close()
+
+        session['username'] = new_username
+        flash('Профиль успешно обновлен!', 'success')
+        return redirect(url_for('profile'))
+
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+    conn.close()
+
+    return render_template('edit_profile.html', username=user['username'], email=user['email'])
+# Редактирование комнаты
+@app.route('/edit_room/<int:room_id>', methods=['GET', 'POST'])
+def edit_room(room_id):
+    if 'user_id' not in session or not session.get('is_admin'):
+        flash('У вас нет прав для выполнения этого действия.', 'error')
+        return redirect(url_for('rooms'))
+
+    conn = get_db_connection()
+    room = conn.execute('SELECT * FROM rooms WHERE id = ?', (room_id,)).fetchone()
+
+    if request.method == 'POST':
+        name = request.form['name']
+        capacity = request.form['capacity']
+        equipment = request.form['equipment']
+
+        conn.execute('UPDATE rooms SET name = ?, capacity = ?, equipment = ? WHERE id = ?',
+                     (name, capacity, equipment, room_id))
+        conn.commit()
+        conn.close()
+        flash('Комната успешно обновлена!', 'success')
+        return redirect(url_for('rooms'))
+
+    conn.close()
+    return render_template('edit_room.html', room=room)
+
+
+# Удаление комнаты
+@app.route('/delete_room/<int:room_id>')
+def delete_room(room_id):
+    if 'user_id' not in session or not session.get('is_admin'):
+        flash('У вас нет прав для выполнения этого действия.', 'error')
+        return redirect(url_for('rooms'))
+
+    conn = get_db_connection()
+    conn.execute('DELETE FROM rooms WHERE id = ?', (room_id,))
+    conn.commit()
+    conn.close()
+    flash('Комната успешно удалена!', 'success')
+    return redirect(url_for('rooms'))
+
 
 if __name__ == '__main__':
     init_db()  # Инициализация базы данных
