@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="511eefc0-e156-4729-9841-bbf263977230" name="Changes" comment="update with css">
-      <change afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_rooms.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_about.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_about.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_pers.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_pers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_prof.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_prof.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_reg.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_reg.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/Rooms.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/Rooms.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/users.db" afterDir="false" />
+    <list default="true" id="511eefc0-e156-4729-9841-bbf263977230" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/users.db">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/metadata.txt" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/metadata.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/users.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +145,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740867927499</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1740950825006</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740950825006</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1740950863786</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740950863786</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/users.db">
+      <option name="closed" value="true" />
+      <created>1740950906207</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740950906207</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,6 +187,8 @@
     <MESSAGE value="update" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/Templates/profile.html" />
     <MESSAGE value="update with css" />
-    <option name="LAST_COMMIT_MESSAGE" value="update with css" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/users.db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/users.db" />
   </component>
 </project>
