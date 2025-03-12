@@ -76,9 +76,9 @@
 
         p {
             text-align: center;
-            font-size: 42px;
+            font-size: 35px;
             margin-top: 20px;
-            font-family: FreeMono, monospace;
+            font-family: 'Russo One', sans-serif;
             opacity: 0; /* Начальная прозрачность */
             animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
         }

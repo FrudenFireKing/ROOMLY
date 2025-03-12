@@ -76,9 +76,9 @@
         }
 
         h1 {
-            font-size: 90px;
+            font-size: 140px;
             text-align: center;
-            margin-top: 45px;
+            margin-top: 40px;
             font-family: 'Russo One', sans-serif;
             color: #333;
             opacity: 0; /* Начальная прозрачность */
@@ -87,8 +87,9 @@
 
         p {
             text-align: center;
-            font-size: 24px;
-            margin-top: 20px;
+            font-size: 32px;
+            font-family: 'Russo One', sans-serif;
+            margin-top: 1px;
             opacity: 0; /* Начальная прозрачность */
             animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
         }
