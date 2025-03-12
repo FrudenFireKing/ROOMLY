@@ -23,7 +23,7 @@
             <p class="email">Email: {{ email }}</p>
             <p class="joined-date">Дата регистрации: {{ joined_date }}</p>
             <div class="actions">
-                <a href="{{ url_for('edit_profile') }}">Редактировать профиль</a>
+                <a href="/edit_profile">Редактировать профиль</a>
                 <a href="{{ url_for('logout') }}" class="logout-btn">Выйти</a>
             </div>
         </div>

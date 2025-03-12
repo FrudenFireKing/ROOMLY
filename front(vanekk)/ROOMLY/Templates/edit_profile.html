@@ -2,9 +2,30 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Редактирование профиля</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}">Главная</a>
+            <a href="{{ url_for('about') }}">О нас</a>
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('profile') }}">Профиль</a>
+                <a href="{{ url_for('logout') }}">Выйти</a>
+            {% else %}
+                <a href="{{ url_for('personal') }}">Войти</a>
+                <a href="{{ url_for('register') }}">Регистрация</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% extends "base.html" %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
     <h1>Редактирование профиля</h1>
     <form method="POST">
         <label for="username">Имя пользователя:</label>
@@ -16,5 +37,7 @@
         <button type="submit">Сохранить изменения</button>
     </form>
     <a href="{{ url_for('profile') }}">Назад к профилю</a>
+{% endblock %}
+    </main>
 </body>
 </html>

@@ -14,13 +14,11 @@ SUPERUSER_PASSWORD = "superpassword123"
 # Путь к файлу metadata.txt
 METADATA_FILE = 'metadata.txt'
 
-
 # Подключение к SQLite базе данных
 def get_db_connection():
     conn = sqlite3.connect('users.db')
     conn.row_factory = sqlite3.Row
     return conn
-
 
 # Создание таблиц пользователей и комнат, если их нет
 def init_db():
@@ -56,7 +54,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 # Загрузка данных пользователей из файла metadata.txt
 def load_users_metadata():
     if os.path.exists(METADATA_FILE):
@@ -72,24 +69,20 @@ def load_users_metadata():
     else:
         return []  # Возвращаем пустой массив, если файл не существует
 
-
 # Сохранение данных пользователей в файл metadata.txt
 def save_users_metadata(users):
     with open(METADATA_FILE, 'w') as file:
         json.dump(users, file)
-
 
 # Главная страница
 @app.route('/')
 def home():
     return render_template('index.html')
 
-
 # Страница "О нас"
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 # Личный кабинет (страница входа)
 @app.route('/personal', methods=['GET', 'POST'])
@@ -122,7 +115,6 @@ def personal():
             flash('Неверное имя пользователя или пароль.', 'error')
 
     return render_template('personal.html')
-
 
 # Регистрация нового пользователя
 @app.route('/register', methods=['GET', 'POST'])
@@ -159,7 +151,6 @@ def register():
 
     return render_template('register.html')
 
-
 # Страница профиля (после успешного входа)
 @app.route('/profile')
 def profile():
@@ -168,14 +159,12 @@ def profile():
         return redirect(url_for('personal'))
     return render_template('profile.html', username=session['username'])
 
-
 # Выход из системы
 @app.route('/logout')
 def logout():
     session.clear()
     flash('Вы вышли из системы.', 'success')
     return redirect(url_for('personal'))
-
 
 # Страница "Комнаты"
 @app.route('/rooms')
@@ -190,6 +179,7 @@ def rooms():
     conn.close()
     return render_template('rooms.html', rooms=rooms)
 
+# Редактирование профиля
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
     if 'user_id' not in session:
@@ -201,20 +191,28 @@ def edit_profile():
         new_email = request.form['email']
 
         conn = get_db_connection()
-        conn.execute('UPDATE users SET username = ?, email = ? WHERE id = ?',
-                     (new_username, new_email, session['user_id']))
-        conn.commit()
-        conn.close()
-
-        session['username'] = new_username
-        flash('Профиль успешно обновлен!', 'success')
-        return redirect(url_for('profile'))
+        try:
+            conn.execute('UPDATE users SET username = ?, email = ? WHERE id = ?',
+                         (new_username, new_email, session['user_id']))
+            conn.commit()
+            session['username'] = new_username
+            flash('Профиль успешно обновлен!', 'success')
+            return redirect(url_for('profile'))
+        except sqlite3.IntegrityError:
+            flash('Пользователь с таким именем или email уже существует.', 'error')
+        finally:
+            conn.close()
 
     conn = get_db_connection()
     user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
     conn.close()
 
-    return render_template('edit_profile.html', username=user['username'], email=user['email'])
+    if user:
+        return render_template('edit_profile.html', username=user['username'], email=user['email'])
+    else:
+        flash('Пользователь не найден.', 'error')
+        return redirect(url_for('personal'))
+
 # Редактирование комнаты
 @app.route('/edit_room/<int:room_id>', methods=['GET', 'POST'])
 def edit_room(room_id):
@@ -240,7 +238,6 @@ def edit_room(room_id):
     conn.close()
     return render_template('edit_room.html', room=room)
 
-
 # Удаление комнаты
 @app.route('/delete_room/<int:room_id>')
 def delete_room(room_id):
@@ -254,7 +251,6 @@ def delete_room(room_id):
     conn.close()
     flash('Комната успешно удалена!', 'success')
     return redirect(url_for('rooms'))
-
 
 if __name__ == '__main__':
     init_db()  # Инициализация базы данных
