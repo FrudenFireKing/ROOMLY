@@ -1,0 +1,147 @@
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+        /* Анимированный градиентный фон */
+        body {
+            width: 100%;
+            height: 100vh; /* На всю высоту экрана */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Чтобы избежать скролла */
+
+            /* Градиентный фон с анимацией */
+            background: linear-gradient(
+                -45deg,
+                #7FFFD4,  /* Основной цвет Tiffany */
+                #AFEEEE,  /* Светлый оттенок Tiffany */
+                #7FFFD4,  /* Тёмный оттенок Tiffany */
+                #00FFFF,  /* Голубоватый оттенок */
+                #7FFFD4
+            );
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
+
+        /* Анимация градиента */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Стили для навигационного меню */
+        nav {
+            background-color: #333; /* Цвет фона меню */
+            padding: 10px; /* Отступы внутри меню */
+            text-align: center; /* Выравнивание по центру */
+        }
+        nav a {
+            color: white; /* Цвет текста ссылок */
+            margin: 0 15px; /* Отступы между ссылками */
+            text-decoration: none; /* Убираем подчёркивание */
+            font-size: 18px; /* Размер шрифта */
+            font-family: Courier New, monospace; /* Шрифт */
+        }
+        nav a:hover {
+            color: #ffcc00; /* Цвет текста при наведении */
+        }
+
+        /* Стили для нижней чёрной полосы */
+        footer {
+            background-color: #333; /* Цвет фона */
+            color: white; /* Цвет текста */
+            text-align: center; /* Выравнивание по центру */
+            font-family: Courier New, monospace;
+            padding: 10px; /* Отступы внутри */
+            position: fixed; /* Фиксированное положение */
+            left: 0;
+            bottom: 0;
+            width: 100%; /* Ширина на всю страницу */
+        }
+        h1 {
+            font-size: 90px;
+            text-align: center;
+            margin-top: 45px;
+            font-family: 'Russo One', sans-serif;
+            color: #333;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 1s ease-in-out forwards; /* Анимация появления */
+        }
+        label {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
+        }
+
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Начальное состояние: полностью прозрачный */
+            }
+            to {
+                opacity: 1; /* Конечное состояние: полностью видимый */
+            }
+        }
+                .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 1s ease-in-out 1.5s forwards; /* Анимация с задержкой */
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+
+        .form-container input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0ABAB5; /* Цвет кнопки */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0A9AB5; /* Цвет кнопки при наведении */
+        }
+
+        .form-container p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .form-container a {
+            color: #0ABAB5;
+            text-decoration: none;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
