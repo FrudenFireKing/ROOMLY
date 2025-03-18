@@ -7,10 +7,14 @@
     <list default="true" id="511eefc0-e156-4729-9841-bbf263977230" name="Changes" comment="update with css">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_about.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_about.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_pers.css" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Static/styles_pers.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/edit_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/Templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/metadata.txt" beforeDir="false" afterPath="$PROJECT_DIR$/front(vanekk)/ROOMLY/metadata.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front(vanekk)/ROOMLY/users.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/FrudenFireKing/ROOMLY.git&quot;,
-    &quot;accountId&quot;: &quot;3bd87436-03ab-4f00-b23e-77cb89aabe09&quot;
+    &quot;accountId&quot;: &quot;f63f5e3a-ea38-4e83-9350-b1b185e4d2d4&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -51,8 +55,10 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Python.app.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RunManager">
@@ -87,7 +93,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+        <option value="bundled-python-sdk-14705d77f0bb-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.25659.43" />
       </set>
     </attachedChunks>
   </component>
@@ -166,7 +172,6 @@
     <MESSAGE value="update" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/Templates/profile.html" />
     <MESSAGE value="update with css" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/users.db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;front(vanekk)/ROOMLY/users.db" />
+    <option name="LAST_COMMIT_MESSAGE" value="update with css" />
   </component>
 </project>
