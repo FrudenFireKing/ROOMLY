@@ -3,40 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Flask App{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Редактирование профиля</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_editprof.css') }}">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="{{ url_for('home') }}">Главная</a>
-            <a href="{{ url_for('about') }}">О нас</a>
-            {% if 'user_id' in session %}
-                <a href="{{ url_for('profile') }}">Профиль</a>
-                <a href="{{ url_for('logout') }}">Выйти</a>
-            {% else %}
-                <a href="{{ url_for('personal') }}">Войти</a>
-                <a href="{{ url_for('register') }}">Регистрация</a>
+<div class="form-container">
+        <h2>Изменение профиля</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
             {% endif %}
-        </nav>
-    </header>
+        {% endwith %}
+        <form method="POST" action="{{ url_for('profile') }}">
+            <input type="text" name="username" placeholder="Имя пользователя" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    </div>
     <main>
-        {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Редактирование профиля{% endblock %}
 
 {% block content %}
-    <h1>Редактирование профиля</h1>
-    <form method="POST">
-        <label for="username">Имя пользователя:</label>
-        <input type="text" id="username" name="username" value="{{ username }}" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ email }}" required>
-        <br>
-        <button type="submit">Сохранить изменения</button>
-    </form>
-    <a href="{{ url_for('profile') }}">Назад к профилю</a>
+<h1>Редактирование профиля</h1>
+<form method="POST">
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" name="username" value="{{ username }}" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="{{ email }}" required>
+    <br>
+    <button type="submit">Сохранить изменения</button>
+</form>
+<a href="{{ url_for('profile') }}">Назад к профилю</a>
 {% endblock %}
     </main>
 </body>

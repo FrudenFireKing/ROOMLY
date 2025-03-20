@@ -189,18 +189,35 @@ def edit_profile():
     if request.method == 'POST':
         new_username = request.form['username']
         new_email = request.form['email']
+        current_password = request.form['current_password']
+        new_password = request.form['new_password']
 
         conn = get_db_connection()
-        try:
-            conn.execute('UPDATE users SET username = ?, email = ? WHERE id = ?',
-                         (new_username, new_email, session['user_id']))
-            conn.commit()
-            session['username'] = new_username
-            flash('Профиль успешно обновлен!', 'success')
-            return redirect(url_for('profile'))
-        except sqlite3.IntegrityError:
-            flash('Пользователь с таким именем или email уже существует.', 'error')
-        finally:
+        user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+
+        if user and checkpw(current_password.encode('utf-8'), user['password']):
+            try:
+                # Обновление имени пользователя и почты
+                conn.execute('UPDATE users SET username = ?, email = ? WHERE id = ?',
+                             (new_username, new_email, session['user_id']))
+
+                # Обновление пароля, если новый пароль был введен
+                if new_password:
+                    hashed_password = hashpw(new_password.encode('utf-8'), gensalt())
+                    conn.execute('UPDATE users SET password = ? WHERE id = ?',
+                                 (hashed_password, session['user_id']))
+
+                conn.commit()
+                session['username'] = new_username
+                session['email'] = new_email
+                flash('Профиль успешно обновлен!', 'success')
+                return redirect(url_for('profile'))
+            except sqlite3.IntegrityError:
+                flash('Пользователь с таким именем или email уже существует.', 'error')
+            finally:
+                conn.close()
+        else:
+            flash('Неверный текущий пароль.', 'error')
             conn.close()
 
     conn = get_db_connection()
