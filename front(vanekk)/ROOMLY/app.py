@@ -230,6 +230,7 @@ def edit_profile():
         flash('Пользователь не найден.', 'error')
         return redirect(url_for('personal'))
 
+
 # Редактирование комнаты
 @app.route('/edit_room/<int:room_id>', methods=['GET', 'POST'])
 def edit_room(room_id):
