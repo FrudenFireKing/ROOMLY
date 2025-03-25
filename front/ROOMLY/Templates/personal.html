@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_pers.css') }}">
     <title>Личный кабинет</title>
-
 </head>
 <body>
     <!-- Навигационное меню -->
@@ -46,6 +45,7 @@
                 {% endif %}
             {% endwith %}
             <form method="POST" action="{{ url_for('personal') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="text" name="username" placeholder="Имя пользователя" required>
                 <input type="password" name="password" placeholder="Пароль" required>
                 <button type="submit">Войти</button>

@@ -165,8 +165,8 @@ def personal():
                 conn.execute(
                     'UPDATE users SET failed_attempts = 0, last_login = ? WHERE id = ?',
                     (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), user['id'])
-                conn.commit()
                 )
+                conn.commit()
 
                 flash('Вход выполнен успешно!', 'success')
                 return redirect(url_for('profile'))
