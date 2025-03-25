@@ -211,23 +211,19 @@ def register():
                 )
                 conn.commit()
 
-                # Сохранение метаданных
-                users_metadata = []
-                if os.path.exists(METADATA_FILE):
-                    with open(METADATA_FILE, 'r') as file:
-                        content = file.read()
-                        if content.strip():
-                            users_metadata = json.loads(content)
-
-                users_metadata.append({
+                # Сохранение метаданных в столбик
+                user_data = {
                     'username': username,
                     'email': email,
                     'password': hashed_password.decode('utf-8'),
                     'joined_date': joined_date
-                })
+                }
 
-                with open(METADATA_FILE, 'w') as file:
-                    json.dump(users_metadata, file)
+                with open(METADATA_FILE, 'a') as file:
+                    file.write("=== Новый пользователь ===\n")
+                    for key, value in user_data.items():
+                        file.write(f"{key}: {value}\n")
+                    file.write("\n")  # Пустая строка между записями
 
                 flash('Регистрация прошла успешно! Теперь вы можете войти.', 'success')
                 return redirect(url_for('personal'))
