@@ -165,8 +165,8 @@ def personal():
                 conn.execute(
                     'UPDATE users SET failed_attempts = 0, last_login = ? WHERE id = ?',
                     (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), user['id'])
-                conn.commit()
                 )
+                conn.commit()
 
                 flash('Вход выполнен успешно!', 'success')
                 return redirect(url_for('profile'))
@@ -386,12 +386,15 @@ def delete_room(room_id):
 
 @app.after_request
 def add_security_headers(response):
-    """Добавление HTTP-заголовков безопасности"""
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['X-Frame-Options'] = 'DENY'
-    response.headers['X-XSS-Protection'] = '1; mode=block'
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    csp_policy = (
+        "default-src 'self'; "
+        "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; "
+        "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; "
+        "script-src 'self' https://cdnjs.cloudflare.com; "
+        "img-src 'self' https://s.iimg.su https://i.ibb.co https://sun9-55.userapi.com https://i.imgur.com data:; "
+        "connect-src 'self' https://api.example.com"
+    )
+    response.headers['Content-Security-Policy'] = csp_policy
     return response
 
 

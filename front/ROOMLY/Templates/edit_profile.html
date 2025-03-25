@@ -30,6 +30,7 @@
             {% endif %}
         {% endwith %}
         <form method="POST" action="{{ url_for('edit_profile') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <label for="username">Имя пользователя:</label>
             <input type="text" id="username" name="username" value="{{ username }}" required>
 
