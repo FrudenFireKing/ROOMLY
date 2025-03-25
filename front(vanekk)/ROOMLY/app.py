@@ -3,6 +3,7 @@ import sqlite3
 from bcrypt import hashpw, gensalt, checkpw
 import json
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Секретный ключ для сессий
@@ -29,7 +30,8 @@ def init_db():
             username TEXT NOT NULL UNIQUE,
             email TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            is_admin BOOLEAN DEFAULT 0
+            is_admin BOOLEAN DEFAULT 0,
+            joined_date TEXT
         )
     ''')
     conn.execute('''
@@ -109,6 +111,7 @@ def personal():
             session['username'] = user['username']
             session['email'] = user['email']
             session['is_admin'] = user['is_admin']
+            session['joined_date'] = user['joined_date'] if 'joined_date' in user else 'Не указана'  # Исправлено
             flash('Вход выполнен успешно!', 'success')
             return redirect(url_for('profile'))
         else:
@@ -127,10 +130,13 @@ def register():
         # Хеширование пароля
         hashed_password = hashpw(password.encode('utf-8'), gensalt())
 
+        # Получаем текущую дату и время
+        joined_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
         conn = get_db_connection()
         try:
-            conn.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-                         (username, email, hashed_password))
+            conn.execute('INSERT INTO users (username, email, password, joined_date) VALUES (?, ?, ?, ?)',
+                         (username, email, hashed_password, joined_date))
             conn.commit()
 
             # Сохранение данных в metadata.txt
@@ -138,7 +144,8 @@ def register():
             users_metadata.append({
                 'username': username,
                 'email': email,
-                'password': hashed_password.decode('utf-8')  # Сохраняем хешированный пароль
+                'password': hashed_password.decode('utf-8'),  # Сохраняем хешированный пароль
+                'joined_date': joined_date  # Сохраняем дату регистрации
             })
             save_users_metadata(users_metadata)
 
