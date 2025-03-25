@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать комнату</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Редактировать комнату</h1>
+    <form method="POST">
+        <label for="name">Название:</label>
+        <input type="text" id="name" name="name" value="{{ room.name }}" required>
+        <br>
+        <label for="capacity">Вместимость:</label>
+        <input type="number" id="capacity" name="capacity" value="{{ room.capacity }}" required>
+        <br>
+        <label for="equipment">Оснащение:</label>
+        <input type="text" id="equipment" name="equipment" value="{{ room.equipment }}" required>
+        <br>
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{{ url_for('rooms') }}">Назад</a>
+</body>
+</html>
