@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+    <!-- В базовом шаблоне -->
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <!-- остальное содержимое формы -->
+    </form>
     <header>
         <nav>
             <a href="{{ url_for('home') }}">Главная</a>

@@ -8,6 +8,9 @@
 <body>
     <h1>Редактировать комнату</h1>
     <form method="POST">
+        <!-- Добавьте эту строку для CSRF-защиты -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
         <label for="name">Название:</label>
         <input type="text" id="name" name="name" value="{{ room.name }}" required>
         <br>

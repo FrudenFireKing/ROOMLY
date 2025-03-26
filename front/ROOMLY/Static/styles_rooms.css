@@ -1,230 +1,241 @@
-        @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-        body {
-            width: 100%;
-            height: 100vh; /* На всю высоту экрана */
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* Чтобы избежать скролла */
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #7FFFD4, #AFEEEE, #7FFFD4, #00FFFF, #7FFFD4);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
 
-            /* Градиентный фон с анимацией */
-            background: linear-gradient(
-                -45deg,
-                #7FFFD4,  /* Основной цвет Tiffany */
-                #AFEEEE,  /* Светлый оттенок Tiffany */
-                #7FFFD4,  /* Тёмный оттенок Tiffany */
-                #00FFFF,  /* Голубоватый оттенок */
-                #7FFFD4
-            );
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite;
-        }
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        /* Анимация градиента */
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+nav {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
 
-        /* Стили для навигационного меню */
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-            position: relative;
-            z-index: 3;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 18px;
-            font-family: Courier New, monospace;
-        }
-        nav a:hover {
-            color: #ffcc00;
-        }
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Courier New, monospace;
+}
 
-        /* Стили для нижней чёрной полосы */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            font-family: Courier New, monospace;
-            padding: 10px;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            z-index: 3;
-        }
+nav a:hover {
+    color: #ffcc00;
+}
 
-        h1 {
-            font-size: 90px;
-            text-align: center;
-            margin-top: 150px;
-            font-family: 'Russo One', sans-serif;
-            color: #333;
-            opacity: 0;
-            animation: fadeIn 2s ease-in-out forwards;
-            position: relative;
-            z-index: 2;
-        }
+.main-content {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding: 20px;
+    min-height: calc(100vh - 140px);
+}
 
-        p {
-            text-align: center;
-            font-size: 24px;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out 1s forwards;
-            position: relative;
-            z-index: 2;
-        }
+h1 {
+    font-size: 90px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Russo One', sans-serif;
+    color: #333;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+}
 
-        /* Анимация появления */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        /* Стили для карточек с комнатами */
-        .rooms-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            padding: 20px;
-            z-index: 2;
-            position: relative;
-        }
+/* Контейнер с вертикальной прокруткой */
+.rooms-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 200px);
+    scrollbar-width: thin;
+    scrollbar-color: #0ABAB5 #f1f1f1;
+    box-sizing: border-box;
+}
 
-        .room-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+/* Стили карточек (2 на экране) */
+.room-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    min-height: calc(50vh - 45px);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
 
-        .room-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
-        .room-card h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #333;
-        }
+.room-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1px;
+}
 
-        .room-card p {
-            font-size: 16px;
-            color: #666;
-            margin: 10px 0;
-        }
+.room-card h2 {
+    font-size: 24px;
+    margin: 1px;
+    color: #333;
+}
 
-        .room-card button {
-            background-color: #0ABAB5;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+.room-card p {
+    font-size: 16px;
+    color: #666;
+    margin: 1px;
+    flex-grow: 1;
+}
 
-        .room-card button:hover {
-            background-color: #0A9AB5;
-        }
+/* Кнопка в стиле Tiffany (уменьшенная) */
+.room-card button {
+    background-color: #0ABAB5;
+    color: white;
+    border: none;
+    padding: 8px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 500px; /* Увеличена ширина */
+    margin: 5px auto;
+}
 
-        .admin-actions {
-            margin-top: 10px;
-        }
+.room-card button:hover {
+    background-color: #0A9AB5;
+}
 
-        .edit-btn, .delete-btn {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: white;
-            font-size: 14px;
-        }
+/* Админские кнопки - новый стиль */
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
 
-        .edit-btn {
-            background-color: #4CAF50; /* Зелёный */
-        }
+.admin-actions-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Уменьшено расстояние между кнопками */
+    width: 100%;
+}
 
-        .delete-btn {
-            background-color: #f44336; /* Красный */
-        }
+.edit-btn, .delete-btn {
+    padding: 8px 15px; /* Немного увеличен padding */
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    width: 120px; /* Фиксированная ширина для админских кнопок */
+    text-align: center;
+}
 
-        .edit-btn:hover, .delete-btn:hover {
-            opacity: 0.8;
-        }
+.edit-btn {
+    background-color: #4CAF50;
+    order: 1; /* Слева */
+}
 
-        /* Новые улучшения */
-        .room-card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
+.delete-btn {
+    background-color: #f44336;
+    order: 3; /* Справа */
+}
 
-        .room-card .price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #0ABAB5;
-            margin: 10px 0;
-        }
+.edit-btn:hover, .delete-btn:hover {
+    opacity: 0.8;
+}
 
-        .room-card .description {
-            font-size: 14px;
-            color: #888;
-            margin: 10px 0;
-        }
+/* Расположение кнопок: редактировать - подробнее - удалить */
+.admin-actions-wrapper .edit-btn {
+    order: 1;
+}
 
-        .room-card .rating {
-            font-size: 16px;
-            color: #ffcc00;
-            margin: 10px 0;
-        }
+.admin-actions-wrapper .room-card-button {
+    order: 2;
+}
 
-        .room-card .rating span {
-            color: #333;
-        }
+.admin-actions-wrapper .delete-btn {
+    order: 3;
+}
 
-        .room-card .features {
-            font-size: 14px;
-            color: #666;
-            margin: 10px 0;
-        }
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-family: Courier New, monospace;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
 
-        .room-card .features ul {
-            list-style-type: none;
-            padding: 0;
-        }
+/* Адаптивность */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 50px;
+        margin-top: 30px;
+    }
 
-        .room-card .features ul li {
-            margin: 5px 0;
-        }
+    .rooms-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-        .room-card .features ul li::before {
-            content: "✔";
-            color: #4CAF50;
-            margin-right: 5px;
-        }
+    .room-card {
+        min-height: calc(50vh - 60px);
+    }
+
+    .room-card img {
+        height: 200px;
+    }
+
+    nav a {
+        font-size: 16px;
+        margin: 0 10px;
+    }
+
+    .edit-btn, .delete-btn, .room-card button {
+        width: 100%;
+        padding: 8px 0;
+    }
+
+    .admin-actions-wrapper {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

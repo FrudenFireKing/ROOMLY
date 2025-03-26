@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование комнаты</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_rooms.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/rooms">Комнаты</a>
+        <a href="/profile">Личный кабинет</a>
+        <a href="/about">О нас</a>
+    </nav>
+
+    <div class="main-content">
+        <h1>Бронирование комнаты {{ room.name }}</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('book_room', room_id=room.id) }}" class="booking-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <label for="start_time">Начало бронирования:</label>
+                <input type="datetime-local" id="start_time" name="start_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end_time">Окончание бронирования:</label>
+                <input type="datetime-local" id="end_time" name="end_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="purpose">Цель бронирования:</label>
+                <input type="text" id="purpose" name="purpose" required>
+            </div>
+
+            <button type="submit" class="book-btn">Забронировать</button>
+            <a href="{{ url_for('rooms') }}" class="cancel-btn">Отмена</a>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2025 ROOMLY.
+    </footer>
+</body>
+</html>

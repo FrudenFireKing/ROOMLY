@@ -4,32 +4,67 @@
     <meta charset="UTF-8">
     <title>Профиль</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_prof.css') }}">
-
 </head>
 <body>
-    <!-- Навигационное меню -->
     <nav>
-        <a href="/">Главная</a>
-        <a href="/rooms">Комнаты</a>
-        <a href="/personal">Личный кабинет</a>
-        <a href="/about">О нас</a>
+        <a href="{{ url_for('home') }}">Главная</a>
+        <a href="{{ url_for('rooms') }}">Комнаты</a>
+        <a href="{{ url_for('profile') }}">Личный кабинет</a>
+        <a href="{{ url_for('about') }}">О нас</a>
     </nav>
 
-    <!-- Основное содержимое страницы -->
     <div class="profile-container">
         <h1>Профиль</h1>
-        <div class="profile-info">
-            <h2>Добро пожаловать, {{ username }}!</h2>
-            <p class="email">Email: {{ email }}</p>
-            <p class="joined-date">Дата регистрации: {{ joined_date }}</p>
-            <div class="actions">
-                <a href="/edit_profile">Редактировать профиль</a>
-                <a href="{{ url_for('logout') }}" class="logout-btn">Выйти</a>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if not is_authenticated %}
+            <div class="form-container">
+                <h2>Вход</h2>
+                <form method="POST" action="{{ url_for('profile') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <input type="text" name="username" placeholder="Имя пользователя" required>
+                    <input type="password" name="password" placeholder="Пароль" required>
+                    <button type="submit">Войти</button>
+                </form>
+                <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a>.</p>
             </div>
-        </div>
+        {% else %}
+            <div class="profile-info">
+                <h2>Добро пожаловать, {{ username }}!</h2>
+                <p class="email">Email: {{ email }}</p>
+                <p class="joined-date">Дата регистрации: {{ joined_date }}</p>
+
+                <h3>Мои бронирования:</h3>
+                {% if bookings %}
+                    <div class="bookings-list">
+                        {% for booking in bookings %}
+                        <div class="booking-item">
+                            <p><strong>Комната:</strong> {{ booking.room_name }}</p>
+                            <p><strong>Время:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+                            <p><strong>Цель:</strong> {{ booking.purpose }}</p>
+                            <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}" class="cancel-btn">Отменить бронирование</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>У вас нет активных бронирований.</p>
+                {% endif %}
+
+                <div class="actions">
+                    <a href="{{ url_for('edit_profile') }}">Редактировать профиль</a>
+                    <a href="{{ url_for('logout') }}" class="logout-btn">Выйти</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 
-    <!-- Нижняя чёрная полоса -->
     <footer>
         &copy; 2025 ROOMLY.
     </footer>
