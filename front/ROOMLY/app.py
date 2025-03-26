@@ -124,11 +124,20 @@ def is_room_available(room_id, start_time, end_time, booking_id=None):
         query = '''
             SELECT id FROM bookings 
             WHERE room_id = ? 
-            AND ((start_time BETWEEN ? AND ?) 
-            OR (end_time BETWEEN ? AND ?)
-            OR (start_time <= ? AND end_time >= ?)
+            AND (
+                (start_time < ? AND end_time > ?)
+                OR (start_time < ? AND end_time > ?)
+                OR (start_time BETWEEN ? AND ?)
+                OR (end_time BETWEEN ? AND ?)
+            )
         '''
-        params = (room_id, start_time, end_time, start_time, end_time, start_time, end_time)
+        params = (
+            room_id,
+            end_time, start_time,
+            end_time, start_time,  # Второе условие (дублируется для SQLite)
+            start_time, end_time,
+            start_time, end_time
+        )
 
         if booking_id:
             query += ' AND id != ?'
@@ -138,7 +147,6 @@ def is_room_available(room_id, start_time, end_time, booking_id=None):
         return existing_booking is None
     finally:
         conn.close()
-
 @app.before_request
 def security_checks():
     if request.content_length and request.content_length > 1024 * 1024:
@@ -205,19 +213,38 @@ def profile():
     conn = get_db_connection()
     try:
         bookings = conn.execute('''
-            SELECT b.id, b.start_time, b.end_time, b.purpose, r.name as room_name
-            FROM bookings b JOIN rooms r ON b.room_id = r.id
-            WHERE b.user_id = ? ORDER BY b.start_time DESC
-        ''', (session['user_id'],)).fetchall()
+                SELECT b.id, b.start_time, b.end_time, b.purpose, r.name as room_name
+                FROM bookings b JOIN rooms r ON b.room_id = r.id
+                WHERE b.user_id = ? ORDER BY b.start_time DESC
+            ''', (session['user_id'],)).fetchall()
+
+        # Преобразуем даты к нужному формату
+        formatted_bookings = []
+        for booking in bookings:
+            formatted_booking = dict(booking)
+            # Преобразуем строки в datetime, если они еще не преобразованы
+            start_time = booking['start_time']
+            end_time = booking['end_time']
+
+            if isinstance(start_time, str):
+                start_time = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
+                formatted_booking['start_time'] = start_time.strftime('%Y-%m-%d %H:%M')
+
+            if isinstance(end_time, str):
+                end_time = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
+                formatted_booking['end_time'] = end_time.strftime('%Y-%m-%d %H:%M')
+
+            formatted_bookings.append(formatted_booking)
 
         return render_template('profile.html',
-                           is_authenticated=True,
-                           username=session['username'],
-                           email=session.get('email', ''),
-                           joined_date=session.get('joined_date', 'Не указана'),
-                           bookings=bookings)
+                               is_authenticated=True,
+                               username=session['username'],
+                               email=session.get('email', ''),
+                               joined_date=session.get('joined_date', 'Не указана'),
+                               bookings=formatted_bookings)
     finally:
         conn.close()
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

@@ -1,0 +1,12 @@
+=== Новый пользователь ===
+username: Username
+email: name@mail.ru
+password: $2b$12$FDYaTmwaxMIRyq4ugCsPcOipp458E7z2hrq03vnskbTqYePMOoATG
+joined_date: 2025-03-26 17:33:36
+
+=== Новый пользователь ===
+username: user
+email: email@mail.ru
+password: $2b$12$z9byt7smEKOfA0hCRsNboevjsuFIXvM16FKg/J5C0PlBbe.Aeplt.
+joined_date: 2025-03-30 10:56:08
+

@@ -89,7 +89,7 @@ p {
 
 a {
     text-align: center;
-    font-size: 24px;
+    font-size: 18px;
     margin-top: 20px;
     opacity: 0; /* Начальная прозрачность */
     animation: fadeIn 1s ease-in-out forwards;
@@ -139,10 +139,10 @@ a {
 }
 
 .profile-info p {
+    text-align: center;
     font-size: 16px;
     color: #666;
     margin: 10px 0;
-    text-align: left;
 }
 
 .profile-info .email {
@@ -237,7 +237,7 @@ a {
     background-color: #4CAF50;
 }
 
-/* Добавляем в конец файла */
+
 .form-container {
     background: white;
     border-radius: 15px;

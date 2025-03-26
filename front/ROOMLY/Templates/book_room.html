@@ -14,7 +14,8 @@
     </nav>
 
     <div class="main-content">
-        <h1>Бронирование комнаты {{ room.name }}</h1>
+        <h1>Бронирование комнаты</h1>
+        <p>{{ room.name }}</p>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}

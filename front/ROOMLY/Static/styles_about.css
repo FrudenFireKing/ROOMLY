@@ -79,6 +79,7 @@
             font-size: 35px;
             margin-top: 20px;
             font-family: 'Russo One', sans-serif;
+            color: #333;
             opacity: 0; /* Начальная прозрачность */
             animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
         }
@@ -161,7 +162,7 @@
 }
 
 .card a:hover {
-    color: #4fc3f7; /* Цвет при наведении */
+    color: #7FFFD4; /* Цвет при наведении */
 }
 
 .card button {
@@ -173,7 +174,7 @@
     border-radius: 25px;
     border: none;
     font-weight: bold;
-    background: #000000; /* Черный фон кнопки */
+    background: #333; /* Черный фон кнопки */
     color: white; /* Белый текст */
     transition: background 0.3s ease;
     cursor: pointer;

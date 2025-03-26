@@ -57,6 +57,16 @@ h1 {
     animation: fadeIn 2s ease-in-out forwards;
 }
 
+p {
+            text-align: center;
+            font-size: 35px;
+            margin-top: 20px;
+            font-family: 'Russo One', sans-serif;
+            color: #333;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
+        }
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
