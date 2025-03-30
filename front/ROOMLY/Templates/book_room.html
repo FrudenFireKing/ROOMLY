@@ -15,7 +15,12 @@
 
     <div class="main-content">
         <h1>Бронирование комнаты</h1>
-        <p>{{ room.name }}</p>
+        <div class="room-info">
+            <img src="https://i.ibb.co/BVR0ZjRY/peregovorochka.jpg" alt="{{ room.name }}" class="room-image">
+            <h2>{{ room.name }}</h2>
+            <h3>Вместимость: {{ room.capacity }} человек</h3>
+            <h3>Оснащение: {{ room.equipment }}</h3>
+        </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -29,13 +34,22 @@
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
-                <label for="start_time">Начало бронирования:</label>
+                <label for="start_time">Дата и время начала бронирования:</label>
                 <input type="datetime-local" id="start_time" name="start_time" required>
             </div>
 
             <div class="form-group">
-                <label for="end_time">Окончание бронирования:</label>
-                <input type="datetime-local" id="end_time" name="end_time" required>
+                <label>Продолжительность бронирования:</label>
+                <div class="duration-options">
+                    <button type="button" class="duration-btn" data-duration="1">1 час</button>
+                    <button type="button" class="duration-btn" data-duration="2">2 часа</button>
+                    <button type="button" class="duration-btn" data-duration="3">3 часа</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="end_time">Дата и время окончания бронирования:</label>
+                <input type="datetime-local" id="end_time" name="end_time" required readonly>
             </div>
 
             <div class="form-group">
@@ -51,5 +65,39 @@
     <footer>
         &copy; 2025 ROOMLY.
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startTimeInput = document.getElementById('start_time');
+            const endTimeInput = document.getElementById('end_time');
+            const durationButtons = document.querySelectorAll('.duration-btn');
+
+            durationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const duration = parseInt(this.getAttribute('data-duration'));
+
+                    if (startTimeInput.value) {
+                        const startTime = new Date(startTimeInput.value);
+                        const endTime = new Date(startTime.getTime() + duration * 60 * 60 * 1000);
+
+                        // Форматируем дату для input[type=datetime-local]
+                        const endTimeStr = endTime.toISOString().slice(0, 16);
+                        endTimeInput.value = endTimeStr;
+                    }
+                });
+            });
+
+            startTimeInput.addEventListener('change', function() {
+                if (endTimeInput.value) {
+                    const startTime = new Date(this.value);
+                    const endTime = new Date(endTimeInput.value);
+
+                    if (startTime >= endTime) {
+                        endTimeInput.value = '';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
