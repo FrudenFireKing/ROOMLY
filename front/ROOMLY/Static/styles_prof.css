@@ -55,7 +55,6 @@ nav a:hover {
     color: #ffcc00;
 }
 
-
 /* Стили для нижней чёрной полосы */
 footer {
     background-color: #333; /* Цвет фона */
@@ -160,7 +159,7 @@ a {
 
 .bookings-list {
     margin: 20px 0;
-    text-align: left;
+    text-align: center; /* Центрируем весь список бронирований */
 }
 
 .booking-item {
@@ -169,14 +168,17 @@ a {
     padding: 15px;
     margin-bottom: 15px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center; /* Центрируем содержимое каждого бронирования */
 }
 
 .booking-item p {
     margin: 5px 0;
+    text-align: center; /* Центрируем текст в бронировании */
 }
 
 .profile-info .actions {
     margin-top: 20px;
+    text-align: center; /* Центрируем кнопки действий */
 }
 
 .profile-info .actions a {
@@ -236,7 +238,6 @@ a {
 .alert-success {
     background-color: #4CAF50;
 }
-
 
 .form-container {
     background: white;

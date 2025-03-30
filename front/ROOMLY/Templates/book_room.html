@@ -4,6 +4,137 @@
     <meta charset="UTF-8">
     <title>Бронирование комнаты</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_rooms.css') }}">
+    <style>
+        .booking-form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .duration-options {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .duration-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .duration-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .duration-btn.active {
+            background-color: #0ABAB5;
+            color: white;
+            border-color: #0ABAB5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .book-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #0ABAB5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .book-btn:hover {
+            background-color: #089e9e;
+        }
+
+        .cancel-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .cancel-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .room-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .room-image {
+            max-width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-error {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -18,8 +149,8 @@
         <div class="room-info">
             <img src="https://i.ibb.co/BVR0ZjRY/peregovorochka.jpg" alt="{{ room.name }}" class="room-image">
             <h2>{{ room.name }}</h2>
-            <h3>Вместимость: {{ room.capacity }} человек</h3>
-            <h3>Оснащение: {{ room.equipment }}</h3>
+            <p>Вместимость: {{ room.capacity }} человек</p>
+            <p>Оснащение: {{ room.equipment }}</p>
         </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -35,11 +166,11 @@
 
             <div class="form-group">
                 <label for="start_time">Дата и время начала бронирования:</label>
-                <input type="datetime-local" id="start_time" name="start_time" required>
+                <input type="datetime-local" id="start_time" name="start_time" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label>Продолжительность бронирования:</label>
+                <label>Выберите продолжительность:</label>
                 <div class="duration-options">
                     <button type="button" class="duration-btn" data-duration="1">1 час</button>
                     <button type="button" class="duration-btn" data-duration="2">2 часа</button>
@@ -49,16 +180,18 @@
 
             <div class="form-group">
                 <label for="end_time">Дата и время окончания бронирования:</label>
-                <input type="datetime-local" id="end_time" name="end_time" required readonly>
+                <input type="datetime-local" id="end_time" name="end_time" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="purpose">Цель бронирования:</label>
-                <input type="text" id="purpose" name="purpose" required>
+                <input type="text" id="purpose" name="purpose" class="form-control" required>
             </div>
 
-            <button type="submit" class="book-btn">Забронировать</button>
-            <a href="{{ url_for('rooms') }}" class="cancel-btn">Отмена</a>
+            <div class="btn-group">
+                <button type="submit" class="book-btn">Забронировать</button>
+                <a href="{{ url_for('rooms') }}" class="cancel-btn">Отмена</a>
+            </div>
         </form>
     </div>
 
@@ -72,29 +205,66 @@
             const endTimeInput = document.getElementById('end_time');
             const durationButtons = document.querySelectorAll('.duration-btn');
 
+            if (!startTimeInput || !endTimeInput || !durationButtons) {
+                console.error('Не удалось найти необходимые элементы на странице');
+                return;
+            }
+
+            // Устанавливаем минимальную дату (текущую дату и время)
+            const now = new Date();
+            // Компенсируем временную зону для корректного отображения
+            const timezoneOffset = now.getTimezoneOffset() * 60000;
+            const localISOTime = new Date(now - timezoneOffset).toISOString().slice(0, 16);
+            startTimeInput.min = localISOTime;
+
+            // Функция для расчета времени окончания
+            function calculateEndTime(durationHours) {
+                if (!startTimeInput.value) {
+                    alert('Пожалуйста, сначала выберите дату и время начала бронирования');
+                    return false;
+                }
+
+                try {
+                    const startTime = new Date(startTimeInput.value);
+                    const endTime = new Date(startTime.getTime() + durationHours * 60 * 60 * 1000);
+
+                    // Форматируем дату для input[type=datetime-local] с учетом временной зоны
+                    const timezoneOffset = endTime.getTimezoneOffset() * 60000;
+                    const localEndTime = new Date(endTime - timezoneOffset);
+                    const endTimeStr = localEndTime.toISOString().slice(0, 16);
+
+                    endTimeInput.value = endTimeStr;
+                    return true;
+                } catch (error) {
+                    console.error('Ошибка при расчете времени окончания:', error);
+                    return false;
+                }
+            }
+
+            // Обработчики для кнопок продолжительности
             durationButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Сбрасываем активное состояние у всех кнопок
+                    durationButtons.forEach(btn => btn.classList.remove('active'));
+                    // Устанавливаем активное состояние для текущей кнопки
+                    this.classList.add('active');
+
                     const duration = parseInt(this.getAttribute('data-duration'));
-
-                    if (startTimeInput.value) {
-                        const startTime = new Date(startTimeInput.value);
-                        const endTime = new Date(startTime.getTime() + duration * 60 * 60 * 1000);
-
-                        // Форматируем дату для input[type=datetime-local]
-                        const endTimeStr = endTime.toISOString().slice(0, 16);
-                        endTimeInput.value = endTimeStr;
+                    if (calculateEndTime(duration)) {
+                        console.log('Время окончания установлено:', endTimeInput.value);
                     }
                 });
             });
 
+            // Обработчик изменения времени начала
             startTimeInput.addEventListener('change', function() {
-                if (endTimeInput.value) {
-                    const startTime = new Date(this.value);
-                    const endTime = new Date(endTimeInput.value);
-
-                    if (startTime >= endTime) {
-                        endTimeInput.value = '';
-                    }
+                // Если есть активная кнопка продолжительности, пересчитываем время окончания
+                const activeButton = document.querySelector('.duration-btn.active');
+                if (activeButton) {
+                    const duration = parseInt(activeButton.getAttribute('data-duration'));
+                    calculateEndTime(duration);
                 }
             });
         });
