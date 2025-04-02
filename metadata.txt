@@ -10,3 +10,9 @@ email: email@mail.ru
 password: $2b$12$z9byt7smEKOfA0hCRsNboevjsuFIXvM16FKg/J5C0PlBbe.Aeplt.
 joined_date: 2025-03-30 10:56:08
 
+=== Новый пользователь ===
+username: laflame
+email: 1234@mail.ru
+password: $2b$12$DOxHkIVMsbceJZY7j4VTLusbw73YDH1rOWfVd8vqezJjTolPWtD5O
+joined_date: 2025-04-02 13:08:45
+

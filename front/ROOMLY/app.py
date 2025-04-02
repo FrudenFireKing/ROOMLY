@@ -335,6 +335,7 @@ def book_room(room_id):
             purpose = sanitize_input(request.form.get('purpose', ''))
 
             try:
+                # Преобразуем строки в datetime объекты
                 start_datetime = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
                 end_datetime = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
 
@@ -350,6 +351,7 @@ def book_room(room_id):
                     flash('Комната уже забронирована на это время', 'error')
                     return redirect(url_for('book_room', room_id=room_id))
 
+                # Сохраняем бронирование
                 conn.execute(
                     'INSERT INTO bookings (room_id, user_id, start_time, end_time, purpose) VALUES (?, ?, ?, ?, ?)',
                     (room_id, session['user_id'], start_time, end_time, purpose)
@@ -358,8 +360,8 @@ def book_room(room_id):
 
                 flash('Комната успешно забронирована!', 'success')
                 return redirect(url_for('profile'))
-            except ValueError:
-                flash('Некорректный формат времени', 'error')
+            except ValueError as e:
+                flash(f'Некорректный формат времени: {str(e)}', 'error')
                 return redirect(url_for('book_room', room_id=room_id))
 
         return render_template('book_room.html', room=room)
@@ -495,17 +497,37 @@ def delete_room(room_id):
 
 @app.after_request
 def add_security_headers(response):
+    # Основные настройки CSP
     csp_policy = (
         "default-src 'self'; "
-        "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; "
+        "script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; "
         "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; "
-        "script-src 'self' https://cdnjs.cloudflare.com; "
+        "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; "
         "img-src 'self' https://s.iimg.su https://i.ibb.co https://sun9-55.userapi.com https://i.imgur.com data:; "
-        "connect-src 'self' https://api.example.com"
+        "connect-src 'self' https://api.example.com; "
+        "frame-src 'none'; "
+        "object-src 'none'; "
+        "base-uri 'self'; "
+        "form-action 'self'; "
+        "frame-ancestors 'none'; "
+        "block-all-mixed-content;"
     )
+
+    # Для страницы бронирования разрешаем unsafe-inline
+    if request.path.startswith('/book_room/'):
+        csp_policy = (
+            "default-src 'self'; "
+            "script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; "
+            "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; "
+            "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; "
+            "img-src 'self' https://s.iimg.su https://i.ibb.co https://sun9-55.userapi.com https://i.imgur.com data:; "
+            "connect-src 'self' https://api.example.com; "
+            "frame-src 'none'; "
+            "object-src 'none';"
+        )
+
     response.headers['Content-Security-Policy'] = csp_policy
     return response
-
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
