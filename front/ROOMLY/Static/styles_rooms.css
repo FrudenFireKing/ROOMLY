@@ -78,14 +78,14 @@ h3 {
 }
 
 p {
-            text-align: center;
-            font-size: 35px;
-            margin-top: 20px;
-            font-family: 'Russo One', sans-serif;
-            color: #333;
-            opacity: 0; /* Начальная прозрачность */
-            animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
-        }
+     text-align: center;
+     font-size: 35px;
+     margin-top: 20px;
+     font-family: 'Russo One', sans-serif;
+     color: #333;
+     opacity: 0; /* Начальная прозрачность */
+     animation: fadeIn 1s ease-in-out 1s forwards; /* Анимация с задержкой */
+}
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -96,13 +96,16 @@ p {
 .rooms-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 15px;
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: scroll;
     height: calc(100vh - 200px);
-    scrollbar-width: thin;
-    scrollbar-color: #0ABAB5 #f1f1f1;
     box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.rooms-container::-webkit-scrollbar {
+    display: none;
 }
 
 /* Стили карточек (2 на экране) */
@@ -110,7 +113,7 @@ p {
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
+    width: 80%;
     min-height: calc(50vh - 45px);
     padding: 20px;
     text-align: center;
@@ -305,4 +308,32 @@ footer {
     background-color: #4CAF50;
     color: white;
     border-color: #4CAF50;
+}
+
+/* Добавьте этот стиль в файл styles_rooms.css */
+.book-btn {
+    display: inline-block;
+    background-color: #0ABAB5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 10px auto;
+    width: 150px;
+    text-align: center;
+}
+
+.book-btn:hover {
+    background-color: #0A9AB5;
+}
+
+/* Для админской версии кнопки "Подробнее" (если нужно отдельное оформление) */
+.admin-actions-wrapper .book-btn {
+    width: 120px;
+    padding: 8px 15px;
+    font-size: 14px;
+    order: 2; /* Позиция между кнопками редактирования и удаления */
 }
