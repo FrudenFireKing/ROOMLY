@@ -96,13 +96,15 @@ p {
 .rooms-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 40px;
     padding: 20px;
     overflow-y: scroll;
     height: calc(100vh - 200px);
     box-sizing: border-box;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    margin: 0 auto; /* Добавлено для центрирования */
+    max-width: 1500px; /* Ограничение максимальной ширины */
 }
 .rooms-container::-webkit-scrollbar {
     display: none;
@@ -113,7 +115,7 @@ p {
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
+    width: 100%;
     min-height: calc(50vh - 45px);
     padding: 20px;
     text-align: center;
@@ -140,7 +142,7 @@ p {
 
 .room-card h2 {
     font-size: 24px;
-    margin: 1px;
+    margin: 10px;
     color: #333;
 }
 

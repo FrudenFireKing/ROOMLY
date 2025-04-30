@@ -212,3 +212,1131 @@
 2025-03-30 15:27:08,475 INFO 127.0.0.1 - - [30/Mar/2025 15:27:08] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
 2025-03-30 15:27:26,270 INFO 127.0.0.1 - - [30/Mar/2025 15:27:26] "GET /rooms HTTP/1.1" 200 -
 2025-03-30 15:27:26,280 INFO 127.0.0.1 - - [30/Mar/2025 15:27:26] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 12:58:26,311 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 12:58:26,311 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 12:58:26,314 INFO  * Restarting with stat
+2025-04-02 12:58:26,674 WARNING  * Debugger is active!
+2025-04-02 12:58:26,677 INFO  * Debugger PIN: 863-794-781
+2025-04-02 12:58:30,352 INFO 127.0.0.1 - - [02/Apr/2025 12:58:30] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 12:58:30,371 INFO 127.0.0.1 - - [02/Apr/2025 12:58:30] "GET /profile HTTP/1.1" 200 -
+2025-04-02 12:58:30,434 INFO 127.0.0.1 - - [02/Apr/2025 12:58:30] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 12:58:31,932 INFO 127.0.0.1 - - [02/Apr/2025 12:58:31] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 12:58:31,938 INFO 127.0.0.1 - - [02/Apr/2025 12:58:31] "GET /profile HTTP/1.1" 200 -
+2025-04-02 12:58:31,966 INFO 127.0.0.1 - - [02/Apr/2025 12:58:31] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 12:58:34,122 INFO 127.0.0.1 - - [02/Apr/2025 12:58:34] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 12:58:34,153 INFO 127.0.0.1 - - [02/Apr/2025 12:58:34] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 12:58:36,263 INFO 127.0.0.1 - - [02/Apr/2025 12:58:36] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 12:58:36,292 INFO 127.0.0.1 - - [02/Apr/2025 12:58:36] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 12:59:13,090 INFO 127.0.0.1 - - [02/Apr/2025 12:59:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 12:59:13,119 INFO 127.0.0.1 - - [02/Apr/2025 12:59:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:00,079 INFO 127.0.0.1 - - [02/Apr/2025 13:00:00] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:00,104 INFO 127.0.0.1 - - [02/Apr/2025 13:00:00] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:00,921 INFO 127.0.0.1 - - [02/Apr/2025 13:00:00] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:00,944 INFO 127.0.0.1 - - [02/Apr/2025 13:00:00] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:01,868 INFO 127.0.0.1 - - [02/Apr/2025 13:00:01] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:01,891 INFO 127.0.0.1 - - [02/Apr/2025 13:00:01] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:02,131 INFO 127.0.0.1 - - [02/Apr/2025 13:00:02] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:02,159 INFO 127.0.0.1 - - [02/Apr/2025 13:00:02] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:02,364 INFO 127.0.0.1 - - [02/Apr/2025 13:00:02] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:02,388 INFO 127.0.0.1 - - [02/Apr/2025 13:00:02] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:03,884 INFO 127.0.0.1 - - [02/Apr/2025 13:00:03] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:03,897 INFO 127.0.0.1 - - [02/Apr/2025 13:00:03] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:28,817 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:00:28,817 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:00:28,818 INFO  * Restarting with stat
+2025-04-02 13:00:29,200 WARNING  * Debugger is active!
+2025-04-02 13:00:29,203 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:00:31,330 INFO 127.0.0.1 - - [02/Apr/2025 13:00:31] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:00:31,345 INFO 127.0.0.1 - - [02/Apr/2025 13:00:31] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:00:31,401 INFO 127.0.0.1 - - [02/Apr/2025 13:00:31] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:32,844 INFO 127.0.0.1 - - [02/Apr/2025 13:00:32] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:00:32,852 INFO 127.0.0.1 - - [02/Apr/2025 13:00:32] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:00:32,883 INFO 127.0.0.1 - - [02/Apr/2025 13:00:32] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:34,040 INFO 127.0.0.1 - - [02/Apr/2025 13:00:34] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:00:34,062 INFO 127.0.0.1 - - [02/Apr/2025 13:00:34] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:00:36,202 INFO 127.0.0.1 - - [02/Apr/2025 13:00:36] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:00:36,225 INFO 127.0.0.1 - - [02/Apr/2025 13:00:36] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:05:57,143 INFO 127.0.0.1 - - [02/Apr/2025 13:05:57] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:05:57,167 INFO 127.0.0.1 - - [02/Apr/2025 13:05:57] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:07:54,890 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:07:54,890 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:07:54,893 INFO  * Restarting with stat
+2025-04-02 13:07:55,271 WARNING  * Debugger is active!
+2025-04-02 13:07:55,273 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:07:59,382 INFO 127.0.0.1 - - [02/Apr/2025 13:07:59] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:07:59,396 INFO 127.0.0.1 - - [02/Apr/2025 13:07:59] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:07:59,447 INFO 127.0.0.1 - - [02/Apr/2025 13:07:59] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:00,703 INFO 127.0.0.1 - - [02/Apr/2025 13:08:00] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:08:00,709 INFO 127.0.0.1 - - [02/Apr/2025 13:08:00] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:00,736 INFO 127.0.0.1 - - [02/Apr/2025 13:08:00] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:02,323 INFO 127.0.0.1 - - [02/Apr/2025 13:08:02] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:08:02,345 INFO 127.0.0.1 - - [02/Apr/2025 13:08:02] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:03,797 INFO 127.0.0.1 - - [02/Apr/2025 13:08:03] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:08:03,821 INFO 127.0.0.1 - - [02/Apr/2025 13:08:03] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:19,096 INFO 127.0.0.1 - - [02/Apr/2025 13:08:19] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:08:19,108 INFO 127.0.0.1 - - [02/Apr/2025 13:08:19] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:08:19,124 INFO 127.0.0.1 - - [02/Apr/2025 13:08:19] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:24,630 INFO 127.0.0.1 - - [02/Apr/2025 13:08:24] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:24,660 INFO 127.0.0.1 - - [02/Apr/2025 13:08:24] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:26,409 INFO 127.0.0.1 - - [02/Apr/2025 13:08:26] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-04-02 13:08:26,417 INFO 127.0.0.1 - - [02/Apr/2025 13:08:26] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:26,433 INFO 127.0.0.1 - - [02/Apr/2025 13:08:26] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:27,811 INFO 127.0.0.1 - - [02/Apr/2025 13:08:27] "GET /register HTTP/1.1" 200 -
+2025-04-02 13:08:27,843 INFO 127.0.0.1 - - [02/Apr/2025 13:08:27] "[36mGET /static/styles_reg.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:33,614 INFO 127.0.0.1 - - [02/Apr/2025 13:08:33] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:33,639 INFO 127.0.0.1 - - [02/Apr/2025 13:08:33] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:35,683 INFO 127.0.0.1 - - [02/Apr/2025 13:08:35] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:08:35,692 INFO 127.0.0.1 - - [02/Apr/2025 13:08:35] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:35,715 INFO 127.0.0.1 - - [02/Apr/2025 13:08:35] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:38,031 INFO 127.0.0.1 - - [02/Apr/2025 13:08:38] "GET /register HTTP/1.1" 200 -
+2025-04-02 13:08:38,052 INFO 127.0.0.1 - - [02/Apr/2025 13:08:38] "[36mGET /static/styles_reg.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:46,030 INFO 127.0.0.1 - - [02/Apr/2025 13:08:46] "[32mPOST /register HTTP/1.1[0m" 302 -
+2025-04-02 13:08:46,035 INFO 127.0.0.1 - - [02/Apr/2025 13:08:46] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:46,062 INFO 127.0.0.1 - - [02/Apr/2025 13:08:46] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:49,126 INFO 127.0.0.1 - - [02/Apr/2025 13:08:49] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:08:49,136 INFO 127.0.0.1 - - [02/Apr/2025 13:08:49] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:08:49,168 INFO 127.0.0.1 - - [02/Apr/2025 13:08:49] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:50,954 INFO 127.0.0.1 - - [02/Apr/2025 13:08:50] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:08:50,967 INFO 127.0.0.1 - - [02/Apr/2025 13:08:50] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:08:52,282 INFO 127.0.0.1 - - [02/Apr/2025 13:08:52] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:08:52,308 INFO 127.0.0.1 - - [02/Apr/2025 13:08:52] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:09:07,929 INFO 127.0.0.1 - - [02/Apr/2025 13:09:07] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:09:07,935 INFO 127.0.0.1 - - [02/Apr/2025 13:09:07] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:09:07,951 INFO 127.0.0.1 - - [02/Apr/2025 13:09:07] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:11:04,534 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:11:04,534 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:11:04,536 INFO  * Restarting with stat
+2025-04-02 13:11:04,917 WARNING  * Debugger is active!
+2025-04-02 13:11:04,920 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:11:07,864 INFO 127.0.0.1 - - [02/Apr/2025 13:11:07] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:11:07,876 INFO 127.0.0.1 - - [02/Apr/2025 13:11:07] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:11:07,929 INFO 127.0.0.1 - - [02/Apr/2025 13:11:07] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:11:08,072 INFO 127.0.0.1 - - [02/Apr/2025 13:11:08] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:11:08,101 INFO 127.0.0.1 - - [02/Apr/2025 13:11:08] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:11:09,901 INFO 127.0.0.1 - - [02/Apr/2025 13:11:09] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:11:09,911 INFO 127.0.0.1 - - [02/Apr/2025 13:11:09] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:11:09,938 INFO 127.0.0.1 - - [02/Apr/2025 13:11:09] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:11:11,752 INFO 127.0.0.1 - - [02/Apr/2025 13:11:11] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:11:11,778 INFO 127.0.0.1 - - [02/Apr/2025 13:11:11] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:11:13,784 INFO 127.0.0.1 - - [02/Apr/2025 13:11:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:11:13,810 INFO 127.0.0.1 - - [02/Apr/2025 13:11:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:11:27,833 INFO 127.0.0.1 - - [02/Apr/2025 13:11:27] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:11:27,839 INFO 127.0.0.1 - - [02/Apr/2025 13:11:27] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:11:27,853 INFO 127.0.0.1 - - [02/Apr/2025 13:11:27] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:15:17,253 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:15:17,253 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:15:17,254 INFO  * Restarting with stat
+2025-04-02 13:15:17,646 WARNING  * Debugger is active!
+2025-04-02 13:15:17,648 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:15:20,933 INFO 127.0.0.1 - - [02/Apr/2025 13:15:20] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:15:20,946 INFO 127.0.0.1 - - [02/Apr/2025 13:15:20] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:15:21,000 INFO 127.0.0.1 - - [02/Apr/2025 13:15:21] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:15:22,658 INFO 127.0.0.1 - - [02/Apr/2025 13:15:22] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:15:22,665 INFO 127.0.0.1 - - [02/Apr/2025 13:15:22] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:15:22,697 INFO 127.0.0.1 - - [02/Apr/2025 13:15:22] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:15:24,701 INFO 127.0.0.1 - - [02/Apr/2025 13:15:24] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:15:24,713 INFO 127.0.0.1 - - [02/Apr/2025 13:15:24] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:15:26,190 INFO 127.0.0.1 - - [02/Apr/2025 13:15:26] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:15:26,217 INFO 127.0.0.1 - - [02/Apr/2025 13:15:26] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:15:49,491 INFO 127.0.0.1 - - [02/Apr/2025 13:15:49] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:15:49,493 INFO 127.0.0.1 - - [02/Apr/2025 13:15:49] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:15:49,522 INFO 127.0.0.1 - - [02/Apr/2025 13:15:49] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:11,813 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:19:11,814 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:19:11,815 INFO  * Restarting with stat
+2025-04-02 13:19:12,170 WARNING  * Debugger is active!
+2025-04-02 13:19:12,172 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:19:15,432 INFO 127.0.0.1 - - [02/Apr/2025 13:19:15] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:19:15,445 INFO 127.0.0.1 - - [02/Apr/2025 13:19:15] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:19:15,500 INFO 127.0.0.1 - - [02/Apr/2025 13:19:15] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:17,684 INFO 127.0.0.1 - - [02/Apr/2025 13:19:17] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:19:17,684 INFO 127.0.0.1 - - [02/Apr/2025 13:19:17] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:19:17,722 INFO 127.0.0.1 - - [02/Apr/2025 13:19:17] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:18,687 INFO 127.0.0.1 - - [02/Apr/2025 13:19:18] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:19:18,696 INFO 127.0.0.1 - - [02/Apr/2025 13:19:18] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:20,119 INFO 127.0.0.1 - - [02/Apr/2025 13:19:20] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:19:20,143 INFO 127.0.0.1 - - [02/Apr/2025 13:19:20] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:47,640 INFO 127.0.0.1 - - [02/Apr/2025 13:19:47] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:19:47,661 INFO 127.0.0.1 - - [02/Apr/2025 13:19:47] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:49,230 INFO 127.0.0.1 - - [02/Apr/2025 13:19:49] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:19:49,245 INFO 127.0.0.1 - - [02/Apr/2025 13:19:49] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:51,536 INFO 127.0.0.1 - - [02/Apr/2025 13:19:51] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:19:51,555 INFO 127.0.0.1 - - [02/Apr/2025 13:19:51] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:19:58,880 INFO 127.0.0.1 - - [02/Apr/2025 13:19:58] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:19:58,894 INFO 127.0.0.1 - - [02/Apr/2025 13:19:58] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:20:00,720 INFO 127.0.0.1 - - [02/Apr/2025 13:20:00] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:20:00,745 INFO 127.0.0.1 - - [02/Apr/2025 13:20:00] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:20:03,132 INFO 127.0.0.1 - - [02/Apr/2025 13:20:03] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:20:03,155 INFO 127.0.0.1 - - [02/Apr/2025 13:20:03] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:20:04,872 INFO 127.0.0.1 - - [02/Apr/2025 13:20:04] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:20:04,893 INFO 127.0.0.1 - - [02/Apr/2025 13:20:04] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:20:09,733 INFO 127.0.0.1 - - [02/Apr/2025 13:20:09] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:20:09,746 INFO 127.0.0.1 - - [02/Apr/2025 13:20:09] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:20:11,856 INFO 127.0.0.1 - - [02/Apr/2025 13:20:11] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:20:11,874 INFO 127.0.0.1 - - [02/Apr/2025 13:20:11] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:13,006 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:13,032 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:13,666 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:13,696 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:13,821 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:13,846 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:13,984 INFO 127.0.0.1 - - [02/Apr/2025 13:23:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:14,009 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:14,137 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:14,160 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:14,296 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:14,320 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:14,427 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:14,455 INFO 127.0.0.1 - - [02/Apr/2025 13:23:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:17,046 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:23:17,046 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:23:17,048 INFO  * Restarting with stat
+2025-04-02 13:23:17,402 WARNING  * Debugger is active!
+2025-04-02 13:23:17,406 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:23:19,338 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:23:19,352 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:23:19,408 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:19,501 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:23:19,528 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:19,661 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:23:19,687 INFO 127.0.0.1 - - [02/Apr/2025 13:23:19] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:20,823 INFO 127.0.0.1 - - [02/Apr/2025 13:23:20] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:23:20,830 INFO 127.0.0.1 - - [02/Apr/2025 13:23:20] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:23:20,854 INFO 127.0.0.1 - - [02/Apr/2025 13:23:20] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:22,372 INFO 127.0.0.1 - - [02/Apr/2025 13:23:22] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:23:22,393 INFO 127.0.0.1 - - [02/Apr/2025 13:23:22] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:23:23,537 INFO 127.0.0.1 - - [02/Apr/2025 13:23:23] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:23:23,559 INFO 127.0.0.1 - - [02/Apr/2025 13:23:23] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:25:53,974 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:25:53,974 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:25:53,975 INFO  * Restarting with stat
+2025-04-02 13:25:54,358 WARNING  * Debugger is active!
+2025-04-02 13:25:54,360 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:25:56,972 INFO 127.0.0.1 - - [02/Apr/2025 13:25:56] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:25:56,985 INFO 127.0.0.1 - - [02/Apr/2025 13:25:56] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:25:57,041 INFO 127.0.0.1 - - [02/Apr/2025 13:25:57] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:25:58,467 INFO 127.0.0.1 - - [02/Apr/2025 13:25:58] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:25:58,475 INFO 127.0.0.1 - - [02/Apr/2025 13:25:58] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:25:58,497 INFO 127.0.0.1 - - [02/Apr/2025 13:25:58] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:26:01,384 INFO 127.0.0.1 - - [02/Apr/2025 13:26:01] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:26:01,395 INFO 127.0.0.1 - - [02/Apr/2025 13:26:01] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:26:02,824 INFO 127.0.0.1 - - [02/Apr/2025 13:26:02] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:26:02,851 INFO 127.0.0.1 - - [02/Apr/2025 13:26:02] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:34:47,726 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:34:47,726 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:34:47,726 INFO  * Restarting with stat
+2025-04-02 13:34:48,075 WARNING  * Debugger is active!
+2025-04-02 13:34:48,075 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:34:53,490 INFO 127.0.0.1 - - [02/Apr/2025 13:34:53] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:34:53,504 INFO 127.0.0.1 - - [02/Apr/2025 13:34:53] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:34:53,557 INFO 127.0.0.1 - - [02/Apr/2025 13:34:53] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:34:55,277 INFO 127.0.0.1 - - [02/Apr/2025 13:34:55] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:34:55,284 INFO 127.0.0.1 - - [02/Apr/2025 13:34:55] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:34:55,309 INFO 127.0.0.1 - - [02/Apr/2025 13:34:55] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:34:57,233 INFO 127.0.0.1 - - [02/Apr/2025 13:34:57] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:34:57,259 INFO 127.0.0.1 - - [02/Apr/2025 13:34:57] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:34:59,725 INFO 127.0.0.1 - - [02/Apr/2025 13:34:59] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:34:59,746 INFO 127.0.0.1 - - [02/Apr/2025 13:34:59] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:37:18,148 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:37:18,148 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:37:18,149 INFO  * Restarting with stat
+2025-04-02 13:37:18,759 WARNING  * Debugger is active!
+2025-04-02 13:37:18,762 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:37:32,858 INFO 127.0.0.1 - - [02/Apr/2025 13:37:32] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:39:46,287 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-02 13:39:46,325 INFO  * Restarting with stat
+2025-04-02 13:39:46,678 WARNING  * Debugger is active!
+2025-04-02 13:39:46,681 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:40:00,917 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:40:00,919 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:40:00,920 INFO  * Restarting with stat
+2025-04-02 13:40:01,288 WARNING  * Debugger is active!
+2025-04-02 13:40:01,292 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:40:05,634 INFO 127.0.0.1 - - [02/Apr/2025 13:40:05] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:40:05,648 INFO 127.0.0.1 - - [02/Apr/2025 13:40:05] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:40:05,704 INFO 127.0.0.1 - - [02/Apr/2025 13:40:05] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:07,280 INFO 127.0.0.1 - - [02/Apr/2025 13:40:07] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:40:07,288 INFO 127.0.0.1 - - [02/Apr/2025 13:40:07] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:40:07,319 INFO 127.0.0.1 - - [02/Apr/2025 13:40:07] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:10,459 INFO 127.0.0.1 - - [02/Apr/2025 13:40:10] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:40:10,482 INFO 127.0.0.1 - - [02/Apr/2025 13:40:10] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:12,642 INFO 127.0.0.1 - - [02/Apr/2025 13:40:12] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:40:12,664 INFO 127.0.0.1 - - [02/Apr/2025 13:40:12] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:29,151 INFO 127.0.0.1 - - [02/Apr/2025 13:40:29] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:40:29,163 INFO 127.0.0.1 - - [02/Apr/2025 13:40:29] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:40:29,183 INFO 127.0.0.1 - - [02/Apr/2025 13:40:29] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:32,506 INFO 127.0.0.1 - - [02/Apr/2025 13:40:32] "[32mGET /cancel_booking/3 HTTP/1.1[0m" 302 -
+2025-04-02 13:40:32,510 INFO 127.0.0.1 - - [02/Apr/2025 13:40:32] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:40:32,543 INFO 127.0.0.1 - - [02/Apr/2025 13:40:32] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:34,787 INFO 127.0.0.1 - - [02/Apr/2025 13:40:34] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:40:34,816 INFO 127.0.0.1 - - [02/Apr/2025 13:40:34] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:40:36,645 INFO 127.0.0.1 - - [02/Apr/2025 13:40:36] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:40:36,665 INFO 127.0.0.1 - - [02/Apr/2025 13:40:36] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:40,305 INFO 127.0.0.1 - - [02/Apr/2025 13:41:40] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:41:40,313 INFO 127.0.0.1 - - [02/Apr/2025 13:41:40] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:41:40,343 INFO 127.0.0.1 - - [02/Apr/2025 13:41:40] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:42,473 INFO 127.0.0.1 - - [02/Apr/2025 13:41:42] "[32mGET /cancel_booking/4 HTTP/1.1[0m" 302 -
+2025-04-02 13:41:42,486 INFO 127.0.0.1 - - [02/Apr/2025 13:41:42] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:41:42,515 INFO 127.0.0.1 - - [02/Apr/2025 13:41:42] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:43,721 INFO 127.0.0.1 - - [02/Apr/2025 13:41:43] "GET /about HTTP/1.1" 200 -
+2025-04-02 13:41:43,740 INFO 127.0.0.1 - - [02/Apr/2025 13:41:43] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:51,649 INFO 127.0.0.1 - - [02/Apr/2025 13:41:51] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:41:51,671 INFO 127.0.0.1 - - [02/Apr/2025 13:41:51] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:51,944 INFO 127.0.0.1 - - [02/Apr/2025 13:41:51] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:41:51,974 INFO 127.0.0.1 - - [02/Apr/2025 13:41:51] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:52,625 INFO 127.0.0.1 - - [02/Apr/2025 13:41:52] "GET /about HTTP/1.1" 200 -
+2025-04-02 13:41:52,656 INFO 127.0.0.1 - - [02/Apr/2025 13:41:52] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-02 13:41:57,422 INFO 127.0.0.1 - - [02/Apr/2025 13:41:57] "GET / HTTP/1.1" 200 -
+2025-04-02 13:41:57,448 INFO 127.0.0.1 - - [02/Apr/2025 13:41:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-02 13:42:01,130 INFO 127.0.0.1 - - [02/Apr/2025 13:42:01] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:42:01,152 INFO 127.0.0.1 - - [02/Apr/2025 13:42:01] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:42:16,818 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-02 13:42:16,854 INFO  * Restarting with stat
+2025-04-02 13:42:17,154 WARNING  * Debugger is active!
+2025-04-02 13:42:17,156 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:42:29,970 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:42:29,970 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:42:29,973 INFO  * Restarting with stat
+2025-04-02 13:42:30,327 WARNING  * Debugger is active!
+2025-04-02 13:42:30,330 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:43:43,408 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:43:43,408 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:43:43,410 INFO  * Restarting with stat
+2025-04-02 13:43:43,925 WARNING  * Debugger is active!
+2025-04-02 13:43:43,927 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:43:45,303 INFO 127.0.0.1 - - [02/Apr/2025 13:43:45] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-02 13:43:45,316 INFO 127.0.0.1 - - [02/Apr/2025 13:43:45] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:43:45,372 INFO 127.0.0.1 - - [02/Apr/2025 13:43:45] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:43:46,630 INFO 127.0.0.1 - - [02/Apr/2025 13:43:46] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:43:46,638 INFO 127.0.0.1 - - [02/Apr/2025 13:43:46] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:43:46,661 INFO 127.0.0.1 - - [02/Apr/2025 13:43:46] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:43:48,510 INFO 127.0.0.1 - - [02/Apr/2025 13:43:48] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:43:48,536 INFO 127.0.0.1 - - [02/Apr/2025 13:43:48] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:43:50,436 INFO 127.0.0.1 - - [02/Apr/2025 13:43:50] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:43:50,478 INFO 127.0.0.1 - - [02/Apr/2025 13:43:50] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:46:51,473 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:46:51,473 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:46:51,474 INFO  * Restarting with stat
+2025-04-02 13:46:52,047 WARNING  * Debugger is active!
+2025-04-02 13:46:52,049 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:46:52,689 INFO 127.0.0.1 - - [02/Apr/2025 13:46:52] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:46:52,702 INFO 127.0.0.1 - - [02/Apr/2025 13:46:52] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:46:52,762 INFO 127.0.0.1 - - [02/Apr/2025 13:46:52] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:46:54,202 INFO 127.0.0.1 - - [02/Apr/2025 13:46:54] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:46:54,211 INFO 127.0.0.1 - - [02/Apr/2025 13:46:54] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:46:54,239 INFO 127.0.0.1 - - [02/Apr/2025 13:46:54] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:46:55,977 INFO 127.0.0.1 - - [02/Apr/2025 13:46:55] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:46:56,005 INFO 127.0.0.1 - - [02/Apr/2025 13:46:56] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:46:57,554 INFO 127.0.0.1 - - [02/Apr/2025 13:46:57] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:46:57,577 INFO 127.0.0.1 - - [02/Apr/2025 13:46:57] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:50:24,686 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 13:50:24,687 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 13:50:24,688 INFO  * Restarting with stat
+2025-04-02 13:50:25,205 WARNING  * Debugger is active!
+2025-04-02 13:50:25,207 INFO  * Debugger PIN: 863-794-781
+2025-04-02 13:50:26,104 INFO 127.0.0.1 - - [02/Apr/2025 13:50:26] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 13:50:26,117 INFO 127.0.0.1 - - [02/Apr/2025 13:50:26] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:50:26,175 INFO 127.0.0.1 - - [02/Apr/2025 13:50:26] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:50:27,357 INFO 127.0.0.1 - - [02/Apr/2025 13:50:27] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 13:50:27,365 INFO 127.0.0.1 - - [02/Apr/2025 13:50:27] "GET /profile HTTP/1.1" 200 -
+2025-04-02 13:50:27,391 INFO 127.0.0.1 - - [02/Apr/2025 13:50:27] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 13:50:28,994 INFO 127.0.0.1 - - [02/Apr/2025 13:50:28] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 13:50:29,018 INFO 127.0.0.1 - - [02/Apr/2025 13:50:29] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:50:30,623 INFO 127.0.0.1 - - [02/Apr/2025 13:50:30] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:50:30,668 INFO 127.0.0.1 - - [02/Apr/2025 13:50:30] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:51:36,441 INFO 127.0.0.1 - - [02/Apr/2025 13:51:36] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:51:36,465 INFO 127.0.0.1 - - [02/Apr/2025 13:51:36] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:53:35,737 INFO 127.0.0.1 - - [02/Apr/2025 13:53:35] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:53:35,764 INFO 127.0.0.1 - - [02/Apr/2025 13:53:35] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:53:37,699 INFO 127.0.0.1 - - [02/Apr/2025 13:53:37] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:53:37,725 INFO 127.0.0.1 - - [02/Apr/2025 13:53:37] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:54:33,104 INFO 127.0.0.1 - - [02/Apr/2025 13:54:33] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:54:33,127 INFO 127.0.0.1 - - [02/Apr/2025 13:54:33] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:54:34,839 INFO 127.0.0.1 - - [02/Apr/2025 13:54:34] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:54:34,867 INFO 127.0.0.1 - - [02/Apr/2025 13:54:34] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:54:41,921 INFO 127.0.0.1 - - [02/Apr/2025 13:54:41] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:54:41,950 INFO 127.0.0.1 - - [02/Apr/2025 13:54:41] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:54:55,118 INFO 127.0.0.1 - - [02/Apr/2025 13:54:55] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:54:55,147 INFO 127.0.0.1 - - [02/Apr/2025 13:54:55] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:54:55,828 INFO 127.0.0.1 - - [02/Apr/2025 13:54:55] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:54:55,850 INFO 127.0.0.1 - - [02/Apr/2025 13:54:55] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:54:56,036 INFO 127.0.0.1 - - [02/Apr/2025 13:54:56] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:54:56,059 INFO 127.0.0.1 - - [02/Apr/2025 13:54:56] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:55:03,614 INFO 127.0.0.1 - - [02/Apr/2025 13:55:03] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:55:03,638 INFO 127.0.0.1 - - [02/Apr/2025 13:55:03] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:55:04,211 INFO 127.0.0.1 - - [02/Apr/2025 13:55:04] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:55:04,234 INFO 127.0.0.1 - - [02/Apr/2025 13:55:04] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:55:22,573 INFO 127.0.0.1 - - [02/Apr/2025 13:55:22] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:55:22,601 INFO 127.0.0.1 - - [02/Apr/2025 13:55:22] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 13:55:30,089 INFO 127.0.0.1 - - [02/Apr/2025 13:55:30] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 13:55:30,112 INFO 127.0.0.1 - - [02/Apr/2025 13:55:30] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:02:35,107 INFO 127.0.0.1 - - [02/Apr/2025 14:02:35] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:02:35,144 INFO 127.0.0.1 - - [02/Apr/2025 14:02:35] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:03:11,470 INFO 127.0.0.1 - - [02/Apr/2025 14:03:11] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:03:11,494 INFO 127.0.0.1 - - [02/Apr/2025 14:03:11] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:04:01,823 INFO 127.0.0.1 - - [02/Apr/2025 14:04:01] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:04:01,852 INFO 127.0.0.1 - - [02/Apr/2025 14:04:01] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:08:14,442 INFO 127.0.0.1 - - [02/Apr/2025 14:08:14] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:08:14,469 INFO 127.0.0.1 - - [02/Apr/2025 14:08:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:08:54,323 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 14:08:54,323 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 14:08:54,325 INFO  * Restarting with stat
+2025-04-02 14:08:54,682 WARNING  * Debugger is active!
+2025-04-02 14:08:54,683 INFO  * Debugger PIN: 863-794-781
+2025-04-02 14:08:54,929 INFO 127.0.0.1 - - [02/Apr/2025 14:08:54] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 14:08:54,943 INFO 127.0.0.1 - - [02/Apr/2025 14:08:54] "GET /profile HTTP/1.1" 200 -
+2025-04-02 14:08:55,000 INFO 127.0.0.1 - - [02/Apr/2025 14:08:55] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 14:08:56,461 INFO 127.0.0.1 - - [02/Apr/2025 14:08:56] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 14:08:56,467 INFO 127.0.0.1 - - [02/Apr/2025 14:08:56] "GET /profile HTTP/1.1" 200 -
+2025-04-02 14:08:56,492 INFO 127.0.0.1 - - [02/Apr/2025 14:08:56] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 14:08:58,157 INFO 127.0.0.1 - - [02/Apr/2025 14:08:58] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 14:08:58,184 INFO 127.0.0.1 - - [02/Apr/2025 14:08:58] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:08:59,690 INFO 127.0.0.1 - - [02/Apr/2025 14:08:59] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:08:59,718 INFO 127.0.0.1 - - [02/Apr/2025 14:08:59] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:12:45,413 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-02 14:12:45,413 INFO [33mPress CTRL+C to quit[0m
+2025-04-02 14:12:45,415 INFO  * Restarting with stat
+2025-04-02 14:12:45,775 WARNING  * Debugger is active!
+2025-04-02 14:12:45,778 INFO  * Debugger PIN: 863-794-781
+2025-04-02 14:12:48,911 INFO 127.0.0.1 - - [02/Apr/2025 14:12:48] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 14:12:48,924 INFO 127.0.0.1 - - [02/Apr/2025 14:12:48] "GET /profile HTTP/1.1" 200 -
+2025-04-02 14:12:48,982 INFO 127.0.0.1 - - [02/Apr/2025 14:12:48] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 14:12:50,304 INFO 127.0.0.1 - - [02/Apr/2025 14:12:50] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-02 14:12:50,315 INFO 127.0.0.1 - - [02/Apr/2025 14:12:50] "GET /profile HTTP/1.1" 200 -
+2025-04-02 14:12:50,343 INFO 127.0.0.1 - - [02/Apr/2025 14:12:50] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 14:12:52,292 INFO 127.0.0.1 - - [02/Apr/2025 14:12:52] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 14:12:52,318 INFO 127.0.0.1 - - [02/Apr/2025 14:12:52] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:12:53,398 INFO 127.0.0.1 - - [02/Apr/2025 14:12:53] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:12:53,423 INFO 127.0.0.1 - - [02/Apr/2025 14:12:53] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:11,201 INFO 127.0.0.1 - - [02/Apr/2025 14:13:11] "[32mPOST /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-02 14:13:11,215 INFO 127.0.0.1 - - [02/Apr/2025 14:13:11] "GET /profile HTTP/1.1" 200 -
+2025-04-02 14:13:11,243 INFO 127.0.0.1 - - [02/Apr/2025 14:13:11] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:13,183 INFO 127.0.0.1 - - [02/Apr/2025 14:13:13] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 14:13:13,198 INFO 127.0.0.1 - - [02/Apr/2025 14:13:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:14,922 INFO 127.0.0.1 - - [02/Apr/2025 14:13:14] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:13:14,954 INFO 127.0.0.1 - - [02/Apr/2025 14:13:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:42,679 INFO 127.0.0.1 - - [02/Apr/2025 14:13:42] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 14:13:42,699 INFO 127.0.0.1 - - [02/Apr/2025 14:13:42] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:46,413 INFO 127.0.0.1 - - [02/Apr/2025 14:13:46] "GET /profile HTTP/1.1" 200 -
+2025-04-02 14:13:46,428 INFO 127.0.0.1 - - [02/Apr/2025 14:13:46] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:47,308 INFO 127.0.0.1 - - [02/Apr/2025 14:13:47] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 14:13:47,334 INFO 127.0.0.1 - - [02/Apr/2025 14:13:47] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:13:49,245 INFO 127.0.0.1 - - [02/Apr/2025 14:13:49] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:13:49,279 INFO 127.0.0.1 - - [02/Apr/2025 14:13:49] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:15:41,642 INFO 127.0.0.1 - - [02/Apr/2025 14:15:41] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:15:41,669 INFO 127.0.0.1 - - [02/Apr/2025 14:15:41] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:15:42,871 INFO 127.0.0.1 - - [02/Apr/2025 14:15:42] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:15:42,896 INFO 127.0.0.1 - - [02/Apr/2025 14:15:42] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:15:59,768 INFO 127.0.0.1 - - [02/Apr/2025 14:15:59] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:15:59,796 INFO 127.0.0.1 - - [02/Apr/2025 14:15:59] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:16:13,202 INFO 127.0.0.1 - - [02/Apr/2025 14:16:13] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:16:13,227 INFO 127.0.0.1 - - [02/Apr/2025 14:16:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:16:14,527 INFO 127.0.0.1 - - [02/Apr/2025 14:16:14] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:16:14,554 INFO 127.0.0.1 - - [02/Apr/2025 14:16:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:16:25,946 INFO 127.0.0.1 - - [02/Apr/2025 14:16:25] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:16:25,972 INFO 127.0.0.1 - - [02/Apr/2025 14:16:25] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:16:26,404 INFO 127.0.0.1 - - [02/Apr/2025 14:16:26] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:16:26,434 INFO 127.0.0.1 - - [02/Apr/2025 14:16:26] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:16:26,562 INFO 127.0.0.1 - - [02/Apr/2025 14:16:26] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:16:26,591 INFO 127.0.0.1 - - [02/Apr/2025 14:16:26] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:17:12,078 INFO 127.0.0.1 - - [02/Apr/2025 14:17:12] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:17:12,128 INFO 127.0.0.1 - - [02/Apr/2025 14:17:12] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:17:21,881 INFO 127.0.0.1 - - [02/Apr/2025 14:17:21] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:17:21,934 INFO 127.0.0.1 - - [02/Apr/2025 14:17:21] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:17:22,487 INFO 127.0.0.1 - - [02/Apr/2025 14:17:22] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:17:22,526 INFO 127.0.0.1 - - [02/Apr/2025 14:17:22] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:17:22,681 INFO 127.0.0.1 - - [02/Apr/2025 14:17:22] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:17:22,721 INFO 127.0.0.1 - - [02/Apr/2025 14:17:22] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:17:28,163 INFO 127.0.0.1 - - [02/Apr/2025 14:17:28] "GET /rooms HTTP/1.1" 200 -
+2025-04-02 14:17:28,202 INFO 127.0.0.1 - - [02/Apr/2025 14:17:28] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:17:33,424 INFO 127.0.0.1 - - [02/Apr/2025 14:17:33] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:17:33,474 INFO 127.0.0.1 - - [02/Apr/2025 14:17:33] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-02 14:18:05,022 INFO 127.0.0.1 - - [02/Apr/2025 14:18:05] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-02 14:18:05,070 INFO 127.0.0.1 - - [02/Apr/2025 14:18:05] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 11:06:36,325 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-11 11:06:36,326 INFO [33mPress CTRL+C to quit[0m
+2025-04-11 11:06:36,328 INFO  * Restarting with stat
+2025-04-11 11:06:36,660 WARNING  * Debugger is active!
+2025-04-11 11:06:36,663 INFO  * Debugger PIN: 863-794-781
+2025-04-11 11:06:52,632 INFO 127.0.0.1 - - [11/Apr/2025 11:06:52] "GET / HTTP/1.1" 200 -
+2025-04-11 11:06:52,692 INFO 127.0.0.1 - - [11/Apr/2025 11:06:52] "GET /static/styles.css HTTP/1.1" 200 -
+2025-04-11 11:06:53,760 INFO 127.0.0.1 - - [11/Apr/2025 11:06:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-11 11:06:56,674 INFO 127.0.0.1 - - [11/Apr/2025 11:06:56] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-11 11:06:56,702 INFO 127.0.0.1 - - [11/Apr/2025 11:06:56] "GET /profile HTTP/1.1" 200 -
+2025-04-11 11:06:56,727 INFO 127.0.0.1 - - [11/Apr/2025 11:06:56] "GET /static/styles_prof.css HTTP/1.1" 200 -
+2025-04-11 11:06:58,455 INFO 127.0.0.1 - - [11/Apr/2025 11:06:58] "GET /profile HTTP/1.1" 200 -
+2025-04-11 11:06:58,482 INFO 127.0.0.1 - - [11/Apr/2025 11:06:58] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 11:06:59,793 INFO 127.0.0.1 - - [11/Apr/2025 11:06:59] "GET /about HTTP/1.1" 200 -
+2025-04-11 11:06:59,817 INFO 127.0.0.1 - - [11/Apr/2025 11:06:59] "GET /static/styles_about.css HTTP/1.1" 200 -
+2025-04-11 11:07:04,891 INFO 127.0.0.1 - - [11/Apr/2025 11:07:04] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-11 11:07:04,899 INFO 127.0.0.1 - - [11/Apr/2025 11:07:04] "GET /profile HTTP/1.1" 200 -
+2025-04-11 11:07:04,924 INFO 127.0.0.1 - - [11/Apr/2025 11:07:04] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 11:07:06,234 INFO 127.0.0.1 - - [11/Apr/2025 11:07:06] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-11 11:07:06,244 INFO 127.0.0.1 - - [11/Apr/2025 11:07:06] "GET /profile HTTP/1.1" 200 -
+2025-04-11 11:07:06,267 INFO 127.0.0.1 - - [11/Apr/2025 11:07:06] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 11:07:08,096 INFO 127.0.0.1 - - [11/Apr/2025 11:07:08] "GET /register HTTP/1.1" 200 -
+2025-04-11 11:07:08,116 INFO 127.0.0.1 - - [11/Apr/2025 11:07:08] "GET /static/styles_reg.css HTTP/1.1" 200 -
+2025-04-11 11:07:14,782 INFO 127.0.0.1 - - [11/Apr/2025 11:07:14] "[32mPOST /register HTTP/1.1[0m" 302 -
+2025-04-11 11:07:14,791 INFO 127.0.0.1 - - [11/Apr/2025 11:07:14] "GET /profile HTTP/1.1" 200 -
+2025-04-11 11:07:14,815 INFO 127.0.0.1 - - [11/Apr/2025 11:07:14] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 11:07:16,235 INFO 127.0.0.1 - - [11/Apr/2025 11:07:16] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-11 11:07:16,251 INFO 127.0.0.1 - - [11/Apr/2025 11:07:16] "GET /profile HTTP/1.1" 200 -
+2025-04-11 11:07:16,275 INFO 127.0.0.1 - - [11/Apr/2025 11:07:16] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 11:07:18,342 INFO 127.0.0.1 - - [11/Apr/2025 11:07:18] "GET /rooms HTTP/1.1" 200 -
+2025-04-11 11:07:18,366 INFO 127.0.0.1 - - [11/Apr/2025 11:07:18] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-11 11:07:28,016 INFO 127.0.0.1 - - [11/Apr/2025 11:07:28] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 11:07:28,035 INFO 127.0.0.1 - - [11/Apr/2025 11:07:28] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:07:24,039 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-11 12:07:24,040 INFO [33mPress CTRL+C to quit[0m
+2025-04-11 12:07:24,042 INFO  * Restarting with stat
+2025-04-11 12:07:24,482 WARNING  * Debugger is active!
+2025-04-11 12:07:24,487 INFO  * Debugger PIN: 863-794-781
+2025-04-11 12:07:36,002 INFO 127.0.0.1 - - [11/Apr/2025 12:07:36] "GET / HTTP/1.1" 200 -
+2025-04-11 12:07:36,107 INFO 127.0.0.1 - - [11/Apr/2025 12:07:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-11 12:07:38,171 INFO 127.0.0.1 - - [11/Apr/2025 12:07:38] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-11 12:07:38,189 INFO 127.0.0.1 - - [11/Apr/2025 12:07:38] "GET /profile HTTP/1.1" 200 -
+2025-04-11 12:07:38,237 INFO 127.0.0.1 - - [11/Apr/2025 12:07:38] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 12:07:40,697 INFO 127.0.0.1 - - [11/Apr/2025 12:07:40] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-11 12:07:40,714 INFO 127.0.0.1 - - [11/Apr/2025 12:07:40] "GET /profile HTTP/1.1" 200 -
+2025-04-11 12:07:40,756 INFO 127.0.0.1 - - [11/Apr/2025 12:07:40] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-11 12:07:43,276 INFO 127.0.0.1 - - [11/Apr/2025 12:07:43] "GET /rooms HTTP/1.1" 200 -
+2025-04-11 12:07:43,306 INFO 127.0.0.1 - - [11/Apr/2025 12:07:43] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:07:47,439 INFO 127.0.0.1 - - [11/Apr/2025 12:07:47] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:07:47,478 INFO 127.0.0.1 - - [11/Apr/2025 12:07:47] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:09:57,811 INFO 127.0.0.1 - - [11/Apr/2025 12:09:57] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:09:57,853 INFO 127.0.0.1 - - [11/Apr/2025 12:09:57] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:09:59,142 INFO 127.0.0.1 - - [11/Apr/2025 12:09:59] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:09:59,192 INFO 127.0.0.1 - - [11/Apr/2025 12:09:59] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:10:00,159 INFO 127.0.0.1 - - [11/Apr/2025 12:10:00] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:10:00,201 INFO 127.0.0.1 - - [11/Apr/2025 12:10:00] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:10:01,055 INFO 127.0.0.1 - - [11/Apr/2025 12:10:01] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:10:01,096 INFO 127.0.0.1 - - [11/Apr/2025 12:10:01] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:10:08,134 INFO 127.0.0.1 - - [11/Apr/2025 12:10:08] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:10:08,171 INFO 127.0.0.1 - - [11/Apr/2025 12:10:08] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:10:15,213 INFO 127.0.0.1 - - [11/Apr/2025 12:10:15] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:10:15,257 INFO 127.0.0.1 - - [11/Apr/2025 12:10:15] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:10:17,051 INFO 127.0.0.1 - - [11/Apr/2025 12:10:17] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-11 12:10:17,095 INFO 127.0.0.1 - - [11/Apr/2025 12:10:17] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-11 12:14:53,746 INFO 127.0.0.1 - - [11/Apr/2025 12:14:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-15 13:51:31,737 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-15 13:51:31,738 INFO [33mPress CTRL+C to quit[0m
+2025-04-15 13:51:31,742 INFO  * Restarting with stat
+2025-04-15 13:51:32,374 WARNING  * Debugger is active!
+2025-04-15 13:51:32,380 INFO  * Debugger PIN: 325-003-367
+2025-04-15 13:51:53,740 INFO 127.0.0.1 - - [15/Apr/2025 13:51:53] "GET / HTTP/1.1" 200 -
+2025-04-15 13:51:53,856 INFO 127.0.0.1 - - [15/Apr/2025 13:51:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 13:51:53,915 INFO 127.0.0.1 - - [15/Apr/2025 13:51:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-15 13:51:57,659 INFO 127.0.0.1 - - [15/Apr/2025 13:51:57] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-15 13:51:57,682 INFO 127.0.0.1 - - [15/Apr/2025 13:51:57] "GET /profile HTTP/1.1" 200 -
+2025-04-15 13:51:57,730 INFO 127.0.0.1 - - [15/Apr/2025 13:51:57] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-15 13:52:00,139 INFO 127.0.0.1 - - [15/Apr/2025 13:52:00] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-15 13:52:00,152 INFO 127.0.0.1 - - [15/Apr/2025 13:52:00] "GET /profile HTTP/1.1" 200 -
+2025-04-15 13:52:00,197 INFO 127.0.0.1 - - [15/Apr/2025 13:52:00] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-15 13:52:02,781 INFO 127.0.0.1 - - [15/Apr/2025 13:52:02] "GET /about HTTP/1.1" 200 -
+2025-04-15 13:52:02,823 INFO 127.0.0.1 - - [15/Apr/2025 13:52:02] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-15 13:52:05,331 INFO 127.0.0.1 - - [15/Apr/2025 13:52:05] "GET /rooms HTTP/1.1" 200 -
+2025-04-15 13:52:05,374 INFO 127.0.0.1 - - [15/Apr/2025 13:52:05] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-15 13:52:09,017 INFO 127.0.0.1 - - [15/Apr/2025 13:52:09] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-15 13:52:09,056 INFO 127.0.0.1 - - [15/Apr/2025 13:52:09] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-15 13:52:37,914 INFO 127.0.0.1 - - [15/Apr/2025 13:52:37] "GET / HTTP/1.1" 200 -
+2025-04-15 13:52:37,953 INFO 127.0.0.1 - - [15/Apr/2025 13:52:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-18 11:29:49,187 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-18 11:29:49,188 INFO [33mPress CTRL+C to quit[0m
+2025-04-18 11:29:49,190 INFO  * Restarting with stat
+2025-04-18 11:29:49,482 WARNING  * Debugger is active!
+2025-04-18 11:29:49,503 INFO  * Debugger PIN: 325-003-367
+2025-04-18 11:30:05,999 INFO 127.0.0.1 - - [18/Apr/2025 11:30:05] "GET / HTTP/1.1" 200 -
+2025-04-18 11:30:06,068 INFO 127.0.0.1 - - [18/Apr/2025 11:30:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:06,116 INFO 127.0.0.1 - - [18/Apr/2025 11:30:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-18 11:30:09,610 INFO 127.0.0.1 - - [18/Apr/2025 11:30:09] "GET /about HTTP/1.1" 200 -
+2025-04-18 11:30:09,632 INFO 127.0.0.1 - - [18/Apr/2025 11:30:09] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:11,315 INFO 127.0.0.1 - - [18/Apr/2025 11:30:11] "GET / HTTP/1.1" 200 -
+2025-04-18 11:30:11,337 INFO 127.0.0.1 - - [18/Apr/2025 11:30:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:19,220 INFO 127.0.0.1 - - [18/Apr/2025 11:30:19] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-18 11:30:19,248 INFO 127.0.0.1 - - [18/Apr/2025 11:30:19] "GET /profile HTTP/1.1" 200 -
+2025-04-18 11:30:19,271 INFO 127.0.0.1 - - [18/Apr/2025 11:30:19] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:21,237 INFO 127.0.0.1 - - [18/Apr/2025 11:30:21] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-18 11:30:21,249 INFO 127.0.0.1 - - [18/Apr/2025 11:30:21] "GET /profile HTTP/1.1" 200 -
+2025-04-18 11:30:21,278 INFO 127.0.0.1 - - [18/Apr/2025 11:30:21] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:23,831 INFO 127.0.0.1 - - [18/Apr/2025 11:30:23] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:30:23,853 INFO 127.0.0.1 - - [18/Apr/2025 11:30:23] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:26,546 INFO 127.0.0.1 - - [18/Apr/2025 11:30:26] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-18 11:30:26,572 INFO 127.0.0.1 - - [18/Apr/2025 11:30:26] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:49,745 INFO 127.0.0.1 - - [18/Apr/2025 11:30:49] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:30:49,767 INFO 127.0.0.1 - - [18/Apr/2025 11:30:49] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:54,000 INFO 127.0.0.1 - - [18/Apr/2025 11:30:54] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-18 11:30:54,022 INFO 127.0.0.1 - - [18/Apr/2025 11:30:54] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:30:56,277 INFO 127.0.0.1 - - [18/Apr/2025 11:30:56] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:30:56,297 INFO 127.0.0.1 - - [18/Apr/2025 11:30:56] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:31:56,016 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-18 11:31:56,016 INFO [33mPress CTRL+C to quit[0m
+2025-04-18 11:31:56,018 INFO  * Restarting with stat
+2025-04-18 11:31:56,375 WARNING  * Debugger is active!
+2025-04-18 11:31:56,380 INFO  * Debugger PIN: 325-003-367
+2025-04-18 11:31:58,364 INFO 127.0.0.1 - - [18/Apr/2025 11:31:58] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-18 11:31:58,376 INFO 127.0.0.1 - - [18/Apr/2025 11:31:58] "GET /profile HTTP/1.1" 200 -
+2025-04-18 11:31:58,431 INFO 127.0.0.1 - - [18/Apr/2025 11:31:58] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-18 11:32:00,548 INFO 127.0.0.1 - - [18/Apr/2025 11:32:00] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-18 11:32:00,557 INFO 127.0.0.1 - - [18/Apr/2025 11:32:00] "GET /profile HTTP/1.1" 200 -
+2025-04-18 11:32:00,580 INFO 127.0.0.1 - - [18/Apr/2025 11:32:00] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-18 11:32:01,778 INFO 127.0.0.1 - - [18/Apr/2025 11:32:01] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:32:01,800 INFO 127.0.0.1 - - [18/Apr/2025 11:32:01] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:34:47,050 INFO 127.0.0.1 - - [18/Apr/2025 11:34:47] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:34:47,063 INFO 127.0.0.1 - - [18/Apr/2025 11:34:47] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:34:47,926 INFO 127.0.0.1 - - [18/Apr/2025 11:34:47] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:34:47,939 INFO 127.0.0.1 - - [18/Apr/2025 11:34:47] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:34:55,375 INFO 127.0.0.1 - - [18/Apr/2025 11:34:55] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:34:55,397 INFO 127.0.0.1 - - [18/Apr/2025 11:34:55] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:35:02,208 INFO 127.0.0.1 - - [18/Apr/2025 11:35:02] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:35:02,243 INFO 127.0.0.1 - - [18/Apr/2025 11:35:02] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:35:12,683 INFO 127.0.0.1 - - [18/Apr/2025 11:35:12] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:35:12,704 INFO 127.0.0.1 - - [18/Apr/2025 11:35:12] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:35:39,945 INFO 127.0.0.1 - - [18/Apr/2025 11:35:39] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:35:39,965 INFO 127.0.0.1 - - [18/Apr/2025 11:35:39] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:35:40,692 INFO 127.0.0.1 - - [18/Apr/2025 11:35:40] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:35:40,719 INFO 127.0.0.1 - - [18/Apr/2025 11:35:40] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-18 11:35:50,334 INFO 127.0.0.1 - - [18/Apr/2025 11:35:50] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:35:50,366 INFO 127.0.0.1 - - [18/Apr/2025 11:35:50] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:36:08,499 INFO 127.0.0.1 - - [18/Apr/2025 11:36:08] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:36:08,523 INFO 127.0.0.1 - - [18/Apr/2025 11:36:08] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:36:22,297 INFO 127.0.0.1 - - [18/Apr/2025 11:36:22] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:36:22,325 INFO 127.0.0.1 - - [18/Apr/2025 11:36:22] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:36:34,790 INFO 127.0.0.1 - - [18/Apr/2025 11:36:34] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:36:34,812 INFO 127.0.0.1 - - [18/Apr/2025 11:36:34] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:36:41,307 INFO 127.0.0.1 - - [18/Apr/2025 11:36:41] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:36:41,333 INFO 127.0.0.1 - - [18/Apr/2025 11:36:41] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:37:34,104 INFO 127.0.0.1 - - [18/Apr/2025 11:37:34] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:37:34,123 INFO 127.0.0.1 - - [18/Apr/2025 11:37:34] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:37:41,076 INFO 127.0.0.1 - - [18/Apr/2025 11:37:41] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:37:41,101 INFO 127.0.0.1 - - [18/Apr/2025 11:37:41] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-18 11:37:54,644 INFO 127.0.0.1 - - [18/Apr/2025 11:37:54] "GET /rooms HTTP/1.1" 200 -
+2025-04-18 11:37:54,668 INFO 127.0.0.1 - - [18/Apr/2025 11:37:54] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-23 13:51:54,405 INFO 127.0.0.1 - - [23/Apr/2025 13:51:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 20:28:25,061 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 20:28:25,066 INFO [33mPress CTRL+C to quit[0m
+2025-04-30 20:28:25,068 INFO  * Restarting with stat
+2025-04-30 20:28:25,531 WARNING  * Debugger is active!
+2025-04-30 20:28:25,535 INFO  * Debugger PIN: 120-361-518
+2025-04-30 20:28:37,232 INFO 127.0.0.1 - - [30/Apr/2025 20:28:37] "GET / HTTP/1.1" 200 -
+2025-04-30 20:28:37,318 INFO 127.0.0.1 - - [30/Apr/2025 20:28:37] "GET /static/styles.css HTTP/1.1" 200 -
+2025-04-30 20:28:37,377 INFO 127.0.0.1 - - [30/Apr/2025 20:28:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 20:30:46,565 INFO 127.0.0.1 - - [30/Apr/2025 20:30:46] "GET /about HTTP/1.1" 200 -
+2025-04-30 20:30:46,592 INFO 127.0.0.1 - - [30/Apr/2025 20:30:46] "GET /static/styles_about.css HTTP/1.1" 200 -
+2025-04-30 20:30:52,884 INFO 127.0.0.1 - - [30/Apr/2025 20:30:52] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 20:30:52,898 INFO 127.0.0.1 - - [30/Apr/2025 20:30:52] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:30:52,922 INFO 127.0.0.1 - - [30/Apr/2025 20:30:52] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:30:54,544 INFO 127.0.0.1 - - [30/Apr/2025 20:30:54] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 20:30:54,549 INFO 127.0.0.1 - - [30/Apr/2025 20:30:54] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:30:54,574 INFO 127.0.0.1 - - [30/Apr/2025 20:30:54] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:30:55,618 INFO 127.0.0.1 - - [30/Apr/2025 20:30:55] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:30:55,644 INFO 127.0.0.1 - - [30/Apr/2025 20:30:55] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:30:57,865 INFO 127.0.0.1 - - [30/Apr/2025 20:30:57] "GET /about HTTP/1.1" 200 -
+2025-04-30 20:30:57,891 INFO 127.0.0.1 - - [30/Apr/2025 20:30:57] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:21,550 INFO 127.0.0.1 - - [30/Apr/2025 20:31:21] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:21,577 INFO 127.0.0.1 - - [30/Apr/2025 20:31:21] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:23,951 INFO 127.0.0.1 - - [30/Apr/2025 20:31:23] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:31:23,984 INFO 127.0.0.1 - - [30/Apr/2025 20:31:23] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:25,194 INFO 127.0.0.1 - - [30/Apr/2025 20:31:25] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:25,221 INFO 127.0.0.1 - - [30/Apr/2025 20:31:25] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:25,812 INFO 127.0.0.1 - - [30/Apr/2025 20:31:25] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:31:25,840 INFO 127.0.0.1 - - [30/Apr/2025 20:31:25] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:26,323 INFO 127.0.0.1 - - [30/Apr/2025 20:31:26] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:26,346 INFO 127.0.0.1 - - [30/Apr/2025 20:31:26] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:27,868 INFO 127.0.0.1 - - [30/Apr/2025 20:31:27] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:31:27,896 INFO 127.0.0.1 - - [30/Apr/2025 20:31:27] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:28,882 INFO 127.0.0.1 - - [30/Apr/2025 20:31:28] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:28,906 INFO 127.0.0.1 - - [30/Apr/2025 20:31:28] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:30,181 INFO 127.0.0.1 - - [30/Apr/2025 20:31:30] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:31:30,204 INFO 127.0.0.1 - - [30/Apr/2025 20:31:30] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:34,594 INFO 127.0.0.1 - - [30/Apr/2025 20:31:34] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:34,626 INFO 127.0.0.1 - - [30/Apr/2025 20:31:34] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:35,562 INFO 127.0.0.1 - - [30/Apr/2025 20:31:35] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:31:35,586 INFO 127.0.0.1 - - [30/Apr/2025 20:31:35] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:36,504 INFO 127.0.0.1 - - [30/Apr/2025 20:31:36] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:36,526 INFO 127.0.0.1 - - [30/Apr/2025 20:31:36] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:37,823 INFO 127.0.0.1 - - [30/Apr/2025 20:31:37] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:31:37,847 INFO 127.0.0.1 - - [30/Apr/2025 20:31:37] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:38,846 INFO 127.0.0.1 - - [30/Apr/2025 20:31:38] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:38,869 INFO 127.0.0.1 - - [30/Apr/2025 20:31:38] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:41,186 INFO 127.0.0.1 - - [30/Apr/2025 20:31:41] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:31:41,212 INFO 127.0.0.1 - - [30/Apr/2025 20:31:41] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:43,547 INFO 127.0.0.1 - - [30/Apr/2025 20:31:43] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:31:43,573 INFO 127.0.0.1 - - [30/Apr/2025 20:31:43] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:31:45,283 INFO 127.0.0.1 - - [30/Apr/2025 20:31:45] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:31:45,307 INFO 127.0.0.1 - - [30/Apr/2025 20:31:45] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:32:44,097 INFO 127.0.0.1 - - [30/Apr/2025 20:32:44] "GET / HTTP/1.1" 200 -
+2025-04-30 20:32:44,121 INFO 127.0.0.1 - - [30/Apr/2025 20:32:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:32:46,211 INFO 127.0.0.1 - - [30/Apr/2025 20:32:46] "GET /profile HTTP/1.1" 200 -
+2025-04-30 20:32:46,237 INFO 127.0.0.1 - - [30/Apr/2025 20:32:46] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 20:32:47,797 INFO 127.0.0.1 - - [30/Apr/2025 20:32:47] "GET /about HTTP/1.1" 200 -
+2025-04-30 20:32:47,821 INFO 127.0.0.1 - - [30/Apr/2025 20:32:47] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 20:32:48,498 INFO 127.0.0.1 - - [30/Apr/2025 20:32:48] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 20:32:48,526 INFO 127.0.0.1 - - [30/Apr/2025 20:32:48] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:32:50,909 INFO 127.0.0.1 - - [30/Apr/2025 20:32:50] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:32:50,934 INFO 127.0.0.1 - - [30/Apr/2025 20:32:50] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 20:35:47,699 INFO 127.0.0.1 - - [30/Apr/2025 20:35:47] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:35:47,720 INFO 127.0.0.1 - - [30/Apr/2025 20:35:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:38:15,215 INFO 127.0.0.1 - - [30/Apr/2025 20:38:15] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:38:15,239 INFO 127.0.0.1 - - [30/Apr/2025 20:38:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:48:05,681 INFO 127.0.0.1 - - [30/Apr/2025 20:48:05] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:48:05,701 INFO 127.0.0.1 - - [30/Apr/2025 20:48:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:48:06,938 INFO 127.0.0.1 - - [30/Apr/2025 20:48:06] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:48:06,960 INFO 127.0.0.1 - - [30/Apr/2025 20:48:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:48:07,662 INFO 127.0.0.1 - - [30/Apr/2025 20:48:07] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:48:07,685 INFO 127.0.0.1 - - [30/Apr/2025 20:48:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:48:07,940 INFO 127.0.0.1 - - [30/Apr/2025 20:48:07] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:48:07,961 INFO 127.0.0.1 - - [30/Apr/2025 20:48:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:48:08,350 INFO 127.0.0.1 - - [30/Apr/2025 20:48:08] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:48:08,371 INFO 127.0.0.1 - - [30/Apr/2025 20:48:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:51:41,884 INFO 127.0.0.1 - - [30/Apr/2025 20:51:41] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:51:41,907 INFO 127.0.0.1 - - [30/Apr/2025 20:51:41] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:54:08,197 INFO 127.0.0.1 - - [30/Apr/2025 20:54:08] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:54:08,219 INFO 127.0.0.1 - - [30/Apr/2025 20:54:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:57:06,196 INFO 127.0.0.1 - - [30/Apr/2025 20:57:06] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:57:06,218 INFO 127.0.0.1 - - [30/Apr/2025 20:57:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:57:17,882 INFO 127.0.0.1 - - [30/Apr/2025 20:57:17] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:57:17,912 INFO 127.0.0.1 - - [30/Apr/2025 20:57:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:57:56,156 INFO 127.0.0.1 - - [30/Apr/2025 20:57:56] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:57:56,181 INFO 127.0.0.1 - - [30/Apr/2025 20:57:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:58:38,262 INFO 127.0.0.1 - - [30/Apr/2025 20:58:38] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:58:38,291 INFO 127.0.0.1 - - [30/Apr/2025 20:58:38] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:58:46,897 INFO 127.0.0.1 - - [30/Apr/2025 20:58:46] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:58:46,920 INFO 127.0.0.1 - - [30/Apr/2025 20:58:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:59:00,786 INFO 127.0.0.1 - - [30/Apr/2025 20:59:00] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:59:00,809 INFO 127.0.0.1 - - [30/Apr/2025 20:59:00] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:59:07,016 INFO 127.0.0.1 - - [30/Apr/2025 20:59:07] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:59:07,042 INFO 127.0.0.1 - - [30/Apr/2025 20:59:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:59:12,675 INFO 127.0.0.1 - - [30/Apr/2025 20:59:12] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:59:12,704 INFO 127.0.0.1 - - [30/Apr/2025 20:59:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 20:59:20,500 INFO 127.0.0.1 - - [30/Apr/2025 20:59:20] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 20:59:20,530 INFO 127.0.0.1 - - [30/Apr/2025 20:59:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:01:48,597 INFO 127.0.0.1 - - [30/Apr/2025 21:01:48] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 21:01:48,603 INFO 127.0.0.1 - - [30/Apr/2025 21:01:48] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:01:48,629 INFO 127.0.0.1 - - [30/Apr/2025 21:01:48] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:01:50,739 INFO 127.0.0.1 - - [30/Apr/2025 21:01:50] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 21:01:50,745 INFO 127.0.0.1 - - [30/Apr/2025 21:01:50] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:01:50,776 INFO 127.0.0.1 - - [30/Apr/2025 21:01:50] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:01:51,783 INFO 127.0.0.1 - - [30/Apr/2025 21:01:51] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:01:51,809 INFO 127.0.0.1 - - [30/Apr/2025 21:01:51] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:01:52,697 INFO 127.0.0.1 - - [30/Apr/2025 21:01:52] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:01:52,723 INFO 127.0.0.1 - - [30/Apr/2025 21:01:52] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:31,523 INFO 127.0.0.1 - - [30/Apr/2025 21:02:31] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:02:31,547 INFO 127.0.0.1 - - [30/Apr/2025 21:02:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:38,833 INFO 127.0.0.1 - - [30/Apr/2025 21:02:38] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:02:38,857 INFO 127.0.0.1 - - [30/Apr/2025 21:02:38] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:42,599 INFO 127.0.0.1 - - [30/Apr/2025 21:02:42] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:02:42,629 INFO 127.0.0.1 - - [30/Apr/2025 21:02:42] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:43,488 INFO 127.0.0.1 - - [30/Apr/2025 21:02:43] "GET /about HTTP/1.1" 200 -
+2025-04-30 21:02:43,513 INFO 127.0.0.1 - - [30/Apr/2025 21:02:43] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:44,271 INFO 127.0.0.1 - - [30/Apr/2025 21:02:44] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:02:44,297 INFO 127.0.0.1 - - [30/Apr/2025 21:02:44] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:45,600 INFO 127.0.0.1 - - [30/Apr/2025 21:02:45] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:02:45,626 INFO 127.0.0.1 - - [30/Apr/2025 21:02:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:53,744 INFO 127.0.0.1 - - [30/Apr/2025 21:02:53] "GET / HTTP/1.1" 200 -
+2025-04-30 21:02:53,770 INFO 127.0.0.1 - - [30/Apr/2025 21:02:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:54,183 INFO 127.0.0.1 - - [30/Apr/2025 21:02:54] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:02:54,212 INFO 127.0.0.1 - - [30/Apr/2025 21:02:54] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:55,531 INFO 127.0.0.1 - - [30/Apr/2025 21:02:55] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:02:55,556 INFO 127.0.0.1 - - [30/Apr/2025 21:02:55] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:58,013 INFO 127.0.0.1 - - [30/Apr/2025 21:02:58] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:02:58,037 INFO 127.0.0.1 - - [30/Apr/2025 21:02:58] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:59,038 INFO 127.0.0.1 - - [30/Apr/2025 21:02:59] "GET /about HTTP/1.1" 200 -
+2025-04-30 21:02:59,065 INFO 127.0.0.1 - - [30/Apr/2025 21:02:59] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 21:02:59,955 INFO 127.0.0.1 - - [30/Apr/2025 21:02:59] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:02:59,980 INFO 127.0.0.1 - - [30/Apr/2025 21:02:59] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:03:07,582 INFO 127.0.0.1 - - [30/Apr/2025 21:03:07] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:03:07,613 INFO 127.0.0.1 - - [30/Apr/2025 21:03:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:03:31,663 INFO 127.0.0.1 - - [30/Apr/2025 21:03:31] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:03:31,686 INFO 127.0.0.1 - - [30/Apr/2025 21:03:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:04:43,430 INFO 127.0.0.1 - - [30/Apr/2025 21:04:43] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:04:43,454 INFO 127.0.0.1 - - [30/Apr/2025 21:04:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:04:51,619 INFO 127.0.0.1 - - [30/Apr/2025 21:04:51] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:04:51,649 INFO 127.0.0.1 - - [30/Apr/2025 21:04:51] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:04:59,783 INFO 127.0.0.1 - - [30/Apr/2025 21:04:59] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:04:59,805 INFO 127.0.0.1 - - [30/Apr/2025 21:04:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:06:22,483 INFO 127.0.0.1 - - [30/Apr/2025 21:06:22] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:06:22,511 INFO 127.0.0.1 - - [30/Apr/2025 21:06:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:10:05,185 INFO 127.0.0.1 - - [30/Apr/2025 21:10:05] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:10:05,206 INFO 127.0.0.1 - - [30/Apr/2025 21:10:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:10:16,482 INFO 127.0.0.1 - - [30/Apr/2025 21:10:16] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:10:16,507 INFO 127.0.0.1 - - [30/Apr/2025 21:10:16] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:10:56,787 INFO 127.0.0.1 - - [30/Apr/2025 21:10:56] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:10:56,811 INFO 127.0.0.1 - - [30/Apr/2025 21:10:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:11:12,332 INFO 127.0.0.1 - - [30/Apr/2025 21:11:12] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:11:12,360 INFO 127.0.0.1 - - [30/Apr/2025 21:11:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:11:20,244 INFO 127.0.0.1 - - [30/Apr/2025 21:11:20] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:11:20,272 INFO 127.0.0.1 - - [30/Apr/2025 21:11:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:11:39,278 INFO 127.0.0.1 - - [30/Apr/2025 21:11:39] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:11:39,300 INFO 127.0.0.1 - - [30/Apr/2025 21:11:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:11:48,307 INFO 127.0.0.1 - - [30/Apr/2025 21:11:48] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:11:48,331 INFO 127.0.0.1 - - [30/Apr/2025 21:11:48] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:11:52,570 INFO 127.0.0.1 - - [30/Apr/2025 21:11:52] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:11:52,596 INFO 127.0.0.1 - - [30/Apr/2025 21:11:52] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:11:58,354 INFO 127.0.0.1 - - [30/Apr/2025 21:11:58] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:11:58,379 INFO 127.0.0.1 - - [30/Apr/2025 21:11:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:11,811 INFO 127.0.0.1 - - [30/Apr/2025 21:17:11] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:17:11,833 INFO 127.0.0.1 - - [30/Apr/2025 21:17:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:50,157 INFO 127.0.0.1 - - [30/Apr/2025 21:17:50] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:17:50,181 INFO 127.0.0.1 - - [30/Apr/2025 21:17:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:53,633 INFO 127.0.0.1 - - [30/Apr/2025 21:17:53] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:17:53,664 INFO 127.0.0.1 - - [30/Apr/2025 21:17:53] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:54,947 INFO 127.0.0.1 - - [30/Apr/2025 21:17:54] "GET /about HTTP/1.1" 200 -
+2025-04-30 21:17:54,973 INFO 127.0.0.1 - - [30/Apr/2025 21:17:54] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:55,845 INFO 127.0.0.1 - - [30/Apr/2025 21:17:55] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:17:55,870 INFO 127.0.0.1 - - [30/Apr/2025 21:17:55] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:56,679 INFO 127.0.0.1 - - [30/Apr/2025 21:17:56] "GET / HTTP/1.1" 200 -
+2025-04-30 21:17:56,704 INFO 127.0.0.1 - - [30/Apr/2025 21:17:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:17:58,198 INFO 127.0.0.1 - - [30/Apr/2025 21:17:58] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:17:58,224 INFO 127.0.0.1 - - [30/Apr/2025 21:17:58] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:18:25,828 INFO 127.0.0.1 - - [30/Apr/2025 21:18:25] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:18:25,856 INFO 127.0.0.1 - - [30/Apr/2025 21:18:25] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:18:26,797 INFO 127.0.0.1 - - [30/Apr/2025 21:18:26] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:18:26,824 INFO 127.0.0.1 - - [30/Apr/2025 21:18:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:18:28,332 INFO 127.0.0.1 - - [30/Apr/2025 21:18:28] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:18:28,353 INFO 127.0.0.1 - - [30/Apr/2025 21:18:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:22:13,248 INFO 127.0.0.1 - - [30/Apr/2025 21:22:13] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:22:13,274 INFO 127.0.0.1 - - [30/Apr/2025 21:22:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:22:40,213 INFO 127.0.0.1 - - [30/Apr/2025 21:22:40] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:22:40,240 INFO 127.0.0.1 - - [30/Apr/2025 21:22:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:30:12,737 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-30 21:30:12,788 INFO  * Restarting with stat
+2025-04-30 21:30:13,279 WARNING  * Debugger is active!
+2025-04-30 21:30:13,282 INFO  * Debugger PIN: 120-361-518
+2025-04-30 21:42:16,242 INFO 127.0.0.1 - - [30/Apr/2025 21:42:16] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 21:42:16,249 INFO 127.0.0.1 - - [30/Apr/2025 21:42:16] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:42:16,312 INFO 127.0.0.1 - - [30/Apr/2025 21:42:16] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:42:17,736 INFO 127.0.0.1 - - [30/Apr/2025 21:42:17] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 21:42:17,743 INFO 127.0.0.1 - - [30/Apr/2025 21:42:17] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:42:17,768 INFO 127.0.0.1 - - [30/Apr/2025 21:42:17] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:48:52,034 INFO 127.0.0.1 - - [30/Apr/2025 21:48:52] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:48:52,060 INFO 127.0.0.1 - - [30/Apr/2025 21:48:52] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:48:52,948 INFO 127.0.0.1 - - [30/Apr/2025 21:48:52] "[35m[1mGET /book_room/1 HTTP/1.1[0m" 500 -
+2025-04-30 21:48:53,005 INFO 127.0.0.1 - - [30/Apr/2025 21:48:53] "GET /book_room/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 21:48:53,016 INFO 127.0.0.1 - - [30/Apr/2025 21:48:53] "GET /book_room/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 21:48:53,040 INFO 127.0.0.1 - - [30/Apr/2025 21:48:53] "GET /book_room/1?__debugger__=yes&cmd=resource&f=console.png&s=KMJMA4vtVb2weYGuBsnE HTTP/1.1" 200 -
+2025-04-30 21:48:53,057 INFO 127.0.0.1 - - [30/Apr/2025 21:48:53] "GET /book_room/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 21:51:15,903 INFO 127.0.0.1 - - [30/Apr/2025 21:51:15] "[35m[1mGET /book_room/1 HTTP/1.1[0m" 500 -
+2025-04-30 21:51:15,926 INFO 127.0.0.1 - - [30/Apr/2025 21:51:15] "[36mGET /book_room/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 21:51:15,931 INFO 127.0.0.1 - - [30/Apr/2025 21:51:15] "[36mGET /book_room/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 21:51:15,942 INFO 127.0.0.1 - - [30/Apr/2025 21:51:15] "[36mGET /book_room/1?__debugger__=yes&cmd=resource&f=console.png&s=KMJMA4vtVb2weYGuBsnE HTTP/1.1[0m" 304 -
+2025-04-30 21:56:33,007 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 21:56:33,007 INFO [33mPress CTRL+C to quit[0m
+2025-04-30 21:56:33,008 INFO  * Restarting with stat
+2025-04-30 21:56:33,280 WARNING  * Debugger is active!
+2025-04-30 21:56:33,282 INFO  * Debugger PIN: 120-361-518
+2025-04-30 21:56:36,375 INFO 127.0.0.1 - - [30/Apr/2025 21:56:36] "[32mGET /book_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 21:56:36,386 INFO 127.0.0.1 - - [30/Apr/2025 21:56:36] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:56:36,435 INFO 127.0.0.1 - - [30/Apr/2025 21:56:36] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:37,632 INFO 127.0.0.1 - - [30/Apr/2025 21:56:37] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 21:56:37,638 INFO 127.0.0.1 - - [30/Apr/2025 21:56:37] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:56:37,660 INFO 127.0.0.1 - - [30/Apr/2025 21:56:37] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:39,202 INFO 127.0.0.1 - - [30/Apr/2025 21:56:39] "GET /register HTTP/1.1" 200 -
+2025-04-30 21:56:39,232 INFO 127.0.0.1 - - [30/Apr/2025 21:56:39] "GET /static/styles_reg.css HTTP/1.1" 200 -
+2025-04-30 21:56:43,159 INFO 127.0.0.1 - - [30/Apr/2025 21:56:43] "[32mPOST /register HTTP/1.1[0m" 302 -
+2025-04-30 21:56:43,168 INFO 127.0.0.1 - - [30/Apr/2025 21:56:43] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:56:43,196 INFO 127.0.0.1 - - [30/Apr/2025 21:56:43] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:44,236 INFO 127.0.0.1 - - [30/Apr/2025 21:56:44] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 21:56:44,245 INFO 127.0.0.1 - - [30/Apr/2025 21:56:44] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:56:44,271 INFO 127.0.0.1 - - [30/Apr/2025 21:56:44] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:45,543 INFO 127.0.0.1 - - [30/Apr/2025 21:56:45] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:56:45,577 INFO 127.0.0.1 - - [30/Apr/2025 21:56:45] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:46,788 INFO 127.0.0.1 - - [30/Apr/2025 21:56:46] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:56:46,814 INFO 127.0.0.1 - - [30/Apr/2025 21:56:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:55,247 INFO 127.0.0.1 - - [30/Apr/2025 21:56:55] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:56:55,272 INFO 127.0.0.1 - - [30/Apr/2025 21:56:55] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:56,139 INFO 127.0.0.1 - - [30/Apr/2025 21:56:56] "GET /about HTTP/1.1" 200 -
+2025-04-30 21:56:56,167 INFO 127.0.0.1 - - [30/Apr/2025 21:56:56] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:57,264 INFO 127.0.0.1 - - [30/Apr/2025 21:56:57] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:56:57,291 INFO 127.0.0.1 - - [30/Apr/2025 21:56:57] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:56:58,119 INFO 127.0.0.1 - - [30/Apr/2025 21:56:58] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-04-30 21:56:58,128 INFO 127.0.0.1 - - [30/Apr/2025 21:56:58] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:56:58,154 INFO 127.0.0.1 - - [30/Apr/2025 21:56:58] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:00,062 INFO 127.0.0.1 - - [30/Apr/2025 21:57:00] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 21:57:00,071 INFO 127.0.0.1 - - [30/Apr/2025 21:57:00] "GET /profile HTTP/1.1" 200 -
+2025-04-30 21:57:00,093 INFO 127.0.0.1 - - [30/Apr/2025 21:57:00] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:01,575 INFO 127.0.0.1 - - [30/Apr/2025 21:57:01] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:57:01,600 INFO 127.0.0.1 - - [30/Apr/2025 21:57:01] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:03,704 INFO 127.0.0.1 - - [30/Apr/2025 21:57:03] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 21:57:03,731 INFO 127.0.0.1 - - [30/Apr/2025 21:57:03] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:05,294 INFO 127.0.0.1 - - [30/Apr/2025 21:57:05] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:57:05,325 INFO 127.0.0.1 - - [30/Apr/2025 21:57:05] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:06,957 INFO 127.0.0.1 - - [30/Apr/2025 21:57:06] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 21:57:06,982 INFO 127.0.0.1 - - [30/Apr/2025 21:57:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:10,313 INFO 127.0.0.1 - - [30/Apr/2025 21:57:10] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:57:10,341 INFO 127.0.0.1 - - [30/Apr/2025 21:57:10] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:17,905 INFO 127.0.0.1 - - [30/Apr/2025 21:57:17] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 21:57:17,932 INFO 127.0.0.1 - - [30/Apr/2025 21:57:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 21:57:20,240 INFO 127.0.0.1 - - [30/Apr/2025 21:57:20] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 21:57:20,267 INFO 127.0.0.1 - - [30/Apr/2025 21:57:20] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 21:58:20,178 INFO 127.0.0.1 - - [30/Apr/2025 21:58:20] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 21:58:20,202 INFO 127.0.0.1 - - [30/Apr/2025 21:58:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:01:45,143 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-30 22:01:45,177 INFO  * Restarting with stat
+2025-04-30 22:01:45,486 WARNING  * Debugger is active!
+2025-04-30 22:01:45,488 INFO  * Debugger PIN: 120-361-518
+2025-04-30 22:02:04,541 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-30 22:02:04,578 INFO  * Restarting with stat
+2025-04-30 22:02:04,871 WARNING  * Debugger is active!
+2025-04-30 22:02:04,874 INFO  * Debugger PIN: 120-361-518
+2025-04-30 22:04:17,897 INFO 127.0.0.1 - - [30/Apr/2025 22:04:17] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 22:04:17,908 INFO 127.0.0.1 - - [30/Apr/2025 22:04:17] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:04:17,961 INFO 127.0.0.1 - - [30/Apr/2025 22:04:17] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:19,464 INFO 127.0.0.1 - - [30/Apr/2025 22:04:19] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 22:04:19,471 INFO 127.0.0.1 - - [30/Apr/2025 22:04:19] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:04:19,494 INFO 127.0.0.1 - - [30/Apr/2025 22:04:19] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:20,432 INFO 127.0.0.1 - - [30/Apr/2025 22:04:20] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:04:20,460 INFO 127.0.0.1 - - [30/Apr/2025 22:04:20] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:21,724 INFO 127.0.0.1 - - [30/Apr/2025 22:04:21] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:04:21,747 INFO 127.0.0.1 - - [30/Apr/2025 22:04:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:27,704 INFO 127.0.0.1 - - [30/Apr/2025 22:04:27] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:04:27,728 INFO 127.0.0.1 - - [30/Apr/2025 22:04:27] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:29,284 INFO 127.0.0.1 - - [30/Apr/2025 22:04:29] "GET /book_room/1 HTTP/1.1" 200 -
+2025-04-30 22:04:29,310 INFO 127.0.0.1 - - [30/Apr/2025 22:04:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:32,009 INFO 127.0.0.1 - - [30/Apr/2025 22:04:32] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 22:04:32,032 INFO 127.0.0.1 - - [30/Apr/2025 22:04:32] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:04:58,675 INFO 127.0.0.1 - - [30/Apr/2025 22:04:58] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:04:58,699 INFO 127.0.0.1 - - [30/Apr/2025 22:04:58] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:05:03,625 INFO 127.0.0.1 - - [30/Apr/2025 22:05:03] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:05:03,650 INFO 127.0.0.1 - - [30/Apr/2025 22:05:03] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:05:35,460 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 22:05:35,460 INFO [33mPress CTRL+C to quit[0m
+2025-04-30 22:05:35,461 INFO  * Restarting with stat
+2025-04-30 22:05:35,773 WARNING  * Debugger is active!
+2025-04-30 22:05:35,777 INFO  * Debugger PIN: 120-361-518
+2025-04-30 22:05:37,779 INFO 127.0.0.1 - - [30/Apr/2025 22:05:37] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 22:05:37,790 INFO 127.0.0.1 - - [30/Apr/2025 22:05:37] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:05:37,841 INFO 127.0.0.1 - - [30/Apr/2025 22:05:37] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:05:38,567 INFO 127.0.0.1 - - [30/Apr/2025 22:05:38] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 22:05:38,575 INFO 127.0.0.1 - - [30/Apr/2025 22:05:38] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:05:38,600 INFO 127.0.0.1 - - [30/Apr/2025 22:05:38] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:05:39,609 INFO 127.0.0.1 - - [30/Apr/2025 22:05:39] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:05:39,635 INFO 127.0.0.1 - - [30/Apr/2025 22:05:39] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:05:47,093 INFO 127.0.0.1 - - [30/Apr/2025 22:05:47] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:05:47,121 INFO 127.0.0.1 - - [30/Apr/2025 22:05:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:06:56,506 INFO 127.0.0.1 - - [30/Apr/2025 22:06:56] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:06:56,531 INFO 127.0.0.1 - - [30/Apr/2025 22:06:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:07:36,727 INFO 127.0.0.1 - - [30/Apr/2025 22:07:36] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:07:36,751 INFO 127.0.0.1 - - [30/Apr/2025 22:07:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:07:55,691 INFO 127.0.0.1 - - [30/Apr/2025 22:07:55] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:07:55,715 INFO 127.0.0.1 - - [30/Apr/2025 22:07:55] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:11:21,044 INFO 127.0.0.1 - - [30/Apr/2025 22:11:21] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:11:21,068 INFO 127.0.0.1 - - [30/Apr/2025 22:11:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:11:49,617 INFO 127.0.0.1 - - [30/Apr/2025 22:11:49] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:11:49,639 INFO 127.0.0.1 - - [30/Apr/2025 22:11:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:14:47,638 INFO 127.0.0.1 - - [30/Apr/2025 22:14:47] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:14:47,665 INFO 127.0.0.1 - - [30/Apr/2025 22:14:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:18:45,126 INFO 127.0.0.1 - - [30/Apr/2025 22:18:45] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:18:45,146 INFO 127.0.0.1 - - [30/Apr/2025 22:18:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:19:06,592 INFO 127.0.0.1 - - [30/Apr/2025 22:19:06] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:19:06,612 INFO 127.0.0.1 - - [30/Apr/2025 22:19:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:19:21,360 INFO 127.0.0.1 - - [30/Apr/2025 22:19:21] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:19:21,380 INFO 127.0.0.1 - - [30/Apr/2025 22:19:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:19:28,834 INFO 127.0.0.1 - - [30/Apr/2025 22:19:28] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:19:28,857 INFO 127.0.0.1 - - [30/Apr/2025 22:19:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:22:22,978 INFO 127.0.0.1 - - [30/Apr/2025 22:22:22] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:22:23,000 INFO 127.0.0.1 - - [30/Apr/2025 22:22:23] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:24:40,931 INFO 127.0.0.1 - - [30/Apr/2025 22:24:40] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:24:40,953 INFO 127.0.0.1 - - [30/Apr/2025 22:24:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:30:02,763 INFO 127.0.0.1 - - [30/Apr/2025 22:30:02] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:30:02,791 INFO 127.0.0.1 - - [30/Apr/2025 22:30:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:32:25,441 INFO 127.0.0.1 - - [30/Apr/2025 22:32:25] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:32:25,461 INFO 127.0.0.1 - - [30/Apr/2025 22:32:25] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:32:35,039 INFO 127.0.0.1 - - [30/Apr/2025 22:32:35] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:32:35,063 INFO 127.0.0.1 - - [30/Apr/2025 22:32:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:32:36,086 INFO 127.0.0.1 - - [30/Apr/2025 22:32:36] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:32:36,107 INFO 127.0.0.1 - - [30/Apr/2025 22:32:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:32:48,913 INFO 127.0.0.1 - - [30/Apr/2025 22:32:48] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:32:48,937 INFO 127.0.0.1 - - [30/Apr/2025 22:32:48] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:33:28,036 INFO 127.0.0.1 - - [30/Apr/2025 22:33:28] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:33:28,057 INFO 127.0.0.1 - - [30/Apr/2025 22:33:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:34:01,282 INFO 127.0.0.1 - - [30/Apr/2025 22:34:01] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:34:01,307 INFO 127.0.0.1 - - [30/Apr/2025 22:34:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:34:05,092 INFO 127.0.0.1 - - [30/Apr/2025 22:34:05] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:34:05,119 INFO 127.0.0.1 - - [30/Apr/2025 22:34:05] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:35:06,359 INFO 127.0.0.1 - - [30/Apr/2025 22:35:06] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:35:06,384 INFO 127.0.0.1 - - [30/Apr/2025 22:35:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:35:11,607 INFO 127.0.0.1 - - [30/Apr/2025 22:35:11] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:35:11,614 INFO 127.0.0.1 - - [30/Apr/2025 22:35:11] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:35:11,636 INFO 127.0.0.1 - - [30/Apr/2025 22:35:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:35:13,564 INFO 127.0.0.1 - - [30/Apr/2025 22:35:13] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:35:13,572 INFO 127.0.0.1 - - [30/Apr/2025 22:35:13] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:35:13,598 INFO 127.0.0.1 - - [30/Apr/2025 22:35:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:35:14,319 INFO 127.0.0.1 - - [30/Apr/2025 22:35:14] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:35:14,328 INFO 127.0.0.1 - - [30/Apr/2025 22:35:14] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:35:14,349 INFO 127.0.0.1 - - [30/Apr/2025 22:35:14] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:38:52,976 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-30 22:38:53,024 INFO  * Restarting with stat
+2025-04-30 22:38:53,323 WARNING  * Debugger is active!
+2025-04-30 22:38:53,325 INFO  * Debugger PIN: 120-361-518
+2025-04-30 22:38:54,348 INFO 127.0.0.1 - - [30/Apr/2025 22:38:54] "[32mGET /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:38:54,354 INFO 127.0.0.1 - - [30/Apr/2025 22:38:54] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 22:38:54,365 INFO 127.0.0.1 - - [30/Apr/2025 22:38:54] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:38:54,417 INFO 127.0.0.1 - - [30/Apr/2025 22:38:54] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:38:55,873 INFO 127.0.0.1 - - [30/Apr/2025 22:38:55] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 22:38:55,878 INFO 127.0.0.1 - - [30/Apr/2025 22:38:55] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:38:55,903 INFO 127.0.0.1 - - [30/Apr/2025 22:38:55] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:38:57,552 INFO 127.0.0.1 - - [30/Apr/2025 22:38:57] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:38:57,576 INFO 127.0.0.1 - - [30/Apr/2025 22:38:57] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:38:58,798 INFO 127.0.0.1 - - [30/Apr/2025 22:38:58] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:38:58,822 INFO 127.0.0.1 - - [30/Apr/2025 22:38:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:02,022 INFO 127.0.0.1 - - [30/Apr/2025 22:39:02] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:39:02,030 INFO 127.0.0.1 - - [30/Apr/2025 22:39:02] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:39:02,058 INFO 127.0.0.1 - - [30/Apr/2025 22:39:02] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:07,207 INFO 127.0.0.1 - - [30/Apr/2025 22:39:07] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:39:07,232 INFO 127.0.0.1 - - [30/Apr/2025 22:39:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:09,416 INFO 127.0.0.1 - - [30/Apr/2025 22:39:09] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:39:09,424 INFO 127.0.0.1 - - [30/Apr/2025 22:39:09] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:39:09,453 INFO 127.0.0.1 - - [30/Apr/2025 22:39:09] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:26,829 INFO 127.0.0.1 - - [30/Apr/2025 22:39:26] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:39:26,855 INFO 127.0.0.1 - - [30/Apr/2025 22:39:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:29,080 INFO 127.0.0.1 - - [30/Apr/2025 22:39:29] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:39:29,087 INFO 127.0.0.1 - - [30/Apr/2025 22:39:29] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:39:29,119 INFO 127.0.0.1 - - [30/Apr/2025 22:39:29] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:31,384 INFO 127.0.0.1 - - [30/Apr/2025 22:39:31] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:39:31,409 INFO 127.0.0.1 - - [30/Apr/2025 22:39:31] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:39:33,189 INFO 127.0.0.1 - - [30/Apr/2025 22:39:33] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:39:33,198 INFO 127.0.0.1 - - [30/Apr/2025 22:39:33] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:39:33,226 INFO 127.0.0.1 - - [30/Apr/2025 22:39:33] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:41:24,019 INFO 127.0.0.1 - - [30/Apr/2025 22:41:24] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:41:24,040 INFO 127.0.0.1 - - [30/Apr/2025 22:41:24] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:41:25,281 INFO 127.0.0.1 - - [30/Apr/2025 22:41:25] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:41:25,306 INFO 127.0.0.1 - - [30/Apr/2025 22:41:25] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:41:27,451 INFO 127.0.0.1 - - [30/Apr/2025 22:41:27] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:41:27,459 INFO 127.0.0.1 - - [30/Apr/2025 22:41:27] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:41:27,486 INFO 127.0.0.1 - - [30/Apr/2025 22:41:27] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:41:28,852 INFO 127.0.0.1 - - [30/Apr/2025 22:41:28] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:41:28,877 INFO 127.0.0.1 - - [30/Apr/2025 22:41:28] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:41:30,767 INFO 127.0.0.1 - - [30/Apr/2025 22:41:30] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:41:30,792 INFO 127.0.0.1 - - [30/Apr/2025 22:41:30] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:42:50,968 INFO  * Detected change in 'C:\\Users\\vanya\\PycharmProjects\\ROOMLY\\front\\ROOMLY\\app.py', reloading
+2025-04-30 22:42:51,014 INFO  * Restarting with stat
+2025-04-30 22:42:51,295 WARNING  * Debugger is active!
+2025-04-30 22:42:51,298 INFO  * Debugger PIN: 120-361-518
+2025-04-30 22:45:01,337 INFO 127.0.0.1 - - [30/Apr/2025 22:45:01] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 22:45:01,348 INFO 127.0.0.1 - - [30/Apr/2025 22:45:01] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:45:01,398 INFO 127.0.0.1 - - [30/Apr/2025 22:45:01] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:02,702 INFO 127.0.0.1 - - [30/Apr/2025 22:45:02] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 22:45:02,709 INFO 127.0.0.1 - - [30/Apr/2025 22:45:02] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:45:02,732 INFO 127.0.0.1 - - [30/Apr/2025 22:45:02] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:03,710 INFO 127.0.0.1 - - [30/Apr/2025 22:45:03] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:45:03,744 INFO 127.0.0.1 - - [30/Apr/2025 22:45:03] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:05,103 INFO 127.0.0.1 - - [30/Apr/2025 22:45:05] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:45:05,131 INFO 127.0.0.1 - - [30/Apr/2025 22:45:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:06,520 INFO 127.0.0.1 - - [30/Apr/2025 22:45:06] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:45:06,526 INFO 127.0.0.1 - - [30/Apr/2025 22:45:06] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:45:06,556 INFO 127.0.0.1 - - [30/Apr/2025 22:45:06] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:14,073 INFO 127.0.0.1 - - [30/Apr/2025 22:45:14] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:45:14,096 INFO 127.0.0.1 - - [30/Apr/2025 22:45:14] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:16,196 INFO 127.0.0.1 - - [30/Apr/2025 22:45:16] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:45:16,219 INFO 127.0.0.1 - - [30/Apr/2025 22:45:16] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:17,037 INFO 127.0.0.1 - - [30/Apr/2025 22:45:17] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:45:17,064 INFO 127.0.0.1 - - [30/Apr/2025 22:45:17] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:18,113 INFO 127.0.0.1 - - [30/Apr/2025 22:45:18] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 22:45:18,138 INFO 127.0.0.1 - - [30/Apr/2025 22:45:18] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:19,667 INFO 127.0.0.1 - - [30/Apr/2025 22:45:19] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 22:45:19,676 INFO 127.0.0.1 - - [30/Apr/2025 22:45:19] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:45:19,701 INFO 127.0.0.1 - - [30/Apr/2025 22:45:19] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:21,165 INFO 127.0.0.1 - - [30/Apr/2025 22:45:21] "GET /about HTTP/1.1" 200 -
+2025-04-30 22:45:21,192 INFO 127.0.0.1 - - [30/Apr/2025 22:45:21] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 22:45:23,720 INFO 127.0.0.1 - - [30/Apr/2025 22:45:23] "GET /profile HTTP/1.1" 200 -
+2025-04-30 22:45:23,748 INFO 127.0.0.1 - - [30/Apr/2025 22:45:23] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 22:49:06,091 INFO 127.0.0.1 - - [30/Apr/2025 22:49:06] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:49:06,119 INFO 127.0.0.1 - - [30/Apr/2025 22:49:06] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:50:19,578 INFO 127.0.0.1 - - [30/Apr/2025 22:50:19] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:50:19,606 INFO 127.0.0.1 - - [30/Apr/2025 22:50:19] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:52:04,811 INFO 127.0.0.1 - - [30/Apr/2025 22:52:04] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:52:04,835 INFO 127.0.0.1 - - [30/Apr/2025 22:52:04] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:52:07,371 INFO 127.0.0.1 - - [30/Apr/2025 22:52:07] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 22:52:07,394 INFO 127.0.0.1 - - [30/Apr/2025 22:52:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:52:40,302 INFO 127.0.0.1 - - [30/Apr/2025 22:52:40] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:52:40,329 INFO 127.0.0.1 - - [30/Apr/2025 22:52:40] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:52:42,497 INFO 127.0.0.1 - - [30/Apr/2025 22:52:42] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 22:52:42,521 INFO 127.0.0.1 - - [30/Apr/2025 22:52:42] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:53:05,287 INFO 127.0.0.1 - - [30/Apr/2025 22:53:05] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:53:05,318 INFO 127.0.0.1 - - [30/Apr/2025 22:53:05] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:54:13,087 INFO 127.0.0.1 - - [30/Apr/2025 22:54:13] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 22:54:13,108 INFO 127.0.0.1 - - [30/Apr/2025 22:54:13] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 22:58:20,784 INFO 127.0.0.1 - - [30/Apr/2025 22:58:20] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 22:58:20,814 INFO 127.0.0.1 - - [30/Apr/2025 22:58:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 22:59:12,075 INFO 127.0.0.1 - - [30/Apr/2025 22:59:12] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 22:59:12,098 INFO 127.0.0.1 - - [30/Apr/2025 22:59:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:14:09,547 INFO 127.0.0.1 - - [30/Apr/2025 23:14:09] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:14:09,574 INFO 127.0.0.1 - - [30/Apr/2025 23:14:09] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:14:11,268 INFO 127.0.0.1 - - [30/Apr/2025 23:14:11] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 23:14:11,293 INFO 127.0.0.1 - - [30/Apr/2025 23:14:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:14:15,644 INFO 127.0.0.1 - - [30/Apr/2025 23:14:15] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:14:15,671 INFO 127.0.0.1 - - [30/Apr/2025 23:14:15] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:01,968 INFO 127.0.0.1 - - [30/Apr/2025 23:15:01] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:15:01,991 INFO 127.0.0.1 - - [30/Apr/2025 23:15:01] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-30 23:15:08,540 INFO 127.0.0.1 - - [30/Apr/2025 23:15:08] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:15:08,567 INFO 127.0.0.1 - - [30/Apr/2025 23:15:08] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-30 23:15:18,010 INFO 127.0.0.1 - - [30/Apr/2025 23:15:18] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:15:18,033 INFO 127.0.0.1 - - [30/Apr/2025 23:15:18] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-04-30 23:15:36,456 INFO 127.0.0.1 - - [30/Apr/2025 23:15:36] "[32mGET /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 23:15:36,463 INFO 127.0.0.1 - - [30/Apr/2025 23:15:36] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-04-30 23:15:36,469 INFO 127.0.0.1 - - [30/Apr/2025 23:15:36] "GET /profile HTTP/1.1" 200 -
+2025-04-30 23:15:36,497 INFO 127.0.0.1 - - [30/Apr/2025 23:15:36] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:37,813 INFO 127.0.0.1 - - [30/Apr/2025 23:15:37] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-04-30 23:15:37,821 INFO 127.0.0.1 - - [30/Apr/2025 23:15:37] "GET /profile HTTP/1.1" 200 -
+2025-04-30 23:15:37,843 INFO 127.0.0.1 - - [30/Apr/2025 23:15:37] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:39,476 INFO 127.0.0.1 - - [30/Apr/2025 23:15:39] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:15:39,502 INFO 127.0.0.1 - - [30/Apr/2025 23:15:39] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:42,235 INFO 127.0.0.1 - - [30/Apr/2025 23:15:42] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 23:15:42,259 INFO 127.0.0.1 - - [30/Apr/2025 23:15:42] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:45,585 INFO 127.0.0.1 - - [30/Apr/2025 23:15:45] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 23:15:45,594 INFO 127.0.0.1 - - [30/Apr/2025 23:15:45] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:15:45,622 INFO 127.0.0.1 - - [30/Apr/2025 23:15:45] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:50,740 INFO 127.0.0.1 - - [30/Apr/2025 23:15:50] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 23:15:50,769 INFO 127.0.0.1 - - [30/Apr/2025 23:15:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:15:55,269 INFO 127.0.0.1 - - [30/Apr/2025 23:15:55] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:15:55,296 INFO 127.0.0.1 - - [30/Apr/2025 23:15:55] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:22,671 INFO 127.0.0.1 - - [30/Apr/2025 23:16:22] "GET / HTTP/1.1" 200 -
+2025-04-30 23:16:22,697 INFO 127.0.0.1 - - [30/Apr/2025 23:16:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:24,977 INFO 127.0.0.1 - - [30/Apr/2025 23:16:24] "GET /about HTTP/1.1" 200 -
+2025-04-30 23:16:25,003 INFO 127.0.0.1 - - [30/Apr/2025 23:16:25] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:27,207 INFO 127.0.0.1 - - [30/Apr/2025 23:16:27] "GET /profile HTTP/1.1" 200 -
+2025-04-30 23:16:27,236 INFO 127.0.0.1 - - [30/Apr/2025 23:16:27] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:30,263 INFO 127.0.0.1 - - [30/Apr/2025 23:16:30] "GET /about HTTP/1.1" 200 -
+2025-04-30 23:16:30,289 INFO 127.0.0.1 - - [30/Apr/2025 23:16:30] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:46,322 INFO 127.0.0.1 - - [30/Apr/2025 23:16:46] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:16:46,352 INFO 127.0.0.1 - - [30/Apr/2025 23:16:46] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:50,481 INFO 127.0.0.1 - - [30/Apr/2025 23:16:50] "GET /profile HTTP/1.1" 200 -
+2025-04-30 23:16:50,508 INFO 127.0.0.1 - - [30/Apr/2025 23:16:50] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-04-30 23:16:51,233 INFO 127.0.0.1 - - [30/Apr/2025 23:16:51] "GET /about HTTP/1.1" 200 -
+2025-04-30 23:16:51,256 INFO 127.0.0.1 - - [30/Apr/2025 23:16:51] "[36mGET /static/styles_about.css HTTP/1.1[0m" 304 -
+2025-04-30 23:17:17,971 INFO 127.0.0.1 - - [30/Apr/2025 23:17:17] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:17:18,001 INFO 127.0.0.1 - - [30/Apr/2025 23:17:18] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:17:30,773 INFO 127.0.0.1 - - [30/Apr/2025 23:17:30] "GET /edit_room/1 HTTP/1.1" 200 -
+2025-04-30 23:17:30,800 INFO 127.0.0.1 - - [30/Apr/2025 23:17:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:17:32,201 INFO 127.0.0.1 - - [30/Apr/2025 23:17:32] "[32mPOST /edit_room/1 HTTP/1.1[0m" 302 -
+2025-04-30 23:17:32,209 INFO 127.0.0.1 - - [30/Apr/2025 23:17:32] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:17:32,236 INFO 127.0.0.1 - - [30/Apr/2025 23:17:32] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -
+2025-04-30 23:17:33,142 INFO 127.0.0.1 - - [30/Apr/2025 23:17:33] "GET /add_room HTTP/1.1" 200 -
+2025-04-30 23:17:33,167 INFO 127.0.0.1 - - [30/Apr/2025 23:17:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-04-30 23:17:35,064 INFO 127.0.0.1 - - [30/Apr/2025 23:17:35] "GET /rooms HTTP/1.1" 200 -
+2025-04-30 23:17:35,092 INFO 127.0.0.1 - - [30/Apr/2025 23:17:35] "[36mGET /static/styles_rooms.css HTTP/1.1[0m" 304 -

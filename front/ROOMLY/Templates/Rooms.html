@@ -5,6 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_rooms.css') }}">
     <title>Комнаты</title>
+    <style>
+        .flash-messages {
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+            .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-error {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+        .btn-add-room {
+            display: block;
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background-color: #0ABAB5;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .btn-add-room:hover {
+            background-color: #089e9e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -16,7 +61,15 @@
 
     <div class="main-content">
         <h1>Комнаты</h1>
-
+            {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
         <div class="rooms-container">
             {% for room in rooms %}
             <div class="room-card">
@@ -40,8 +93,10 @@
             {% endfor %}
         </div>
     </div>
-
-    <footer>
+        {% if session.get('is_admin') %}
+        <a href="{{ url_for('add_room') }}" class="btn-add-room">Добавить комнату</a>
+    {% endif %}
+        <footer>
         &copy; 2025 ROOMLY.
     </footer>
 </body>

@@ -16,3 +16,15 @@ email: 1234@mail.ru
 password: $2b$12$DOxHkIVMsbceJZY7j4VTLusbw73YDH1rOWfVd8vqezJjTolPWtD5O
 joined_date: 2025-04-02 13:08:45
 
+=== Новый пользователь ===
+username: laflame
+email: 123@mail.ru
+password: $2b$12$x5T3qPefgXrV0qHzSig61.DeiNQau.QB7dFjliF0DVmY7d45FCHuO
+joined_date: 2025-04-11 11:07:14
+
+=== Новый пользователь ===
+username: laflame
+email: 1234@mail.ru
+password: $2b$12$e6l6pfiN43Q4yKKtD6NJLusR84eLsqtWZEIu3kon0.qkyY9PFeq/y
+joined_date: 2025-04-30 21:56:43
+

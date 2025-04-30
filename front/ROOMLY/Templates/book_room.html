@@ -2,8 +2,330 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бронирование комнаты</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles_book_room.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Основные стили */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            margin: 40px 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .room-container {
+            display: flex;
+            gap: 50px;
+            margin: 40px 0;
+            align-items: stretch;
+        }
+
+        /* Карточка с фото комнаты */
+        .room-info-card {
+            flex: 1.8;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Галерея фотографий */
+        .room-gallery {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .gallery-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .gallery-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-dot.active {
+            background: #0ABAB5;
+        }
+
+        /* Детали комнаты */
+        .room-details {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .room-details h2 {
+            margin: 0 0 25px 0;
+            color: #333;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .room-details p {
+            margin: 15px 0;
+            font-size: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Форма бронирования */
+        .booking-form-container {
+            flex: 1;
+            min-width: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .booking-form {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .form-content {
+            flex-grow: 1;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #0ABAB5;
+            outline: none;
+        }
+
+        .duration-options {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .duration-btn {
+            flex: 1;
+            padding: 14px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .duration-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .duration-btn.active {
+            background-color: #0ABAB5;
+            color: white;
+            border-color: #0ABAB5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(10, 186, 181, 0.3);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .book-btn, .cancel-btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .book-btn {
+            background-color: #0ABAB5;
+            color: white;
+        }
+
+        .book-btn:hover {
+            background-color: #089e9e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(10, 186, 181, 0.3);
+        }
+
+        .cancel-btn {
+            background-color: #f44336;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .cancel-btn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1400px) {
+            .main-content {
+                max-width: 1200px;
+            }
+
+            .room-gallery {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .room-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .booking-form-container {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .room-gallery {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 28px;
+                margin: 30px 0;
+            }
+
+            .room-gallery {
+                height: 300px;
+            }
+
+            .room-details h2 {
+                font-size: 26px;
+            }
+
+            .room-details p {
+                font-size: 18px;
+            }
+
+            .duration-options {
+                flex-direction: column;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0 15px;
+            }
+
+            .room-gallery {
+                height: 250px;
+            }
+
+            .room-details {
+                padding: 20px;
+            }
+
+            .booking-form {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -15,9 +337,29 @@
 
     <div class="main-content">
         <h1 class="page-title">Бронирование комнаты</h1>
+
         <div class="room-container">
             <div class="room-info-card">
-                <img src="https://i.ibb.co/BVR0ZjRY/peregovorochka.jpg" alt="{{ room.name }}" class="room-image">
+                <div class="room-gallery">
+                    <div class="gallery-container" id="galleryContainer">
+                        {% if photos %}
+                            {% for photo in photos %}
+                                <div class="gallery-slide">
+                                    <img src="{{ photo.photo_url }}" alt="{{ room.name }}">
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="gallery-slide">
+                                <img src="https://i.ibb.co/BVR0ZjRY/peregovorochka.jpg" alt="{{ room.name }}">
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="gallery-btn" id="prevBtn">❮</button>
+                        <button class="gallery-btn" id="nextBtn">❯</button>
+                    </div>
+                    <div class="gallery-dots" id="galleryDots"></div>
+                </div>
                 <div class="room-details">
                     <h2>{{ room.name }}</h2>
                     <p><strong>Вместимость:</strong> {{ room.capacity }} человек</p>
@@ -37,28 +379,30 @@
                 <form method="POST" action="{{ url_for('book_room', room_id=room.id) }}" class="booking-form" id="bookingForm">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-                    <div class="form-group">
-                        <label for="start_time">Дата и время начала бронирования:</label>
-                        <input type="datetime-local" id="start_time" name="start_time" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Выберите продолжительность:</label>
-                        <div class="duration-options" id="durationOptions">
-                            <button type="button" class="duration-btn" data-duration="1">1 час</button>
-                            <button type="button" class="duration-btn" data-duration="2">2 часа</button>
-                            <button type="button" class="duration-btn" data-duration="3">3 часа</button>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="start_time">Дата и время начала бронирования:</label>
+                            <input type="datetime-local" id="start_time" name="start_time" class="form-control" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="end_time">Дата и время окончания бронирования:</label>
-                        <input type="datetime-local" id="end_time" name="end_time" class="form-control" required readonly>
-                    </div>
+                        <div class="form-group">
+                            <label>Выберите продолжительность:</label>
+                            <div class="duration-options" id="durationOptions">
+                                <button type="button" class="duration-btn" data-duration="1">1 час</button>
+                                <button type="button" class="duration-btn" data-duration="2">2 часа</button>
+                                <button type="button" class="duration-btn" data-duration="3">3 часа</button>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="purpose">Цель бронирования:</label>
-                        <input type="text" id="purpose" name="purpose" class="form-control" required>
+                        <div class="form-group">
+                            <label for="end_time">Дата и время окончания бронирования:</label>
+                            <input type="datetime-local" id="end_time" name="end_time" class="form-control" required readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="purpose">Цель бронирования:</label>
+                            <input type="text" id="purpose" name="purpose" class="form-control" required>
+                        </div>
                     </div>
 
                     <div class="btn-group">
@@ -76,6 +420,57 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Галерея фотографий
+        const galleryContainer = document.getElementById('galleryContainer');
+        const slides = document.querySelectorAll('.gallery-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const galleryDots = document.getElementById('galleryDots');
+
+        let currentSlide = 0;
+        const slideCount = slides.length;
+
+        // Создаем точки навигации
+        if (slideCount > 1) {
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('gallery-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                galleryDots.appendChild(dot);
+            }
+        } else {
+            galleryDots.style.display = 'none';
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = (slideIndex + slideCount) % slideCount;
+            galleryContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Обновляем активную точку
+            document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+        // Автоматическое перелистывание (опционально)
+        let slideInterval = setInterval(() => {
+            if (slideCount > 1) goToSlide(currentSlide + 1);
+        }, 5000);
+
+        galleryContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        galleryContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(() => {
+                if (slideCount > 1) goToSlide(currentSlide + 1);
+            }, 5000);
+        });
+
+        // Логика бронирования
         const startTimeInput = document.getElementById('start_time');
         const endTimeInput = document.getElementById('end_time');
         const durationButtons = document.querySelectorAll('.duration-btn');

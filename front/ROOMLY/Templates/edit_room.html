@@ -2,26 +2,304 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактировать комнату</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: Courier New, monospace;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .white-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .room-info-section {
+            flex: 1;
+            padding-right: 40px;
+            border-right: 2px solid #f0f0f0;
+        }
+
+        .photos-section {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #0ABAB5;
+            outline: none;
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+        }
+
+        .save-btn {
+            background-color: #0ABAB5;
+            color: white;
+        }
+
+        .save-btn:hover {
+            background-color: #089e9e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(10, 186, 181, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cancel-btn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.2);
+        }
+
+        .photos-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .photo-item {
+            position: relative;
+            height: 160px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .delete-photo {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(244, 67, 54, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-photo-form {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 1024px) {
+            .white-container {
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            .room-info-section {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 2px solid #f0f0f0;
+                padding-bottom: 30px;
+                margin-bottom: 30px;
+            }
+
+            .photos-section {
+                padding-left: 0;
+            }
+        }
+        .flash-messages {
+    margin-bottom: 20px;
+        }
+
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 15px;
+        }
+
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Редактировать комнату</h1>
-    <form method="POST">
-        <!-- Добавьте эту строку для CSRF-защиты -->
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/rooms">Комнаты</a>
+        <a href="/profile">Личный кабинет</a>
+        <a href="/about">О нас</a>
+    </nav>
 
-        <label for="name">Название:</label>
-        <input type="text" id="name" name="name" value="{{ room.name }}" required>
-        <br>
-        <label for="capacity">Вместимость:</label>
-        <input type="number" id="capacity" name="capacity" value="{{ room.capacity }}" required>
-        <br>
-        <label for="equipment">Оснащение:</label>
-        <input type="text" id="equipment" name="equipment" value="{{ room.equipment }}" required>
-        <br>
-        <button type="submit">Сохранить</button>
-    </form>
-    <a href="{{ url_for('rooms') }}">Назад</a>
+    <div class="main-content">
+        <div class="main-content">
+        <h1 class="page-title">Редактировать комнату</h1>
+
+        <div class="white-container">
+            <!-- Левая колонка - информация о комнате -->
+            <div class="room-info-section">
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <div class="form-group">
+                        <label for="name">Название комнаты</label>
+                        <input type="text" id="name" name="name" class="form-control" value="{{ room.name }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="capacity">Вместимость (человек)</label>
+                        <input type="number" id="capacity" name="capacity" class="form-control" value="{{ room.capacity }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equipment">Оснащение</label>
+                        <textarea id="equipment" name="equipment" class="form-control" required>{{ room.equipment }}</textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn save-btn">Сохранить изменения</button>
+                        <a href="{{ url_for('rooms') }}" class="btn cancel-btn">Отмена</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Правая колонка - фотографии -->
+            <div class="photos-section">
+                <h3 class="photos-header">Фотографии комнаты</h3>
+
+                <div class="photos-grid">
+                    {% for photo in photos %}
+                    <div class="photo-item">
+                        <img src="{{ photo.photo_url }}" alt="Фото комнаты">
+                        <form method="POST" action="{{ url_for('delete_photo', photo_id=photo.id) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="delete-photo">×</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="add-photo-form">
+                    <form method="POST" action="{{ url_for('add_photo', room_id=room.id) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <label for="photo_url">Добавить новое фото (URL)</label>
+                            <input type="text" id="photo_url" name="photo_url" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn save-btn">Добавить фото</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 ROOMLY. Все права защищены.
+    </footer>
 </body>
 </html>
