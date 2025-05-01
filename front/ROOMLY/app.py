@@ -32,6 +32,18 @@ USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9_]{3,20}$')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
 PASSWORD_REGEX = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$')
 
+AVAILABLE_EQUIPMENT = [
+    "Проектор",
+    "Доска",
+    "Телевизор",
+    "Wi-Fi",
+    "Кондиционер",
+    "Кофе",
+    "Конференц-зал",
+    "Кухня",
+    "Балкон",
+    "Библиотека",
+]
 
 def safe_string_compare(a, b):
     if len(a) != len(b):
@@ -382,10 +394,29 @@ def rooms():
         flash('Пожалуйста, войдите в систему.', 'error')
         return redirect(url_for('profile'))
 
+    capacity_filter = request.args.get('capacity')
+    equipment_filter = request.args.getlist('equipment')
+
     conn = get_db_connection()
     try:
-        rooms = conn.execute('SELECT * FROM rooms').fetchall()
-        return render_template('rooms.html', rooms=rooms)
+        query = 'SELECT * FROM rooms WHERE 1=1'
+        params = []
+
+        if capacity_filter and capacity_filter.isdigit():
+            query += ' AND capacity >= ?'
+            params.append(int(capacity_filter))
+
+        if equipment_filter:
+            for equipment in equipment_filter:
+                query += ' AND equipment LIKE ?'
+                params.append(f'%{equipment}%')
+
+        rooms = conn.execute(query, params).fetchall()
+        return render_template('rooms.html',
+                             rooms=rooms,
+                             available_equipment=AVAILABLE_EQUIPMENT,
+                             selected_equipment=equipment_filter,
+                             selected_capacity=capacity_filter)
     finally:
         conn.close()
 
@@ -397,10 +428,15 @@ def add_room():
         return redirect(url_for('rooms'))
 
     if request.method == 'POST':
-        name = sanitize_input(request.form.get('name', ''))
+        name = request.form.get('name', '').strip()
         capacity = request.form.get('capacity', '')
-        equipment = sanitize_input(request.form.get('equipment', ''))
+        equipment = request.form.getlist('equipment')  # Получаем список выбранных элементов
+        equipment_str = ', '.join(equipment)  # Преобразуем в строку
         photo_urls = request.form.getlist('photo_urls[]')
+
+        if not name:
+            flash('Название комнаты не может быть пустым', 'error')
+            return redirect(url_for('add_room'))
 
         if not capacity.isdigit():
             flash('Вместимость должна быть числом', 'error')
@@ -411,7 +447,7 @@ def add_room():
             cursor = conn.cursor()
             cursor.execute(
                 'INSERT INTO rooms (name, capacity, equipment) VALUES (?, ?, ?)',
-                (name, capacity, equipment)
+                (name, capacity, equipment_str)
             )
             room_id = cursor.lastrowid
 
@@ -432,7 +468,7 @@ def add_room():
         finally:
             conn.close()
 
-    return render_template('add_room.html')
+    return render_template('add_room.html', available_equipment=AVAILABLE_EQUIPMENT)
 
 
 @app.route('/book_room/<int:room_id>', methods=['GET', 'POST'])
@@ -583,9 +619,16 @@ def edit_room(room_id):
         photos = conn.execute('SELECT * FROM room_photos WHERE room_id = ?', (room_id,)).fetchall()
 
         if request.method == 'POST':
-            name = sanitize_input(request.form.get('name', ''))
+            name = request.form.get('name', '').strip()
             capacity = request.form.get('capacity', '')
-            equipment = sanitize_input(request.form.get('equipment', ''))
+            equipment = request.form.getlist('equipment')  # Получаем список выбранных элементов
+
+            # Преобразуем список в строку для хранения в БД
+            equipment_str = ', '.join(equipment)
+
+            if not name:
+                flash('Название комнаты не может быть пустым', 'error')
+                return redirect(url_for('edit_room', room_id=room_id))
 
             if not capacity.isdigit():
                 flash('Вместимость должна быть числом', 'error')
@@ -593,13 +636,19 @@ def edit_room(room_id):
 
             conn.execute(
                 'UPDATE rooms SET name = ?, capacity = ?, equipment = ? WHERE id = ?',
-                (name, capacity, equipment, room_id)
+                (name, capacity, equipment_str, room_id)
             )
             conn.commit()
             flash('Изменения комнаты успешно сохранены!', 'success')
-            return redirect(url_for('rooms'))  # Перенаправляем на страницу rooms
+            return redirect(url_for('rooms'))
 
-        return render_template('edit_room.html', room=room, photos=photos)
+        # Преобразуем equipment в список для шаблона
+        equipment_list = [e.strip() for e in room['equipment'].split(',')]
+        return render_template('edit_room.html',
+                               room=room,
+                               photos=photos,
+                               available_equipment=AVAILABLE_EQUIPMENT,
+                               current_equipment=equipment_list)
     finally:
         conn.close()
 

@@ -141,6 +141,38 @@
             background-color: #45a049;
         }
 
+        .equipment-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 30px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
         @media (max-width: 1024px) {
             .white-container {
                 padding: 30px;
@@ -192,13 +224,21 @@
 
                 <div class="form-group">
                     <label for="capacity">Вместимость (человек)</label>
-                    <input type="number" id="capacity" name="capacity" class="form-control" required>
+                    <input type="number" id="capacity" name="capacity" class="form-control" required min="1">
                 </div>
 
                 <div class="form-group">
-                    <label for="equipment">Оснащение</label>
-                    <textarea id="equipment" name="equipment" class="form-control" required></textarea>
-                </div>
+                        <label>Оснащение</label>
+                        <div class="equipment-checkboxes">
+                            {% for equipment in available_equipment %}
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="equip-{{ loop.index }}"
+                                       name="equipment" value="{{ equipment }}">
+                                <label for="equip-{{ loop.index }}">{{ equipment }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
 
                 <div class="form-group">
                     <label>Фотографии комнаты (URL)</label>

@@ -188,6 +188,38 @@
             border-top: 1px solid #eee;
         }
 
+        .equipment-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 30px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
         @media (max-width: 1024px) {
             .white-container {
                 flex-direction: column;
@@ -206,8 +238,9 @@
                 padding-left: 0;
             }
         }
+
         .flash-messages {
-    margin-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         .flash-success {
@@ -238,11 +271,9 @@
     </nav>
 
     <div class="main-content">
-        <div class="main-content">
         <h1 class="page-title">Редактировать комнату</h1>
 
         <div class="white-container">
-            <!-- Левая колонка - информация о комнате -->
             <div class="room-info-section">
                 <form method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -254,18 +285,26 @@
 
                     <div class="form-group">
                         <label for="capacity">Вместимость (человек)</label>
-                        <input type="number" id="capacity" name="capacity" class="form-control" value="{{ room.capacity }}" required>
-                    </div>
-
+                        <input type="number" id="capacity" name="capacity" class="form-control" value="{{ room.capacity }}" required min="1">
                     <div class="form-group">
-                        <label for="equipment">Оснащение</label>
-                        <textarea id="equipment" name="equipment" class="form-control" required>{{ room.equipment }}</textarea>
-                    </div>
+                        <label>Оснащение</label>
+                        <div class="equipment-checkboxes">
+                            {% for equipment in available_equipment %}
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="equip-{{ loop.index }}"
+                                       name="equipment" value="{{ equipment }}"
+                                       {% if equipment in current_equipment %}checked{% endif %}>
+                                <label for="equip-{{ loop.index }}">{{ equipment }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
 
                     <div class="btn-group">
                         <button type="submit" class="btn save-btn">Сохранить изменения</button>
                         <a href="{{ url_for('rooms') }}" class="btn cancel-btn">Отмена</a>
                     </div>
+                    </div>
+                </div>
                 </form>
             </div>
 

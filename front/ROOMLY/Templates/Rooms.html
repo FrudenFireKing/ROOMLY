@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_rooms.css') }}">
     <title>Комнаты</title>
     <style>
+
         .flash-messages {
             margin: 20px auto;
             max-width: 1200px;
@@ -49,6 +50,90 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
+            .filter-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        }
+
+        .filter-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .filter-group input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .equipment-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 30px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
+        .filter-btn, .reset-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .filter-btn {
+            background-color: #0ABAB5;
+            color: white;
+        }
+
+        .reset-btn {
+            background-color: #f5f5f5;
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +146,34 @@
 
     <div class="main-content">
         <h1>Комнаты</h1>
+        <div class="filter-container">
+            <form method="GET" action="{{ url_for('rooms') }}" class="filter-form">
+                <div class="filter-group">
+                    <label for="capacity">Минимальная вместимость:</label>
+                    <input type="number" id="capacity" name="capacity" min="1"
+                           value="{{ selected_capacity if selected_capacity else '' }}">
+                </div>
+
+                <div class="filter-group">
+                    <label>Оснащение:</label>
+                    <div class="equipment-checkboxes">
+                        {% for equipment in available_equipment %}
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="equip-{{ loop.index }}"
+                                   name="equipment" value="{{ equipment }}"
+                                   {% if equipment in selected_equipment %}checked{% endif %}>
+                            <label for="equip-{{ loop.index }}">{{ equipment }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <button type="submit" class="filter-btn">Применить фильтры</button>
+                {% if selected_capacity or selected_equipment %}
+                <a href="{{ url_for('rooms') }}" class="reset-btn">Сбросить фильтры</a>
+                {% endif %}
+            </form>
+        </div>
             {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">
