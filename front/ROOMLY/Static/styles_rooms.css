@@ -5,7 +5,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     font-family: Arial, sans-serif;
     background: linear-gradient(-45deg, #7FFFD4, #AFEEEE, #7FFFD4, #00FFFF, #7FFFD4);
     background-size: 400% 400%;
@@ -41,16 +41,18 @@ nav a:hover {
 }
 
 .main-content {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 60px;
     padding: 20px;
     min-height: calc(100vh - 140px);
+    overflow-x: hidden;
 }
 
 h1 {
     font-size: 90px;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 10px;
     font-family: 'Russo One', sans-serif;
     color: #333;
     opacity: 0;
@@ -93,30 +95,30 @@ p {
 }
 
 /* Контейнер с вертикальной прокруткой */
+/* Контейнер с комнатами */
 .rooms-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 40px;
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100vh - 200px);
     box-sizing: border-box;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    margin: 0 auto; /* Добавлено для центрирования */
-    max-width: 1500px; /* Ограничение максимальной ширины */
-}
-.rooms-container::-webkit-scrollbar {
-    display: none;
+    margin: 0 auto;
+    max-width: 1500px;
+    align-items: start; /* Добавлено для выравнивания карточек по верху */
 }
 
-/* Стили карточек (2 на экране) */
+/* Стили карточек */
 .room-card {
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
-    min-height: calc(50vh - 45px);
+    min-height: 400px; /* Фиксированная минимальная высота */
+    max-height: 600px; /* Максимальная высота */
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease;
@@ -124,7 +126,17 @@ p {
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    overflow: hidden; /* Добавлено для предотвращения выхода содержимого */
+}
+
+/* Изображения в карточках */
+.room-card img {
+    width: 100%;
+    height: 250px; /* Фиксированная высота изображения */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .room-card:hover {
@@ -132,13 +144,6 @@ p {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.room-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1px;
-}
 
 .room-card h2 {
     font-size: 24px;
@@ -338,4 +343,242 @@ footer {
     padding: 8px 15px;
     font-size: 14px;
     order: 2; /* Позиция между кнопками редактирования и удаления */
+}
+
+/* Новые стили для правого фильтра */
+.filter-container {
+    position: fixed;
+    right: 20px;
+    top: 190px; /* Подвигаем ближе к верхней части */
+    width: 320px; /* Немного шире */
+    z-index: 999;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-height: calc(100vh - 10px); /* Занимает почти всю высоту */
+    overflow-y: auto;
+    animation: slideIn 0.3s ease-out;
+    bottom: 485px;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.equipment-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr; /* Один столбец для более длинного списка */
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    max-height: 900px; /* Увеличиваем высоту списка */
+    overflow-y: auto;
+    background: #f9f9f9;
+}
+
+.checkbox-item {
+    display: grid;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.checkbox-item:hover {
+    background: #f0f0f0;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter-group {
+    width: 100%;
+}
+
+.equipment-checkboxes {
+    max-height: 150px;
+}
+
+.filter-btn, .reset-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.filter-btn {
+    background-color: #0ABAB5;
+    color: white;
+    margin-top: 10px;
+}
+
+.filter-btn:hover {
+    background-color: #089e9e;
+    transform: translateY(-1px);
+}
+
+.reset-btn {
+    background-color: #f5f5f5;
+    color: #555;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+}
+
+.reset-btn:hover {
+    background-color: #e0e0e0;
+}
+
+
+
+
+
+
+/* Сдвигаем основной контент немного влево */
+.main-content {
+    margin-left: 20px;
+    margin-right: 340px; /* Оставляем место для фильтра */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 1024px) {
+    .filter-container {
+        position: static;
+        width: 100%;
+        max-height: none;
+        margin: 20px 0;
+    }
+
+    .equipment-checkboxes {
+        max-height: 200px;
+    }
+
+    .main-content {
+        margin-right: 20px;
+    }
+}
+
+/* Корректировка положения кнопки добавления комнаты */
+.btn-add-room {
+    right: 340px;
+    bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+    .btn-add-room {
+        right: 20px;
+    }
+}
+.filter-container {
+    animation: slideIn 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.filter-btn, .reset-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Russo One', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.filter-btn {
+    background-color: #0ABAB5;
+    color: white;
+    order: 2; /* Кнопка "Применить" будет справа */
+}
+
+.reset-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+    order: 1; /* Кнопка "Сбросить" будет слева */
+}
+
+.filter-btn:hover {
+    background-color: #089e9e;
+    transform: translateY(-1px);
+}
+
+.reset-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-between; /* Растягивает кнопки по краям */
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.filter-btn {
+    background-color: #0ABAB5;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    order: 2; /* Фиксирует справа */
+}
+
+.reset-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    order: 1; /* Фиксирует слева */
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .filter-buttons {
+        flex-direction: row; /* Оставляет кнопки в строке */
+        gap: 10px;
+    }
+    .filter-btn, .reset-btn {
+        width: auto; /* Отменяет 100% ширину */
+    }
 }

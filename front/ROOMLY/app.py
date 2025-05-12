@@ -399,27 +399,44 @@ def rooms():
 
     conn = get_db_connection()
     try:
+        # Базовый запрос
         query = 'SELECT * FROM rooms WHERE 1=1'
         params = []
 
+        # Фильтр по вместимости
         if capacity_filter and capacity_filter.isdigit():
             query += ' AND capacity >= ?'
             params.append(int(capacity_filter))
 
+        # Фильтр по оборудованию
         if equipment_filter:
+            # Создаем условия для каждого элемента оборудования
+            conditions = []
             for equipment in equipment_filter:
-                query += ' AND equipment LIKE ?'
-                params.append(f'%{equipment}%')
+                # Ищем оборудование в разных вариантах:
+                # - в начале списка: "Проектор, ..."
+                # - в середине списка: "... , Проектор, ..."
+                # - в конце списка: "... , Проектор"
+                conditions.append(
+                    "(equipment LIKE ? OR equipment LIKE ? OR equipment LIKE ? OR equipment = ?)"
+                )
+                params.extend([
+                    f"{equipment},%",
+                    f"%, {equipment},%",
+                    f"%, {equipment}",
+                    equipment
+                ])
+
+            query += " AND (" + " OR ".join(conditions) + ")"
 
         rooms = conn.execute(query, params).fetchall()
         return render_template('rooms.html',
-                             rooms=rooms,
-                             available_equipment=AVAILABLE_EQUIPMENT,
-                             selected_equipment=equipment_filter,
-                             selected_capacity=capacity_filter)
+                               rooms=rooms,
+                               available_equipment=AVAILABLE_EQUIPMENT,
+                               selected_equipment=equipment_filter,
+                               selected_capacity=capacity_filter)
     finally:
         conn.close()
-
 
 @app.route('/add_room', methods=['GET', 'POST'])
 def add_room():
