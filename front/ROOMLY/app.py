@@ -76,30 +76,18 @@ def check_db_integrity():
 
 
 def init_db():
-    db_needs_init = False
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
 
-    if not os.path.exists(DB_FILE):
-        db_needs_init = True
-    else:
-        if not check_db_integrity():
-            logger.warning("Database is corrupted, recreating...")
-            try:
-                os.remove(DB_FILE)
-                db_needs_init = True
-            except OSError as e:
-                logger.error(f"Failed to remove corrupted database: {str(e)}")
-                raise
-
-    if db_needs_init:
-        try:
-            conn = sqlite3.connect(DB_FILE, timeout=10)
-            cursor = conn.cursor()
-
+        # Проверяем существование таблиц
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
+        if not cursor.fetchone():
+            # Создаём таблицы только если они не существуют
             cursor.execute('PRAGMA foreign_keys = ON')
             cursor.execute('PRAGMA secure_delete = ON')
-            cursor.execute('PRAGMA journal_mode = WAL')
 
-            # Создаем таблицы
+            # Таблица пользователей
             cursor.execute('''
                 CREATE TABLE users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -113,8 +101,7 @@ def init_db():
                 )
             ''')
 
-            cursor.execute('CREATE INDEX idx_users_username ON users(username)')
-
+            # Таблица комнат
             cursor.execute('''
                 CREATE TABLE rooms (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -125,6 +112,7 @@ def init_db():
                 )
             ''')
 
+            # Таблица фотографий комнат
             cursor.execute('''
                 CREATE TABLE room_photos (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -134,6 +122,7 @@ def init_db():
                 )
             ''')
 
+            # Таблица бронирований
             cursor.execute('''
                 CREATE TABLE bookings (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -148,44 +137,29 @@ def init_db():
                 )
             ''')
 
+            # Создаём индексы
+            cursor.execute('CREATE INDEX idx_users_username ON users(username)')
             cursor.execute('CREATE INDEX idx_bookings_room_id ON bookings(room_id)')
             cursor.execute('CREATE INDEX idx_bookings_user_id ON bookings(user_id)')
 
-            # Добавляем тестовые данные
-            rooms_data = [
-                ('Комната 1', 4, 'Проектор, доска'),
-                ('Комната 2', 6, 'Телевизор, Wi-Fi'),
-                ('Комната 3', 8, 'Кондиционер, кофе'),
-                ('Комната 4', 10, 'Конференц-зал, проектор'),
-                ('Комната 5', 12, 'Кухня, телевизор'),
-                ('Комната 6', 15, 'Балкон, кондиционер'),
-                ('Комната 7', 20, 'Большой зал, сцена'),
-                ('Комната 8', 25, 'Бильярд, бар'),
-                ('Комната 9', 30, 'Тренажерный зал, душ'),
-                ('Комната 10', 35, 'Кинотеатр, барная стойка'),
-                ('Комната 11', 40, 'Библиотека, камин'),
-                ('Комната 12', 50, 'Банкетный зал, сцена')
-            ]
-
-            cursor.executemany('INSERT INTO rooms (name, capacity, equipment) VALUES (?, ?, ?)', rooms_data)
-
-            # Добавляем тестовые фото для комнат
-            for room_id in range(1, 13):
-                cursor.execute(
-                    'INSERT INTO room_photos (room_id, photo_url) VALUES (?, ?)',
-                    (room_id, f'https://i.ibb.co/BVR0ZjRY/peregovorochka.jpg')
-                )
+            # Добавляем тестового администратора (пароль: admin123)
+            hashed_password = hashpw(b'admin123', gensalt())
+            cursor.execute(
+                'INSERT INTO users (username, email, password, is_admin, joined_date) VALUES (?, ?, ?, ?, ?)',
+                ('admin', 'admin@example.com', hashed_password, 1, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            )
 
             conn.commit()
             logger.info("Database initialized successfully")
-        except sqlite3.Error as e:
-            logger.error(f"Database initialization failed: {str(e)}")
-            raise
-        finally:
-            if conn:
-                conn.close()
-    else:
-        logger.info("Database already exists and is valid, skipping initialization")
+        else:
+            logger.info("Database already exists, skipping initialization")
+
+    except sqlite3.Error as e:
+        logger.error(f"Database initialization failed: {str(e)}")
+        raise
+    finally:
+        if conn:
+            conn.close()
 
 
 def validate_input(data, regex, field_name):
@@ -199,34 +173,41 @@ def sanitize_input(input_str):
 
 
 def is_room_available(room_id, start_time, end_time, booking_id=None):
-    conn = get_db_connection()
+    conn = None
     try:
+        conn = get_db_connection()
+
         query = '''
             SELECT id FROM bookings 
             WHERE room_id = ? 
             AND (
-                (start_time < ? AND end_time > ?)
-                OR (start_time < ? AND end_time > ?)
-                OR (start_time BETWEEN ? AND ?)
-                OR (end_time BETWEEN ? AND ?)
+                (start_time < ? AND end_time > ?) OR
+                (start_time BETWEEN ? AND ?) OR
+                (end_time BETWEEN ? AND ?) OR
+                (start_time <= ? AND end_time >= ?)
             )
         '''
-        params = (
+        params = [
             room_id,
             end_time, start_time,
-            end_time, start_time,
+            start_time, end_time,
             start_time, end_time,
             start_time, end_time
-        )
+        ]
 
         if booking_id:
             query += ' AND id != ?'
-            params += (booking_id,)
+            params.append(booking_id)
 
-        existing_booking = conn.execute(query, params).fetchone()
-        return existing_booking is None
+        existing = conn.execute(query, params).fetchone()
+        return existing is None
+
+    except sqlite3.Error as e:
+        logger.error(f"Error in is_room_available: {str(e)}")
+        return False
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
 
 @app.before_request
@@ -255,13 +236,16 @@ def profile():
 
         conn = get_db_connection()
         try:
+            # Проверка входа суперпользователя
             if safe_string_compare(username, SUPERUSER_USERNAME) and safe_string_compare(password, SUPERUSER_PASSWORD):
                 session['user_id'] = 0
                 session['username'] = SUPERUSER_USERNAME
                 session['is_admin'] = True
+                session['is_superuser'] = True  # Добавляем флаг суперпользователя
                 flash('Вход выполнен успешно как суперпользователь!', 'success')
                 return redirect(url_for('profile'))
 
+            # Обычный вход пользователя
             user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
 
             if user and user['failed_attempts'] > 5:
@@ -273,6 +257,7 @@ def profile():
                 session['username'] = user['username']
                 session['email'] = user['email']
                 session['is_admin'] = user['is_admin']
+                session['is_superuser'] = False  # Обычный пользователь
                 session['joined_date'] = user['joined_date']
 
                 conn.execute(
@@ -297,7 +282,22 @@ def profile():
 
     conn = get_db_connection()
     try:
-        bookings = conn.execute('''
+        # Проверяем, является ли пользователь суперпользователем
+        is_superuser = session.get('is_superuser', False)
+
+        # Получаем бронирования (для суперпользователя можно показать все брони)
+        if is_superuser:
+            bookings = conn.execute('''
+                SELECT b.id, b.start_time, b.end_time, b.purpose, 
+                       r.name as room_name, u.username as user_name
+                FROM bookings b 
+                JOIN rooms r ON b.room_id = r.id
+                JOIN users u ON b.user_id = u.id
+                ORDER BY b.start_time DESC
+                LIMIT 10  -- Ограничиваем количество для превью
+            ''').fetchall()
+        else:
+            bookings = conn.execute('''
                 SELECT b.id, b.start_time, b.end_time, b.purpose, r.name as room_name
                 FROM bookings b JOIN rooms r ON b.room_id = r.id
                 WHERE b.user_id = ? ORDER BY b.start_time DESC
@@ -324,7 +324,8 @@ def profile():
                                username=session['username'],
                                email=session.get('email', ''),
                                joined_date=session.get('joined_date', 'Не указана'),
-                               bookings=formatted_bookings)
+                               bookings=formatted_bookings,
+                               is_superuser=is_superuser)  # Передаем флаг в шаблон
     finally:
         conn.close()
 
@@ -379,6 +380,78 @@ def register():
             logger.error(f"Registration error: {str(e)}")
             flash('Ошибка сервера при регистрации', 'error')
     return render_template('register.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = sanitize_input(request.form.get('username', ''))
+        password = request.form.get('password', '')
+
+        conn = None
+        try:
+            conn = get_db_connection()
+
+            # Проверка суперпользователя
+            if (safe_string_compare(username, SUPERUSER_USERNAME) and
+                    safe_string_compare(password, SUPERUSER_PASSWORD)):
+                session['user_id'] = 0
+                session['username'] = SUPERUSER_USERNAME
+                session['is_admin'] = True
+                session['is_superuser'] = True
+                flash('Вход выполнен как суперпользователь', 'success')
+                return redirect(url_for('admin_panel'))
+
+            # Поиск пользователя
+            user = conn.execute(
+                'SELECT * FROM users WHERE username = ?',
+                (username,)
+            ).fetchone()
+
+            if not user:
+                flash('Неверное имя пользователя или пароль', 'error')
+                return redirect(url_for('login'))
+
+            # Проверка блокировки после множества попыток
+            if user['failed_attempts'] >= 5:
+                flash('Слишком много неудачных попыток. Попробуйте позже.', 'error')
+                return redirect(url_for('login'))
+
+            # Проверка пароля
+            if checkpw(password.encode('utf-8'), user['password']):
+                # Успешный вход
+                session['user_id'] = user['id']
+                session['username'] = user['username']
+                session['email'] = user['email']
+                session['is_admin'] = bool(user['is_admin'])
+                session['last_login'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+                # Сбрасываем счётчик неудачных попыток
+                conn.execute(
+                    'UPDATE users SET failed_attempts = 0, last_login = ? WHERE id = ?',
+                    (session['last_login'], user['id'])
+                )
+                conn.commit()
+
+                flash(f'Добро пожаловать, {user["username"]}!', 'success')
+                return redirect(url_for('profile'))
+            else:
+                # Неверный пароль
+                conn.execute(
+                    'UPDATE users SET failed_attempts = failed_attempts + 1 WHERE id = ?',
+                    (user['id'],)
+                )
+                conn.commit()
+                flash('Неверное имя пользователя или пароль', 'error')
+
+        except sqlite3.Error as e:
+            logger.error(f"Database error in login: {str(e)}")
+            flash('Ошибка при входе в систему', 'error')
+        finally:
+            if conn:
+                conn.close()
+
+    return render_template('login.html')
 
 
 @app.route('/logout')
@@ -491,56 +564,133 @@ def add_room():
 @app.route('/book_room/<int:room_id>', methods=['GET', 'POST'])
 def book_room(room_id):
     if 'user_id' not in session:
-        flash('Пожалуйста, войдите в систему.', 'error')
-        return redirect(url_for('profile'))
+        flash('Для бронирования необходимо войти в систему', 'error')
+        return redirect(url_for('login'))
 
-    conn = get_db_connection()
+    conn = None
     try:
+        conn = get_db_connection()
+
+        # 1. Проверяем существование комнаты
         room = conn.execute('SELECT * FROM rooms WHERE id = ?', (room_id,)).fetchone()
         if not room:
-            flash('Комната не найдена.', 'error')
+            flash('Указанная комната не существует', 'error')
             return redirect(url_for('rooms'))
 
-        photos = conn.execute('SELECT photo_url FROM room_photos WHERE room_id = ?', (room_id,)).fetchall()
+        # 2. Проверяем существование пользователя
+        user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        if not user:
+            session.clear()
+            flash('Ваш аккаунт не найден. Пожалуйста, войдите снова', 'error')
+            return redirect(url_for('login'))
 
+        # 3. Обработка формы бронирования
         if request.method == 'POST':
-            start_time = request.form.get('start_time')
-            end_time = request.form.get('end_time')
+            start_time = request.form.get('start_time', '').strip()
+            end_time = request.form.get('end_time', '').strip()
             purpose = sanitize_input(request.form.get('purpose', ''))
 
             try:
-                start_datetime = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
-                end_datetime = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
+                # Валидация времени
+                start_dt = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
+                end_dt = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
 
-                if start_datetime >= end_datetime:
+                if start_dt >= end_dt:
                     flash('Время окончания должно быть позже времени начала', 'error')
-                    return redirect(url_for('book_room', room_id=room_id))
-
-                if start_datetime < datetime.now():
+                elif start_dt < datetime.now():
                     flash('Нельзя забронировать комнату в прошлом', 'error')
-                    return redirect(url_for('book_room', room_id=room_id))
+                else:
+                    # Проверка доступности комнаты
+                    if is_room_available(room_id, start_time, end_time):
+                        # Создаём бронирование
+                        conn.execute(
+                            '''INSERT INTO bookings 
+                            (room_id, user_id, start_time, end_time, purpose) 
+                            VALUES (?, ?, ?, ?, ?)''',
+                            (room_id, user['id'], start_time, end_time, purpose)
+                        )
+                        conn.commit()
+                        flash('Комната успешно забронирована!', 'success')
+                        return redirect(url_for('profile'))
+                    else:
+                        flash('Комната уже занята на выбранное время', 'error')
+            except ValueError:
+                flash('Некорректный формат времени', 'error')
 
-                if not is_room_available(room_id, start_time, end_time):
-                    flash('Комната уже забронирована на это время', 'error')
-                    return redirect(url_for('book_room', room_id=room_id))
+        # Получаем фотографии комнаты
+        photos = conn.execute(
+            'SELECT photo_url FROM room_photos WHERE room_id = ?',
+            (room_id,)
+        ).fetchall()
 
-                conn.execute(
-                    'INSERT INTO bookings (room_id, user_id, start_time, end_time, purpose) VALUES (?, ?, ?, ?, ?)',
-                    (room_id, session['user_id'], start_time, end_time, purpose)
-                )
-                conn.commit()
+        return render_template('book_room.html',
+                               room=room,
+                               photos=photos,
+                               min_date=datetime.now().strftime('%Y-%m-%d'),
+                               max_date=(datetime.now() + timedelta(days=30)).strftime('%Y-%m-%d'))
 
-                flash('Комната успешно забронирована!', 'success')
-                return redirect(url_for('profile'))
-            except ValueError as e:
-                flash(f'Некорректный формат времени: {str(e)}', 'error')
-                return redirect(url_for('book_room', room_id=room_id))
+    except sqlite3.Error as e:
+        logger.error(f"Database error in book_room: {str(e)}")
+        flash('Произошла ошибка при работе с базой данных', 'error')
+        return redirect(url_for('rooms'))
+    finally:
+        if conn:
+            conn.close()
 
-        return render_template('book_room.html', room=room, photos=photos)
+# Добавляем новый маршрут в app.py с пагинацией
+@app.route('/all_bookings')
+def all_bookings():
+    if 'user_id' not in session or not session.get('is_admin'):
+        flash('У вас нет прав для просмотра этой страницы.', 'error')
+        return redirect(url_for('profile'))
+
+    page = request.args.get('page', 1, type=int)
+    per_page = 10  # Количество бронирований на странице
+
+    conn = get_db_connection()
+    try:
+        # Получаем общее количество бронирований для пагинации
+        total_bookings = conn.execute('SELECT COUNT(*) FROM bookings').fetchone()[0]
+
+        # Получаем бронирования для текущей страницы
+        bookings = conn.execute('''
+            SELECT b.id, b.start_time, b.end_time, b.purpose, 
+                   r.name as room_name, 
+                   u.username as user_name,
+                   u.email as user_email
+            FROM bookings b 
+            JOIN rooms r ON b.room_id = r.id
+            JOIN users u ON b.user_id = u.id
+            ORDER BY b.start_time DESC
+            LIMIT ? OFFSET ?
+        ''', (per_page, (page - 1) * per_page)).fetchall()
+
+        formatted_bookings = []
+        for booking in bookings:
+            formatted_booking = dict(booking)
+            start_time = booking['start_time']
+            end_time = booking['end_time']
+
+            if isinstance(start_time, str):
+                start_time = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
+                formatted_booking['start_time'] = start_time.strftime('%Y-%m-%d %H:%M')
+
+            if isinstance(end_time, str):
+                end_time = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
+                formatted_booking['end_time'] = end_time.strftime('%Y-%m-%d %H:%M')
+
+            formatted_bookings.append(formatted_booking)
+
+        return render_template('all_bookings.html',
+                               bookings=formatted_bookings,
+                               page=page,
+                               per_page=per_page,
+                               total_bookings=total_bookings)
     finally:
         conn.close()
 
 
+# Обновляем маршрут cancel_booking для суперпользователя
 @app.route('/cancel_booking/<int:booking_id>')
 def cancel_booking(booking_id):
     if 'user_id' not in session:
@@ -549,23 +699,32 @@ def cancel_booking(booking_id):
 
     conn = get_db_connection()
     try:
-        booking = conn.execute(
-            'SELECT * FROM bookings WHERE id = ? AND user_id = ?',
-            (booking_id, session['user_id'])
-        ).fetchone()
+        # Проверяем, является ли пользователь суперпользователем
+        is_superuser = session.get('username') == SUPERUSER_USERNAME and session.get('is_admin')
 
-        if not booking:
-            flash('Бронирование не найдено или у вас нет прав для его отмены', 'error')
-            return redirect(url_for('profile'))
+        if is_superuser:
+            # Суперпользователь может отменить любое бронирование
+            booking = conn.execute('SELECT * FROM bookings WHERE id = ?', (booking_id,)).fetchone()
+            if not booking:
+                flash('Бронирование не найдено', 'error')
+                return redirect(url_for('all_bookings'))
+        else:
+            # Обычный пользователь может отменить только свои бронирования
+            booking = conn.execute(
+                'SELECT * FROM bookings WHERE id = ? AND user_id = ?',
+                (booking_id, session['user_id'])
+            ).fetchone()
+            if not booking:
+                flash('Бронирование не найдено или у вас нет прав для его отмены', 'error')
+                return redirect(url_for('profile'))
 
         conn.execute('DELETE FROM bookings WHERE id = ?', (booking_id,))
         conn.commit()
 
         flash('Бронирование успешно отменено', 'success')
-        return redirect(url_for('profile'))
+        return redirect(url_for('all_bookings')) if is_superuser else redirect(url_for('profile'))
     finally:
         conn.close()
-
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
@@ -774,8 +933,52 @@ def add_security_headers(response):
     return response
 
 
+def check_db_integrity():
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+
+        # Проверяем существование всех таблиц
+        required_tables = ['users', 'rooms', 'room_photos', 'bookings']
+        for table in required_tables:
+            cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'")
+            if not cursor.fetchone():
+                return False
+
+        # Проверяем внешние ключи
+        cursor.execute('PRAGMA foreign_key_check')
+        if cursor.fetchone():
+            return False
+
+        return True
+    except sqlite3.Error as e:
+        logger.error(f"Database integrity check failed: {str(e)}")
+        return False
+    finally:
+        if conn:
+            conn.close()
+
+
+def print_startup_message():
+    print("\n" + "=" * 50)
+    print("Сервер успешно запущен!")
+    print(f"  - Главная страница: http://127.0.0.1:5000/")
+    print("=" * 50 + "\n")
+
+
 if __name__ == '__main__':
-    # Создаем контекст приложения и инициализируем БД
-    with app.app_context():
-        init_db()  # Теперь таблицы точно создадутся
-    app.run(debug=True)
+    # Проверяем и инициализируем БД
+    if not os.path.exists(DB_FILE) or not check_db_integrity():
+        try:
+            if os.path.exists(DB_FILE):
+                os.remove(DB_FILE)
+            init_db()
+        except Exception as e:
+            logger.critical(f"Failed to initialize database: {str(e)}")
+            raise
+
+    # Выводим сообщение перед запуском
+    print_startup_message()
+    # Запускаем сервер с выводом в консоль
+    app.run(debug=True, host='0.0.0.0')
+    print_startup_message()

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все бронирования</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_prof.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Главная</a>
+        <a href="{{ url_for('rooms') }}">Комнаты</a>
+        <a href="{{ url_for('profile') }}">Личный кабинет</a>
+        <a href="{{ url_for('about') }}">О нас</a>
+    </nav>
+
+    <div class="profile-container">
+        <h1>Все бронирования</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if bookings %}
+            <div class="bookings-list">
+                {% for booking in bookings %}
+                <div class="booking-item">
+                    <p><strong>Пользователь:</strong> {{ booking.user_name }} ({{ booking.user_email }})</p>
+                    <p><strong>Комната:</strong> {{ booking.room_name }}</p>
+                    <p><strong>Время:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+                    <p><strong>Цель:</strong> {{ booking.purpose }}</p>
+                    <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}"
+                       class="cancel-btn"
+                       onclick="return confirm('Вы уверены, что хотите отменить это бронирование?')">
+                        Отменить бронирование
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('all_bookings', page=page-1) }}">&laquo; Назад</a>
+                {% endif %}
+
+                <span class="current-page">Страница {{ page }} из {{ (total_bookings / per_page)|round(0, 'ceil')|int }}</span>
+
+                {% if page * per_page < total_bookings %}
+                    <a href="{{ url_for('all_bookings', page=page+1) }}">Вперед &raquo;</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>Нет активных бронирований.</p>
+        {% endif %}
+
+        <div class="actions">
+            <a href="{{ url_for('profile') }}" class="back-btn">Вернуться в профиль</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 ROOMLY.
+    </footer>
+</body>
+</html>

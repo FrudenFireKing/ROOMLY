@@ -49,12 +49,22 @@
                             <p><strong>Комната:</strong> {{ booking.room_name }}</p>
                             <p><strong>Время:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
                             <p><strong>Цель:</strong> {{ booking.purpose }}</p>
-                            <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}" class="cancel-btn">Отменить бронирование</a>
+                            <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}"
+                               class="cancel-btn"
+                               onclick="return confirm('Вы уверены, что хотите отменить это бронирование?')">
+                                Отменить бронирование
+                            </a>
                         </div>
                         {% endfor %}
                     </div>
                 {% else %}
                     <p>У вас нет активных бронирований.</p>
+                {% endif %}
+
+                {% if is_superuser %}
+                    <div class="superuser-actions">
+                        <a href="{{ url_for('all_bookings') }}" class="superuser-btn">Просмотреть все бронирования</a>
+                    </div>
                 {% endif %}
 
                 <div class="actions">
