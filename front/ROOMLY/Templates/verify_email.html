@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подтверждение email</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_reg.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Главная</a>
+    </nav>
+
+    <div class="form-container">
+        <h1>Подтверждение email</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <label for="code">Введите 6-значный код из письма:</label>
+                <input type="text" id="code" name="code" pattern="\d{6}"
+                       title="Пожалуйста, введите 6 цифр" required>
+            </div>
+
+            <button type="submit" class="btn">Подтвердить</button>
+        </form>
+
+        <div class="links">
+            <p>Не получили код? <a href="{{ url_for('resend_code') }}">Отправить повторно</a></p>
+            <p>Или <a href="{{ url_for('register') }}">зарегистрироваться снова</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Повторная отправка кода</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_reg.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Повторная отправка кода</h1>
+
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <p>Нажмите кнопку, чтобы отправить новый код подтверждения на {{ session['pending_email'] }}</p>
+            <button type="submit" class="btn">Отправить новый код</button>
+        </form>
+
+        <div class="links">
+            <a href="{{ url_for('verify_email') }}">Вернуться к вводу кода</a>
+        </div>
+    </div>
+</body>
+</html>

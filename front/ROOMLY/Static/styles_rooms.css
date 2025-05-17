@@ -668,8 +668,9 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            margin-top: 30px;
             overflow: hidden;
+            height: 400px;
         }
 
         .filter-form {
@@ -735,7 +736,7 @@
             justify-content: flex-end; /* Выравнивание по правому краю */
             gap: 10px;
             width: 100%;
-            margin-top: 5px;
+            margin-top: 1px;
         }
 
         .filter-btn, .reset-btn {

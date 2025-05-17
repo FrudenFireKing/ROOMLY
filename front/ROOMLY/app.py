@@ -7,10 +7,14 @@ import os
 import re
 import logging
 from datetime import datetime, timedelta
+import random
+import smtplib
+from email.mime.text import MIMEText
+from threading import Thread
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-app.permanent_session_lifetime = timedelta(minutes=30)
+app.permanent_session_lifetime = timedelta(minutes=60)
 csrf = CSRFProtect(app)
 
 # Настройка логирования
@@ -26,6 +30,14 @@ SUPERUSER_USERNAME = "superadmin"
 SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD', "superpassword123")
 METADATA_FILE = 'metadata.txt'
 DB_FILE = 'users.db'
+EMAIL_SMTP_SERVER = "smtp.yandex.ru"  # SMTP сервер
+EMAIL_SMTP_PORT = 587
+EMAIL_SMTP_USER = "roomlynoreply@yandex.ru"  # email
+EMAIL_SMTP_PASSWORD = "sklzhhhmyuzxlanj"  # пароль для SMTP
+EMAIL_FROM = "Roomly <roomlynoreply@yandex.ru>"  # email отправителя
+
+# Глобальный словарь для хранения временных кодов подтверждения
+email_verification_codes = {}
 
 # Регулярные выражения для валидации
 USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9_]{3,20}$')
@@ -330,6 +342,36 @@ def profile():
         conn.close()
 
 
+
+def generate_verification_code():
+    return str(random.randint(100000, 999999))
+
+
+def send_verification_email(email, code):
+    try:
+        msg = MIMEText(f"""
+        Здравствуйте!
+        Ваш код подтверждения для регистрации на ROOMLY: {code}
+        Введите этот код на странице подтверждения, чтобы завершить регистрацию.
+        Если вы не регистрировались на нашем сайте, проигнорируйте это письмо.
+
+        С уважением,
+        Команда ROOMLY
+        """, 'plain', 'utf-8')
+        msg['Subject'] = 'Код подтверждения для ROOMLY'
+        msg['From'] = EMAIL_FROM
+        msg['To'] = email
+        msg['Content-Type'] = 'text/plain; charset=utf-8'
+
+        with smtplib.SMTP(EMAIL_SMTP_SERVER, EMAIL_SMTP_PORT) as server:
+            server.starttls()
+            server.login(EMAIL_SMTP_USER, EMAIL_SMTP_PASSWORD)
+            server.send_message(msg)
+        return True
+    except Exception as e:
+        logger.error(f"Error sending verification email: {str(e)}")
+        return False
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -344,36 +386,25 @@ def register():
             if len(password) < 8:
                 raise ValueError("Пароль должен содержать минимум 8 символов")
 
-            hashed_password = hashpw(password.encode('utf-8'), gensalt())
-            joined_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            # Генерируем код подтверждения
+            verification_code = generate_verification_code()
+            email_verification_codes[email] = {
+                'code': verification_code,
+                'username': username,
+                'password': password,
+                'timestamp': datetime.now()
+            }
 
-            conn = get_db_connection()
-            try:
-                conn.execute(
-                    'INSERT INTO users (username, email, password, joined_date) VALUES (?, ?, ?, ?)',
-                    (username, email, hashed_password, joined_date)
-                )
-                conn.commit()
+            print(f"Код подтверждения для {email}: {verification_code}")
 
-                user_data = {
-                    'username': username,
-                    'email': email,
-                    'password': hashed_password.decode('utf-8'),
-                    'joined_date': joined_date
-                }
+            # Отправляем email в отдельном потоке, чтобы не блокировать ответ
+            Thread(target=send_verification_email, args=(email, verification_code)).start()
 
-                with open(METADATA_FILE, 'a') as file:
-                    file.write("=== Новый пользователь ===\n")
-                    for key, value in user_data.items():
-                        file.write(f"{key}: {value}\n")
-                    file.write("\n")
+            # Перенаправляем на страницу подтверждения
+            session['pending_email'] = email
+            flash('Код подтверждения отправлен на вашу почту. Пожалуйста, введите его ниже.', 'success')
+            return redirect(url_for('verify_email'))
 
-                flash('Регистрация прошла успешно! Теперь вы можете войти.', 'success')
-                return redirect(url_for('profile'))
-            except sqlite3.IntegrityError:
-                flash('Пользователь с таким именем или email уже существует.', 'error')
-            finally:
-                conn.close()
         except ValueError as e:
             flash(str(e), 'error')
         except Exception as e:
@@ -381,6 +412,100 @@ def register():
             flash('Ошибка сервера при регистрации', 'error')
     return render_template('register.html')
 
+
+@app.route('/verify_email', methods=['GET', 'POST'])
+def verify_email():
+    if 'pending_email' not in session:
+        flash('Пожалуйста, сначала зарегистрируйтесь.', 'error')
+        return redirect(url_for('register'))
+
+    email = session['pending_email']
+
+    if request.method == 'POST':
+        code = request.form.get('code', '').strip()
+
+        if not code or not code.isdigit() or len(code) != 6:
+            flash('Пожалуйста, введите 6-значный код.', 'error')
+            return render_template('verify_email.html')
+
+        # Проверяем код
+        if email in email_verification_codes:
+            stored_data = email_verification_codes[email]
+
+            # Проверяем срок действия кода (30 минут)
+            if (datetime.now() - stored_data['timestamp']) > timedelta(minutes=30):
+                flash('Срок действия кода истёк. Пожалуйста, зарегистрируйтесь снова.', 'error')
+                del email_verification_codes[email]
+                session.pop('pending_email', None)
+                return redirect(url_for('register'))
+
+            if code == stored_data['code']:
+                # Код верный, регистрируем пользователя
+                hashed_password = hashpw(stored_data['password'].encode('utf-8'), gensalt())
+                joined_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+                conn = get_db_connection()
+                try:
+                    conn.execute(
+                        'INSERT INTO users (username, email, password, joined_date) VALUES (?, ?, ?, ?)',
+                        (stored_data['username'], email, hashed_password, joined_date)
+                    )
+                    conn.commit()
+
+                    # Автоматически входим пользователя
+                    user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+                    session['user_id'] = user['id']
+                    session['username'] = user['username']
+                    session['email'] = user['email']
+                    session['is_admin'] = user['is_admin']
+                    session['joined_date'] = user['joined_date']
+
+                    # Очищаем временные данные
+                    del email_verification_codes[email]
+                    session.pop('pending_email', None)
+
+                    flash('Регистрация прошла успешно! Добро пожаловать!', 'success')
+                    return redirect(url_for('profile'))
+                except sqlite3.IntegrityError:
+                    flash('Пользователь с таким именем или email уже существует.', 'error')
+                finally:
+                    conn.close()
+            else:
+                flash('Неверный код подтверждения. Попробуйте еще раз.', 'error')
+        else:
+            flash('Код подтверждения не найден или истёк. Пожалуйста, зарегистрируйтесь снова.', 'error')
+            return redirect(url_for('register'))
+
+    return render_template('verify_email.html')
+
+
+@app.route('/resend_code', methods=['GET', 'POST'])
+def resend_code():
+    if 'pending_email' not in session:
+        flash('Пожалуйста, сначала зарегистрируйтесь.', 'error')
+        return redirect(url_for('register'))
+
+    email = session['pending_email']
+
+    if request.method == 'POST':
+        # Генерируем новый код
+        new_code = generate_verification_code()
+        email_verification_codes[email] = {
+            'code': new_code,
+            'username': email_verification_codes[email]['username'],
+            'password': email_verification_codes[email]['password'],
+            'timestamp': datetime.now()
+        }
+
+        # Отправляем email
+        if send_verification_email(email, new_code):
+            flash('Новый код подтверждения отправлен на вашу почту.', 'success')
+        else:
+            flash('Не удалось отправить код. Попробуйте позже.', 'error')
+
+        return redirect(url_for('verify_email'))
+
+    return render_template('resend_code.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
