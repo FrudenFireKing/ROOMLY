@@ -297,23 +297,23 @@ def profile():
         # Проверяем, является ли пользователь суперпользователем
         is_superuser = session.get('is_superuser', False)
 
-        # Получаем бронирования (для суперпользователя можно показать все брони)
+        # Получаем бронирования
         if is_superuser:
-            bookings = conn.execute('''
-                SELECT b.id, b.start_time, b.end_time, b.purpose, 
-                       r.name as room_name, u.username as user_name
-                FROM bookings b 
-                JOIN rooms r ON b.room_id = r.id
-                JOIN users u ON b.user_id = u.id
-                ORDER BY b.start_time DESC
-                LIMIT 10  -- Ограничиваем количество для превью
-            ''').fetchall()
-        else:
+            # Для суперпользователя показываем только его бронирования (user_id=0)
             bookings = conn.execute('''
                 SELECT b.id, b.start_time, b.end_time, b.purpose, r.name as room_name
                 FROM bookings b JOIN rooms r ON b.room_id = r.id
-                WHERE b.user_id = ? ORDER BY b.start_time DESC
-            ''', (session['user_id'],)).fetchall()
+                WHERE b.user_id = 0 AND b.end_time > ?
+                ORDER BY b.start_time DESC
+            ''', (datetime.now().strftime('%Y-%m-%dT%H:%M'),)).fetchall()
+        else:
+            # Для обычных пользователей показываем их бронирования
+            bookings = conn.execute('''
+                SELECT b.id, b.start_time, b.end_time, b.purpose, r.name as room_name
+                FROM bookings b JOIN rooms r ON b.room_id = r.id
+                WHERE b.user_id = ? AND b.end_time > ?
+                ORDER BY b.start_time DESC
+            ''', (session['user_id'], datetime.now().strftime('%Y-%m-%dT%H:%M'))).fetchall()
 
         formatted_bookings = []
         for booking in bookings:
@@ -332,12 +332,12 @@ def profile():
             formatted_bookings.append(formatted_booking)
 
         return render_template('profile.html',
-                               is_authenticated=True,
-                               username=session['username'],
-                               email=session.get('email', ''),
-                               joined_date=session.get('joined_date', 'Не указана'),
-                               bookings=formatted_bookings,
-                               is_superuser=is_superuser)  # Передаем флаг в шаблон
+                           is_authenticated=True,
+                           username=session['username'],
+                           email=session.get('email', ''),
+                           joined_date=session.get('joined_date', 'Не указана'),
+                           bookings=formatted_bookings,
+                           is_superuser=is_superuser)
     finally:
         conn.close()
 
@@ -695,44 +695,48 @@ def book_room(room_id):
     conn = None
     try:
         conn = get_db_connection()
-
-        # 1. Проверяем существование комнаты
         room = conn.execute('SELECT * FROM rooms WHERE id = ?', (room_id,)).fetchone()
         if not room:
             flash('Указанная комната не существует', 'error')
             return redirect(url_for('rooms'))
 
-        # 2. Проверяем существование пользователя
-        user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-        if not user:
-            session.clear()
-            flash('Ваш аккаунт не найден. Пожалуйста, войдите снова', 'error')
-            return redirect(url_for('login'))
+        # Для суперпользователя пропускаем проверку пользователя в БД
+        if not session.get('is_superuser'):
+            user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+            if not user:
+                session.clear()
+                flash('Ваш аккаунт не найден. Пожалуйста, войдите снова', 'error')
+                return redirect(url_for('login'))
 
-        # 3. Обработка формы бронирования
         if request.method == 'POST':
             start_time = request.form.get('start_time', '').strip()
             end_time = request.form.get('end_time', '').strip()
             purpose = sanitize_input(request.form.get('purpose', ''))
 
             try:
-                # Валидация времени
+                current_time = datetime.now()
+                buffer_time = timedelta(minutes=2)  # Добавляем буфер в 2 минуты
+                min_start_time = current_time - buffer_time
+
                 start_dt = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
                 end_dt = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
 
                 if start_dt >= end_dt:
                     flash('Время окончания должно быть позже времени начала', 'error')
-                elif start_dt < datetime.now():
-                    flash('Нельзя забронировать комнату в прошлом', 'error')
+                elif start_dt < min_start_time:
+                    flash(
+                        'Нельзя забронировать комнату на время, которое уже прошло (или начинается менее чем через 2 минуты)',
+                        'error')
                 else:
-                    # Проверка доступности комнаты
                     if is_room_available(room_id, start_time, end_time):
-                        # Создаём бронирование
+                        # Для суперпользователя используем user_id=0, для обычных - их реальный ID
+                        user_id = 0 if session.get('is_superuser') else session['user_id']
+
                         conn.execute(
                             '''INSERT INTO bookings 
                             (room_id, user_id, start_time, end_time, purpose) 
                             VALUES (?, ?, ?, ?, ?)''',
-                            (room_id, user['id'], start_time, end_time, purpose)
+                            (room_id, user_id, start_time, end_time, purpose)
                         )
                         conn.commit()
                         flash('Комната успешно забронирована!', 'success')
@@ -742,18 +746,19 @@ def book_room(room_id):
             except ValueError:
                 flash('Некорректный формат времени', 'error')
 
-        # Получаем фотографии комнаты
         photos = conn.execute(
             'SELECT photo_url FROM room_photos WHERE room_id = ?',
             (room_id,)
         ).fetchall()
 
+        # Устанавливаем минимальное время для бронирования (текущее время + 2 минуты)
+        min_datetime = (datetime.now() + timedelta(minutes=2)).strftime('%Y-%m-%dT%H:%M')
+
         return render_template('book_room.html',
                                room=room,
                                photos=photos,
-                               min_date=datetime.now().strftime('%Y-%m-%d'),
+                               min_datetime=min_datetime,
                                max_date=(datetime.now() + timedelta(days=30)).strftime('%Y-%m-%d'))
-
     except sqlite3.Error as e:
         logger.error(f"Database error in book_room: {str(e)}")
         flash('Произошла ошибка при работе с базой данных', 'error')
@@ -786,9 +791,10 @@ def all_bookings():
             FROM bookings b 
             JOIN rooms r ON b.room_id = r.id
             JOIN users u ON b.user_id = u.id
+            WHERE b.end_time > ?
             ORDER BY b.start_time DESC
             LIMIT ? OFFSET ?
-        ''', (per_page, (page - 1) * per_page)).fetchall()
+        ''', (datetime.now().strftime('%Y-%m-%dT%H:%M'), per_page, (page - 1) * per_page)).fetchall()
 
         formatted_bookings = []
         for booking in bookings:
