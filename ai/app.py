@@ -95,7 +95,7 @@ def generate_image():
     try:
         image = pipe(
             prompt,
-            num_inference_steps=20,  # Шаги генерацияя
+            num_inference_steps=1,  # Шаги генерацияя
             guidance_scale=7.5,
             width=512,
             height=512
