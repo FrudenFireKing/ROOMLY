@@ -1,12 +1,12 @@
 {
   "users": {
-    "32981832189389": {
+    "700275431": {
       "username": "admin",
       "is_admin": true,
       "name": "Главный администратор",
       "registered": true
     },
-    "700275431": {
+    "38712893712983": {
       "username": "ivanov",
       "is_admin": false,
       "name": "Иван Иванов",

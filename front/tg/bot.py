@@ -54,10 +54,13 @@ class BookingManager:
             with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
                 data = json.load(f)
 
-            if not all(key in data for key in ["bookings", "cancellations"]):
-                raise ValueError("Неверная структура файла бронирований")
+            # Гарантируем наличие всех необходимых ключей
+            if 'bookings' not in data:
+                data['bookings'] = []
+            if 'cancellations' not in data:
+                data['cancellations'] = []
 
-            cancelled_ids = {c['id'] for c in data['cancellations'] if 'id' in c}
+            cancelled_ids = {c['id'] for c in data['cancellations'] if isinstance(c, dict) and 'id' in c}
             active_bookings = [
                 b for b in data['bookings']
                 if isinstance(b, dict) and 'id' in b and b['id'] not in cancelled_ids
@@ -205,7 +208,13 @@ class BookingManager:
             data = self._load_data()
             new_entries = []
 
-            for booking in data['active']:
+            # Проверяем, что ключи существуют в данных
+            if 'bookings' not in data:
+                data['bookings'] = []
+            if 'cancellations' not in data:
+                data['cancellations'] = []
+
+            for booking in data['bookings']:
                 if not isinstance(booking, dict):
                     continue
 
@@ -221,7 +230,7 @@ class BookingManager:
                 item_hash = self._generate_hash(cancellation, "cancel")
                 if item_hash and item_hash not in self.processed_hashes:
                     original = next(
-                        (b for b in data['all_bookings']
+                        (b for b in data['bookings']
                          if isinstance(b, dict) and b.get('id') == cancellation.get('id')),
                         None
                     )
@@ -233,6 +242,7 @@ class BookingManager:
                         ))
                         self.processed_hashes.add(item_hash)
 
+            # Отправляем уведомления админам
             for entry in new_entries:
                 for chat_id, user_data in self.users.items():
                     if user_data.get('is_admin', False) and user_data.get('registered', False):
@@ -288,20 +298,33 @@ class BookingManager:
                 data = self._load_data()
 
                 if report_type == "active":
+                    if not data['active']:
+                        return "📋 Активных бронирований нет"
                     return self._generate_active_report(data['active'], is_admin=True)
                 elif report_type == "cancelled":
+                    if not data['cancelled']:
+                        return "❌ Отмененных бронирований нет"
                     return self._generate_cancelled_report(data['cancelled'], is_admin=True)
                 elif report_type == "show_all_bookings":
+                    if not data['active'] and not data['cancelled']:
+                        return "📊 Бронирований нет"
                     return self._generate_full_report(data, is_admin=True)
                 else:
+                    if not data['active'] and not data['cancelled']:
+                        return "📊 Бронирований нет"
                     return self._generate_full_report(data, is_admin=True)
             else:
                 user_bookings = self.get_user_bookings(chat_id)
+                if not user_bookings['active'] and not user_bookings['cancelled']:
+                    return "📋 У вас нет бронирований"
                 return self._generate_user_report(user_bookings)
         except Exception as e:
             print(f"Ошибка генерации отчета: {e}")
-            return "⚠️ Произошла ошибка при формировании отчета"
-
+            # Возвращаем сообщение об отсутствии бронирований вместо сообщения об ошибке
+            if is_admin:
+                return "📊 Бронирований нет"
+            else:
+                return "📋 У вас нет бронирований"
     def _generate_active_report(self, active_bookings, is_admin=False):
         report_lines = ["<b>📋 Активные бронирования:</b>\n"]
 
