@@ -407,10 +407,16 @@ def register():
 
         except ValueError as e:
             flash(str(e), 'error')
+            return render_template('register.html',
+                                   username=request.form.get('username', ''),
+                                   email=request.form.get('email', ''))
         except Exception as e:
             logger.error(f"Registration error: {str(e)}")
             flash('Ошибка сервера при регистрации', 'error')
-    return render_template('register.html')
+            return render_template('register.html',
+                                   username=request.form.get('username', ''),
+                                   email=request.form.get('email', ''))
+    return render_template('register.html', username='', email='')
 
 
 @app.route('/verify_email', methods=['GET', 'POST'])
