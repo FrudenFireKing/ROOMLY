@@ -1,0 +1,12 @@
+{
+    "bookings": [
+        {
+            "user_name": "Иван Иванов",
+            "user_email": "artemdobrov3@gmail.com.com",
+            "room_number": "101",
+            "check_in": "2024-06-01",
+            "check_out": "2024-06-10",
+            "is_cancelled": true
+        }
+    ]
+}
