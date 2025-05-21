@@ -379,12 +379,16 @@ def register():
             username = sanitize_input(request.form.get('username', ''))
             email = sanitize_input(request.form.get('email', ''))
             password = request.form.get('password', '')
+            password_confirm = request.form.get('password_confirm', '')
 
             validate_input(username, USERNAME_REGEX, 'имя пользователя')
             validate_input(email, EMAIL_REGEX, 'email')
 
             if len(password) < 8:
                 raise ValueError("Пароль должен содержать минимум 8 символов")
+
+            if password != password_confirm:
+                raise ValueError("Пароли не совпадают")
 
             # Генерируем код подтверждения
             verification_code = generate_verification_code()
@@ -407,10 +411,16 @@ def register():
 
         except ValueError as e:
             flash(str(e), 'error')
+            return render_template('register.html',
+                                   username=request.form.get('username', ''),
+                                   email=request.form.get('email', ''))
         except Exception as e:
             logger.error(f"Registration error: {str(e)}")
             flash('Ошибка сервера при регистрации', 'error')
-    return render_template('register.html')
+            return render_template('register.html',
+                                   username=request.form.get('username', ''),
+                                   email=request.form.get('email', ''))
+    return render_template('register.html', username='', email='')
 
 
 @app.route('/verify_email', methods=['GET', 'POST'])

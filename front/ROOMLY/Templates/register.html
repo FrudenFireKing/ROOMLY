@@ -14,11 +14,6 @@
         <a href="/about">О нас</a>
     </nav>
 
-    <!-- Основное содержимое страницы -->
-    <div>
-        <h1>Регистрация</h1>
-    </div>
-
     <!-- Форма регистрации -->
     <div class="form-container">
         <h2>Регистрация</h2>
@@ -31,9 +26,10 @@
         {% endwith %}
         <form method="POST" action="{{ url_for('register') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <input type="text" name="username" placeholder="Имя пользователя" required>
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="username" placeholder="Имя пользователя" value="{{ username }}" required>
+            <input type="email" name="email" placeholder="Email" value="{{ email }}"required>
             <input type="password" name="password" placeholder="Пароль" required>
+            <input type="password" name="password_confirm" placeholder="Подтверждение пароля" required>
             <button type="submit">Зарегистрироваться</button>
         </form>
         <p>Уже есть аккаунт? <a href="{{ url_for('profile') }}">Войдите</a>.</p>
