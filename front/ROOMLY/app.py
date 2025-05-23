@@ -39,8 +39,6 @@ EMAIL_FROM = "Roomly <roomlynoreply@yandex.ru>"  # email отправителя
 # Глобальный словарь для хранения временных кодов подтверждения
 email_verification_codes = {}
 
-PASSWORD_RESET_CODES = {}
-
 # Регулярные выражения для валидации
 USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9_]{3,20}$')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
@@ -606,7 +604,7 @@ def reset_password():
             session.pop('reset_email', None)
 
             flash('Пароль успешно изменён! Теперь вы можете войти', 'success')
-            return redirect(url_for('login'))
+            return redirect(url_for('profile'))
 
     return render_template('reset_password.html')
 
@@ -623,6 +621,7 @@ def send_password_reset_email(email, code):
         msg['Subject'] = 'Сброс пароля для ROOMLY'
         msg['From'] = EMAIL_FROM
         msg['To'] = email
+        msg['Content-Type'] = 'text/plain; charset=utf-8'
 
         with smtplib.SMTP(EMAIL_SMTP_SERVER, EMAIL_SMTP_PORT) as server:
             server.starttls()
