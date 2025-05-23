@@ -221,23 +221,61 @@ a {
     background-color: #d32f2f;
 }
 
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    color: white;
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
-}
+.flash-messages {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1100; /* Должен быть выше, чем у других элементов */
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-.alert-error {
-    background-color: #f44336;
-}
+        .alert {
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень для лучшей видимости */
+            opacity: 0.95; /* Легкая прозрачность */
+            animation:
+                      slideDown 0.5s ease-out,
+                      fadeOut 0.5s ease-out 3s forwards;
+        }
 
-.alert-success {
-    background-color: #4CAF50;
-}
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                height: 0;
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 0.95;
+            }
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-error {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
 
 .form-container {
     background: white;
