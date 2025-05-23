@@ -39,6 +39,8 @@ EMAIL_FROM = "Roomly <roomlynoreply@yandex.ru>"  # email отправителя
 # Глобальный словарь для хранения временных кодов подтверждения
 email_verification_codes = {}
 
+PASSWORD_RESET_CODES = {}
+
 # Регулярные выражения для валидации
 USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9_]{3,20}$')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
@@ -52,9 +54,9 @@ AVAILABLE_EQUIPMENT = [
     "Кондиционер",
     "Кофе",
     "Конференц-зал",
-    "Кухня",
-    "Балкон",
-    "Библиотека",
+    #"Кухня",
+    #"Балкон",
+    #"Библиотека",
 ]
 
 def safe_string_compare(a, b):
@@ -517,76 +519,119 @@ def resend_code():
 
     return render_template('resend_code.html')
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+
+# Добавляем в глобальные переменные
+PASSWORD_RESET_CODES = {}
+
+
+# Добавляем новые маршруты
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
     if request.method == 'POST':
-        username = sanitize_input(request.form.get('username', ''))
-        password = request.form.get('password', '')
+        email = sanitize_input(request.form.get('email', ''))
 
-        conn = None
         try:
+            validate_input(email, EMAIL_REGEX, 'email')
+
             conn = get_db_connection()
-
-            # Проверка суперпользователя
-            if (safe_string_compare(username, SUPERUSER_USERNAME) and
-                    safe_string_compare(password, SUPERUSER_PASSWORD)):
-                session['user_id'] = 0
-                session['username'] = SUPERUSER_USERNAME
-                session['is_admin'] = True
-                session['is_superuser'] = True
-                flash('Вход выполнен как суперпользователь', 'success')
-                return redirect(url_for('admin_panel'))
-
-            # Поиск пользователя
-            user = conn.execute(
-                'SELECT * FROM users WHERE username = ?',
-                (username,)
-            ).fetchone()
+            user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+            conn.close()
 
             if not user:
-                flash('Неверное имя пользователя или пароль', 'error')
-                return redirect(url_for('login'))
+                flash('Пользователь с таким email не найден', 'error')
+                return redirect(url_for('forgot_password'))
 
-            # Проверка блокировки после множества попыток
-            if user['failed_attempts'] >= 5:
-                flash('Слишком много неудачных попыток. Попробуйте позже.', 'error')
-                return redirect(url_for('login'))
+            # Генерируем код сброса
+            reset_code = generate_verification_code()
+            PASSWORD_RESET_CODES[email] = {
+                'code': reset_code,
+                'timestamp': datetime.now()
+            }
 
-            # Проверка пароля
-            if checkpw(password.encode('utf-8'), user['password']):
-                # Успешный вход
-                session['user_id'] = user['id']
-                session['username'] = user['username']
-                session['email'] = user['email']
-                session['is_admin'] = bool(user['is_admin'])
-                session['last_login'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            # Отправляем email с кодом
+            Thread(target=send_password_reset_email, args=(email, reset_code)).start()
 
-                # Сбрасываем счётчик неудачных попыток
-                conn.execute(
-                    'UPDATE users SET failed_attempts = 0, last_login = ? WHERE id = ?',
-                    (session['last_login'], user['id'])
-                )
-                conn.commit()
+            session['reset_email'] = email
+            flash('Код для сброса пароля отправлен на вашу почту', 'success')
+            return redirect(url_for('reset_password'))
 
-                flash(f'Добро пожаловать, {user["username"]}!', 'success')
-                return redirect(url_for('profile'))
-            else:
-                # Неверный пароль
-                conn.execute(
-                    'UPDATE users SET failed_attempts = failed_attempts + 1 WHERE id = ?',
-                    (user['id'],)
-                )
-                conn.commit()
-                flash('Неверное имя пользователя или пароль', 'error')
+        except ValueError as e:
+            flash(str(e), 'error')
 
-        except sqlite3.Error as e:
-            logger.error(f"Database error in login: {str(e)}")
-            flash('Ошибка при входе в систему', 'error')
-        finally:
-            if conn:
-                conn.close()
+    return render_template('forgot_password.html')
 
-    return render_template('login.html')
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    if 'reset_email' not in session:
+        flash('Сначала запросите сброс пароля', 'error')
+        return redirect(url_for('forgot_password'))
+
+    email = session['reset_email']
+
+    if request.method == 'POST':
+        code = request.form.get('code', '').strip()
+        new_password = request.form.get('new_password', '')
+        confirm_password = request.form.get('confirm_password', '')
+
+        if not code or not code.isdigit() or len(code) != 6:
+            flash('Пожалуйста, введите 6-значный код', 'error')
+        elif new_password != confirm_password:
+            flash('Пароли не совпадают', 'error')
+        elif len(new_password) < 8:
+            flash('Пароль должен содержать минимум 8 символов', 'error')
+        elif email not in PASSWORD_RESET_CODES:
+            flash('Код сброса не найден или истёк', 'error')
+            return redirect(url_for('forgot_password'))
+        elif (datetime.now() - PASSWORD_RESET_CODES[email]['timestamp']) > timedelta(minutes=30):
+            flash('Срок действия кода истёк', 'error')
+            del PASSWORD_RESET_CODES[email]
+            return redirect(url_for('forgot_password'))
+        elif code != PASSWORD_RESET_CODES[email]['code']:
+            flash('Неверный код подтверждения', 'error')
+        else:
+            # Обновляем пароль
+            hashed_password = hashpw(new_password.encode('utf-8'), gensalt())
+
+            conn = get_db_connection()
+            conn.execute(
+                'UPDATE users SET password = ? WHERE email = ?',
+                (hashed_password, email)
+            )
+            conn.commit()
+            conn.close()
+
+            # Очищаем сессию
+            del PASSWORD_RESET_CODES[email]
+            session.pop('reset_email', None)
+
+            flash('Пароль успешно изменён! Теперь вы можете войти', 'success')
+            return redirect(url_for('login'))
+
+    return render_template('reset_password.html')
+
+
+def send_password_reset_email(email, code):
+    try:
+        msg = MIMEText(f"""
+        Здравствуйте!
+        Для сброса пароля на ROOMLY используйте следующий код: {code}
+        Если вы не запрашивали сброс пароля, проигнорируйте это письмо.
+        С уважением,
+        Команда ROOMLY
+        """, 'plain', 'utf-8')
+        msg['Subject'] = 'Сброс пароля для ROOMLY'
+        msg['From'] = EMAIL_FROM
+        msg['To'] = email
+
+        with smtplib.SMTP(EMAIL_SMTP_SERVER, EMAIL_SMTP_PORT) as server:
+            server.starttls()
+            server.login(EMAIL_SMTP_USER, EMAIL_SMTP_PASSWORD)
+            server.send_message(msg)
+        return True
+    except Exception as e:
+        logger.error(f"Error sending password reset email: {str(e)}")
+        return False
 
 
 @app.route('/logout')
