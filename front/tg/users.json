@@ -1,0 +1,28 @@
+{
+  "users": {
+    "700275431": {
+      "username": "admin",
+      "is_admin": true,
+      "name": "Главный администратор",
+      "registered": true
+    },
+    "38712893712983": {
+      "username": "ivanov",
+      "is_admin": false,
+      "name": "Иван Иванов",
+      "registered": true
+    },
+    "87654321": {
+      "username": "petrov",
+      "is_admin": false,
+      "name": "Петр Петров",
+      "registered": true
+    },
+    "1287187381": {
+      "username": "artemamahasla",
+      "is_admin": false,
+      "name": "artem",
+      "registered": true
+    }
+  }
+}
