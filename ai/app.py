@@ -1,21 +1,22 @@
 import os
+import io
+import base64
 from flask import Flask, request, render_template, jsonify
 from diffusers import StableDiffusionPipeline
-# В начале файла app.py (среди других импортов)
 from deep_translator import GoogleTranslator
-translator = GoogleTranslator(source='ru', target='en')  # Инициализация переводчика
 import torch
 import uuid
 from PIL import Image
-import io
-import base64
 from gigachat import GigaChat
-from gigachat.models import Chat, Messages, MessagesRole
-
+from gigachat.models import Chat
+import yagmail
 
 app = Flask(__name__)
 
+# Инициализация переводчика
+translator = GoogleTranslator(source='ru', target='en')
 
+# Настройки Stable Diffusion
 model_id = "stabilityai/stable-diffusion-2-1-base"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -24,8 +25,7 @@ pipe = StableDiffusionPipeline.from_pretrained(
     model_id,
     torch_dtype=torch.float16 if device == "cuda" else torch.float32,
     use_auth_token=False
-)
-pipe = pipe.to(device)
+).to(device)
 
 # Оптимизация для GPU
 if device == "cuda":
@@ -36,16 +36,19 @@ if device == "cuda":
     except:
         pass
 
-
+# Инициализация GigaChat
 gigachat = GigaChat(
     credentials='MWE0ZmRjZjAtNzc3ZS00Y2IwLWExYjQtMWI4MTVkYzk5YTQ4OmI0MDgyNTE2LTEyMzktNDAyYi1iZGI1LTM3NmIyZDFhN2MyZg==',
     verify_ssl_certs=False
 )
 
+# Настройки email
+EMAIL_ADDRESS = "aroomly@yandex.ru"
+EMAIL_PASSWORD = "adminroomly123456789"
+yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
 
 def extract_requirements(text):
     try:
-
         messages = [
             {
                 "role": "user",
@@ -54,22 +57,20 @@ def extract_requirements(text):
                 - стол на 6 человек
                 - проектор
                 - бронирование на среду с 14:00 до 16:00
-                - люди делаю то то и то то
 
                 Текст: "{text}"
                 """
             }
         ]
 
-        chat = Chat(
-            messages=messages,
-            temperature=0.7,
-            max_tokens=1000
+        response = gigachat.chat(
+            Chat(
+                messages=messages,
+                temperature=0.7,
+                max_tokens=1000
+            )
         )
-
-        response = gigachat.chat(chat)
-        requirements = [line.strip() for line in response.choices[0].message.content.split('\n') if line.strip()]
-        return requirements
+        return [line.strip() for line in response.choices[0].message.content.split('\n') if line.strip()]
     
     except Exception as e:
         print(f"Ошибка GigaChat: {str(e)}")
@@ -87,15 +88,11 @@ def generate_image():
 
     try:
         translated_description = translator.translate(description)
-    except Exception as e:
-        return jsonify({'error': f'Ошибка перевода: {str(e)}'}), 500
-
-    prompt = f"Modern meeting room, {translated_description}, professional design, high quality, realistic"
-
-    try:
+        prompt = f"Modern meeting room, {translated_description}, professional design, high quality, realistic"
+        
         image = pipe(
             prompt,
-            num_inference_steps=15,
+            num_inference_steps=1,
             guidance_scale=7.5,
             width=512,
             height=512
@@ -121,6 +118,43 @@ def analyze_text():
     
     requirements = extract_requirements(user_input)
     return jsonify({'requirements': requirements})
+
+@app.route('/submit', methods=['POST'])
+def submit_request():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'success': False, 'error': 'No data provided'}), 400
+
+        email = data.get('email', 'pavelsysuew06@yandex.ru')
+        image_data = data.get('image')
+        requirements = data.get('requirements', [])
+
+        if not image_data or not image_data.startswith('data:image/png;base64,'):
+            return jsonify({'success': False, 'error': 'Invalid image data'}), 400
+
+        # Сохраняем временное изображение
+        image_bytes = base64.b64decode(image_data.split(",")[1])
+        temp_image = "temp_meeting_room.png"
+        with open(temp_image, "wb") as f:
+            f.write(image_bytes)
+
+        # Отправка письма
+        body = "Требования к переговорной комнате:\n\n" + "\n".join(requirements)
+        yag.send(
+            to=email,
+            subject="Заявка на переговорную комнату",
+            contents=body,
+            attachments=temp_image
+        )
+
+        # Удаляем временный файл
+        os.remove(temp_image)
+
+        return jsonify({'success': True})
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
