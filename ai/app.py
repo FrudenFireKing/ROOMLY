@@ -1,19 +1,22 @@
 import os
 from flask import Flask, request, render_template, jsonify
 from diffusers import StableDiffusionPipeline
+# В начале файла app.py (среди других импортов)
 from deep_translator import GoogleTranslator
+translator = GoogleTranslator(source='ru', target='en')  # Инициализация переводчика
 import torch
 import uuid
 from PIL import Image
 import io
 import base64
-from transformers import pipeline
-import re
+from gigachat import GigaChat
+from gigachat.models import Chat, Messages, MessagesRole
+
 
 app = Flask(__name__)
 
-# Инициализация модели Stable Diffusion
-model_id = "stabilityai/stable-diffusion-2-1-base"  # Более легкая модель
+
+model_id = "stabilityai/stable-diffusion-2-1-base"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Загрузка модели генерации изображений
@@ -33,47 +36,44 @@ if device == "cuda":
     except:
         pass
 
-# Папка для сохранения изображений
-GENERATED_IMAGES_DIR = "generated_images"
-os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
 
-# Переводчик
-translator = GoogleTranslator(source='ru', target='en')
+gigachat = GigaChat(
+    credentials='MWE0ZmRjZjAtNzc3ZS00Y2IwLWExYjQtMWI4MTVkYzk5YTQ4OmI0MDgyNTE2LTEyMzktNDAyYi1iZGI1LTM3NmIyZDFhN2MyZg==',
+    verify_ssl_certs=False
+)
 
-# Инициализация модели для анализа текста
-nlp = pipeline("ner", model="distilbert-base-uncased", tokenizer="distilbert-base-uncased")
 
-# Функция для извлечения требований
 def extract_requirements(text):
-    sentences = re.split(r'[.!?]', text)
-    requirements = []
+    try:
+
+        messages = [
+            {
+                "role": "user",
+                "content": f"""Проанализируй текст и выдели ТОЛЬКО конкретные требования к переговорной комнате. 
+                Отвечай строго в формате списка без пояснений. Пример:
+                - стол на 6 человек
+                - проектор
+                - бронирование на среду с 14:00 до 16:00
+                - люди делаю то то и то то
+
+                Текст: "{text}"
+                """
+            }
+        ]
+
+        chat = Chat(
+            messages=messages,
+            temperature=0.7,
+            max_tokens=1000
+        )
+
+        response = gigachat.chat(chat)
+        requirements = [line.strip() for line in response.choices[0].message.content.split('\n') if line.strip()]
+        return requirements
     
-    for sentence in sentences:
-        sentence = sentence.strip()
-        if not sentence:
-            continue
-            
-        ner_results = nlp(sentence)
-        
-        if "стол" in sentence.lower():
-            requirements.append("нужен круглый стол")
-        if "стуль" in sentence.lower():
-            match = re.search(r'\d+', sentence)
-            if match:
-                requirements.append(f"{match.group()} стульев")
-        if "освещение" in sentence.lower():
-            requirements.append("должно быть хорошее освещение")
-        if "принтер" in sentence.lower():
-            requirements.append("должен быть принтер")
-        if "сканер" in sentence.lower():
-            requirements.append("должен быть сканер")
-        
-        time_match = re.search(r'на\s+(\w+)\s+с\s+(\d+:\d+)\s+до\s+(\d+:\d+)', sentence, re.IGNORECASE)
-        if time_match:
-            day, start, end = time_match.groups()
-            requirements.append(f"бронирование на {day} с {start} до {end}")
-    
-    return requirements
+    except Exception as e:
+        print(f"Ошибка GigaChat: {str(e)}")
+        return []
 
 @app.route('/')
 def index():
@@ -95,15 +95,11 @@ def generate_image():
     try:
         image = pipe(
             prompt,
-            num_inference_steps=1,  # Шаги генерацияя
+            num_inference_steps=15,
             guidance_scale=7.5,
             width=512,
             height=512
         ).images[0]
-
-        job_id = str(uuid.uuid4())
-        img_path = os.path.join(GENERATED_IMAGES_DIR, f"{job_id}.png")
-        image.save(img_path)
 
         buffered = io.BytesIO()
         image.save(buffered, format="PNG")
