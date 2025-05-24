@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Roomly</title> <link rel="stylesheet" href="{{ url_for('static', filename='style_gen.css') }}"> </head> <body> <nav> <a href="/">Главная</a> <a href="/rooms">Комнаты</a> <a href="/profile">Личный кабинет</a> <a href="/about">О нас</a> </nav> <div class="container"> <h1>Генерация мероприятий в переговорках</h1>
+    <div class="input-section">
+        <h3>Введите описание или требования:</h3>
+        <textarea id="user-input" placeholder="Например: Нужен круглый стол, 4 стула, хорошее освещение, бронирование на понедельник с 10:00 до 12:00"></textarea>
+        
+        <div class="button-group">
+            <button id="generate-btn">Составить мероприятие</button>
+        </div>
+    </div>
+
+    <div class="output-section">
+        <div id="image-result">
+            <h4>Вид переговорки</h4>
+            <div id="progress-bar"><div id="progress"></div></div>
+            <p id="progress-text">Ожидание генерации...</p>
+            <div id="result">
+                <img id="generated-image" src="" alt="" style="display: none;">
+            </div>
+        </div>
+
+        <div id="requirements-result">
+            <h4>Требования к оборудованию комнаты</h4>
+            <ul id="requirements-list"></ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Function to simulate progress updates
+    function updateProgress(startPercent, endPercent, duration, callback) {
+        let currentPercent = startPercent;
+        const increment = (endPercent - startPercent) / (duration / 100);
+        $('#progress').css('width', currentPercent + '%');
+        $('#progress-text').text('Генерация... ' + Math.round(currentPercent) + '%');
+
+        const interval = setInterval(function() {
+            currentPercent += increment;
+            if (currentPercent >= endPercent) {
+                currentPercent = endPercent;
+                clearInterval(interval);
+                if (callback) callback();
+            }
+            $('#progress').css('width', Math.min(currentPercent, 100) + '%');
+            $('#progress-text').text('Генерация... ' + Math.round(currentPercent) + '%');
+        }, 100);
+    }
+
+    // Handle button click
+    $('#generate-btn').click(function() {
+        const description = $('#user-input').val();
+        if (!description) {
+            alert('Пожалуйста, введите описание.');
+            $('#progress-text').text('Ошибка: описание не введено');
+            $('#progress').css('width', '0%');
+            return;
+        }
+
+        // Reset UI
+        $('#progress-text').text('Начало обработки...');
+        $('#progress').css('width', '0%');
+        $('#generated-image').hide();
+        $('#requirements-list').empty();
+
+        // Start combined process
+        updateProgress(0, 40, 2000, function() {
+            // First - analyze requirements
+            $.ajax({
+                url: '/analyze',
+                type: 'POST',
+                data: { user_input: description },
+                success: function(response) {
+                    if (response.error) {
+                        $('#requirements-list').append(`<li>Ошибка: ${response.error}</li>`);
+                    } else {
+                        if (response.requirements.length === 0) {
+                            $('#requirements-list').append('<li>Требования не найдены.</li>');
+                        } else {
+                            response.requirements.forEach(req => {
+                                $('#requirements-list').append(`<li>${req}</li>`);
+                            });
+                        }
+                    }
+                    
+                    // After requirements are done, generate image
+                    updateProgress(40, 80, 3000, function() {
+                        $.ajax({
+                            url: '/generate',
+                            type: 'POST',
+                            data: { description: description },
+                            success: function(response) {
+                                if (response.error) {
+                                    $('#progress-text').text('Ошибка: ' + response.error);
+                                } else {
+                                    $('#generated-image').attr('src', response.image).show();
+                                    $('#progress-text').text(response.status);
+                                }
+                                $('#progress').css('width', '100%');
+                            },
+                            error: function() {
+                                $('#progress-text').text('Ошибка сервера при генерации изображения.');
+                                $('#progress').css('width', '0%');
+                            }
+                        });
+                    });
+                },
+                error: function() {
+                    $('#requirements-list').append('<li>Ошибка сервера.</li>');
+                    $('#progress-text').text('Ошибка сервера при анализе требований.');
+                    $('#progress').css('width', '0%');
+                }
+            });
+        });
+    });
+});
+</script> </body> </html>

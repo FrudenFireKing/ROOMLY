@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Courier+New&display=swap');
+
+/* Анимированный градиентный фон */
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    overflow: auto;
+    
+    background: linear-gradient(
+        -45deg,
+        #7FFFD4,
+        #AFEEEE,
+        #7FFFD4,
+        #00FFFF,
+        #7FFFD4
+    );
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    text-align: center;
+    padding: 2em;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+.input-section {
+    margin-bottom: 30px;
+    padding: 20px 25px;
+    background-color: rgba(240, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px solid #b3e0dc;
+}
+
+textarea {
+    width: calc(100% - 30px);
+    margin: 10px 0;
+    padding: 15px;
+    border: 2px solid #81d8d0;
+    border-radius: 6px;
+    resize: vertical;
+    font-size: 16px;
+    transition: border 0.3s;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-family: 'Courier New', monospace;
+}
+
+h3, h4 {
+    text-align: center;
+    color: #333;
+    font-family: 'Russo One', sans-serif;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #4db8b8;
+    box-shadow: 0 0 8px rgba(129, 216, 208, 0.5);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    background-color: #045653;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', monospace;
+}
+
+button:hover {
+    background-color: #089e9e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.output-section {
+    margin-top: 20px;
+}
+
+#image-result, #requirements-result {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #b3e0dc;
+    border-radius: 8px;
+    background-color: rgba(240, 255, 255, 0.7);
+}
+
+#progress-bar {
+    width: 100%;
+    background-color: #e0f2f1;
+    border-radius: 4px;
+    margin: 15px 0;
+    height: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#progress {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #81d8d0, #4db8b8, #006b6b);
+    transition: width 0.3s ease-in-out;
+}
+
+#progress-text {
+    text-align: center;
+    color: #006b6b;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#generated-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #b3e0dc;
+}
+
+#requirements-result {
+    margin-top: 20px;
+}
+
+#requirements-list {
+    list-style-type: decimal;
+    padding-left: 25px;
+    margin: 10px 0;
+    color: #006b6b;
+}
+
+#requirements-list li {
+    margin-bottom: 8px;
+    padding-left: 5px;
+}
+
+/* Навигационное меню */
+nav {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Courier New', monospace;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+/* Футер */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.status-section {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(240, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px solid #b3e0dc;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0f2f1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #81d8d0, #4db8b8, #006b6b);
+    transition: width 0.3s ease;
+}
+
+#status-text {
+    text-align: center;
+    color: #006b6b;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.output-section {
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#image-result img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #b3e0dc;
+    margin-top: 10px;
+}
+
+#requirements-result ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#requirements-result li {
+    background-color: rgba(129, 216, 208, 0.2);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #4db8b8;
+}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, abort
+from flask import Flask, render_template, request, redirect, url_for, flash, session, abort, jsonify
 from flask_wtf.csrf import CSRFProtect
 import sqlite3
 from bcrypt import hashpw, gensalt, checkpw
@@ -11,6 +11,14 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 from threading import Thread
+from diffusers import StableDiffusionPipeline
+from deep_translator import GoogleTranslator
+import torch
+import uuid
+from PIL import Image
+import io
+import base64
+from transformers import pipeline
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -30,14 +38,37 @@ SUPERUSER_USERNAME = "superadmin"
 SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD', "superpassword123")
 METADATA_FILE = 'metadata.txt'
 DB_FILE = 'users.db'
-EMAIL_SMTP_SERVER = "smtp.yandex.ru"  # SMTP сервер
+EMAIL_SMTP_SERVER = "smtp.yandex.ru"
 EMAIL_SMTP_PORT = 587
-EMAIL_SMTP_USER = "roomlynoreply@yandex.ru"  # email
-EMAIL_SMTP_PASSWORD = "sklzhhhmyuzxlanj"  # пароль для SMTP
-EMAIL_FROM = "Roomly <roomlynoreply@yandex.ru>"  # email отправителя
+EMAIL_SMTP_USER = "roomlynoreply@yandex.ru"
+EMAIL_SMTP_PASSWORD = "sklzhhhmyuzxlanj"
+EMAIL_FROM = "Roomly <roomlynoreply@yandex.ru>"
+GENERATED_IMAGES_DIR = "generated_images"
+os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
 
-# Глобальный словарь для хранения временных кодов подтверждения
-email_verification_codes = {}
+# Инициализация модели Stable Diffusion
+model_id = "stabilityai/stable-diffusion-2-1-base"
+device = "cuda" if torch.cuda.is_available() else "cpu"
+pipe = StableDiffusionPipeline.from_pretrained(
+    model_id,
+    torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+    use_auth_token=False
+)
+pipe = pipe.to(device)
+
+if device == "cuda":
+    try:
+        pipe.enable_xformers_memory_efficient_attention()
+        if hasattr(torch, 'compile'):
+            pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
+    except:
+        pass
+
+# Переводчик
+translator = GoogleTranslator(source='ru', target='en')
+
+# Инициализация модели для анализа текста
+nlp = pipeline("ner", model="distilbert-base-uncased", tokenizer="distilbert-base-uncased")
 
 # Регулярные выражения для валидации
 USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9_]{3,20}$')
@@ -56,6 +87,9 @@ AVAILABLE_EQUIPMENT = [
     "Балкон",
     "Библиотека",
 ]
+
+# Глобальный словарь для хранения временных кодов подтверждения
+email_verification_codes = {}
 
 def safe_string_compare(a, b):
     if len(a) != len(b):
@@ -1097,8 +1131,110 @@ def print_startup_message():
     print("=" * 50 + "\n")
 
 
+# Папка для сохранения изображений
+GENERATED_IMAGES_DIR = "generated_images"
+os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
+
+
+# Инициализация модели для анализа текста
+nlp = pipeline("ner", model="distilbert-base-uncased", tokenizer="distilbert-base-uncased")
+
+# Функция для извлечения требований
+def extract_requirements(text):
+    sentences = re.split(r'[.!?]', text)
+    requirements = []
+    
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+            
+        ner_results = nlp(sentence)
+        
+        if "стол" in sentence.lower():
+            requirements.append("нужен круглый стол")
+        if "стуль" in sentence.lower():
+            match = re.search(r'\d+', sentence)
+            if match:
+                requirements.append(f"{match.group()} стульев")
+        if "освещение" in sentence.lower():
+            requirements.append("должно быть хорошее освещение")
+        if "принтер" in sentence.lower():
+            requirements.append("должен быть принтер")
+        if "сканер" in sentence.lower():
+            requirements.append("должен быть сканер")
+        
+        time_match = re.search(r'на\s+(\w+)\s+с\s+(\d+:\d+)\s+до\s+(\d+:\d+)', sentence, re.IGNORECASE)
+        if time_match:
+            day, start, end = time_match.groups()
+            requirements.append(f"бронирование на {day} с {start} до {end}")
+    
+    return requirements
+
+
+
+
+@app.route('/generate_room')
+def generate_room():
+    return render_template('generate_room.html')
+
+@app.route('/generate', methods=['POST'])
+def generate_image():
+    description = request.form.get('description')
+    if not description:
+        return jsonify({'error': 'Описание не предоставлено'}), 400
+
+    try:
+        translated_description = translator.translate(description)
+    except Exception as e:
+        logger.error(f"Translation error: {str(e)}")
+        return jsonify({'error': f'Ошибка перевода: {str(e)}'}), 500
+
+    prompt = f"Modern meeting room, {translated_description}, professional design, high quality, realistic"
+
+    try:
+        with torch.no_grad():
+            image = pipe(
+                prompt,
+                num_inference_steps=50,  # Увеличим количество шагов для лучшего качества
+                guidance_scale=7.5,
+                width=512,
+                height=512
+            ).images[0]
+
+        # Сохраняем изображение
+        os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
+        job_id = str(uuid.uuid4())
+        img_path = os.path.join(GENERATED_IMAGES_DIR, f"{job_id}.png")
+        image.save(img_path)
+
+        # Конвертируем в base64
+        buffered = io.BytesIO()
+        image.save(buffered, format="PNG")
+        img_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+
+        return jsonify({
+            'image': f'data:image/png;base64,{img_base64}',
+            'status': 'Генерация завершена!'
+        })
+
+    except Exception as e:
+        logger.error(f"Image generation error: {str(e)}")
+        return jsonify({'error': f'Ошибка генерации: {str(e)}'}), 500
+
+@app.route('/analyze', methods=['POST'])
+def analyze_text():
+    user_input = request.form.get('user_input')
+    if not user_input:
+        return jsonify({'error': 'Текст не предоставлен'}), 400
+    
+    requirements = extract_requirements(user_input)
+    return jsonify({'requirements': requirements})
+
 if __name__ == '__main__':
-    # Проверяем и инициализируем БД
+    app.run(debug=True)
+
+if __name__ == '__main__':
     if not os.path.exists(DB_FILE) or not check_db_integrity():
         try:
             if os.path.exists(DB_FILE):
@@ -1108,8 +1244,8 @@ if __name__ == '__main__':
             logger.critical(f"Failed to initialize database: {str(e)}")
             raise
 
-    # Выводим сообщение перед запуском
-    print_startup_message()
-    # Запускаем сервер с выводом в консоль
+    print("\n" + "=" * 50)
+    print("Сервер успешно запущен!")
+    print(f"  - Главная страница: http://127.0.0.1:5000/")
+    print("=" * 50 + "\n")
     app.run(debug=True, host='0.0.0.0')
-    print_startup_message()

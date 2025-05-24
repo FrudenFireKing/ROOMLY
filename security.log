@@ -1,0 +1,375 @@
+2025-05-22 01:42:42,897 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-22 01:42:42,899 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 01:42:42,901 INFO  * Restarting with stat
+2025-05-22 01:42:53,087 WARNING  * Debugger is active!
+2025-05-22 01:42:53,087 INFO  * Debugger PIN: 642-117-793
+2025-05-22 01:43:58,737 INFO 127.0.0.1 - - [22/May/2025 01:43:58] "GET / HTTP/1.1" 200 -
+2025-05-22 01:43:58,899 INFO 127.0.0.1 - - [22/May/2025 01:43:58] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-22 01:44:01,692 INFO 127.0.0.1 - - [22/May/2025 01:44:01] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:44:01,710 INFO 127.0.0.1 - - [22/May/2025 01:44:01] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:44:01,734 INFO 127.0.0.1 - - [22/May/2025 01:44:01] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:04,150 INFO 127.0.0.1 - - [22/May/2025 01:44:04] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:44:04,178 INFO 127.0.0.1 - - [22/May/2025 01:44:04] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:44:04,213 INFO 127.0.0.1 - - [22/May/2025 01:44:04] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:05,065 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:44:05,076 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:44:05,100 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:05,492 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:44:05,503 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:44:05,526 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:05,878 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:44:05,889 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:44:05,911 INFO 127.0.0.1 - - [22/May/2025 01:44:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:06,577 INFO 127.0.0.1 - - [22/May/2025 01:44:06] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:44:06,588 INFO 127.0.0.1 - - [22/May/2025 01:44:06] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:44:06,607 INFO 127.0.0.1 - - [22/May/2025 01:44:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:06,967 INFO 127.0.0.1 - - [22/May/2025 01:44:06] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:44:06,977 INFO 127.0.0.1 - - [22/May/2025 01:44:06] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:44:06,995 INFO 127.0.0.1 - - [22/May/2025 01:44:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:07,357 INFO 127.0.0.1 - - [22/May/2025 01:44:07] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:44:07,368 INFO 127.0.0.1 - - [22/May/2025 01:44:07] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:44:07,386 INFO 127.0.0.1 - - [22/May/2025 01:44:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:08,156 INFO 127.0.0.1 - - [22/May/2025 01:44:08] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:44:08,165 INFO 127.0.0.1 - - [22/May/2025 01:44:08] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:44:08,187 INFO 127.0.0.1 - - [22/May/2025 01:44:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:38,875 INFO 127.0.0.1 - - [22/May/2025 01:44:38] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:44:38,889 INFO 127.0.0.1 - - [22/May/2025 01:44:38] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:44:38,909 INFO 127.0.0.1 - - [22/May/2025 01:44:38] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:44:39,254 INFO 127.0.0.1 - - [22/May/2025 01:44:39] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:44:39,262 INFO 127.0.0.1 - - [22/May/2025 01:44:39] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:44:39,281 INFO 127.0.0.1 - - [22/May/2025 01:44:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:46:07,948 INFO 127.0.0.1 - - [22/May/2025 01:46:07] "[35m[1mGET /front/ HTTP/1.1[0m" 500 -
+2025-05-22 01:46:07,991 INFO 127.0.0.1 - - [22/May/2025 01:46:07] "GET /front/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-05-22 01:46:07,991 INFO 127.0.0.1 - - [22/May/2025 01:46:07] "GET /front/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-05-22 01:46:08,052 INFO 127.0.0.1 - - [22/May/2025 01:46:08] "GET /front/?__debugger__=yes&cmd=resource&f=console.png&s=pnUXyb0K8tPL7DVfr4cy HTTP/1.1" 200 -
+2025-05-22 01:46:08,130 INFO 127.0.0.1 - - [22/May/2025 01:46:08] "GET /front/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-22 01:46:56,562 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-22 01:46:56,562 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 01:46:56,565 INFO  * Restarting with stat
+2025-05-22 01:47:05,731 WARNING  * Debugger is active!
+2025-05-22 01:47:05,735 INFO  * Debugger PIN: 642-117-793
+2025-05-22 01:47:25,593 INFO 127.0.0.1 - - [22/May/2025 01:47:25] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-22 01:47:25,792 INFO 127.0.0.1 - - [22/May/2025 01:47:25] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-05-22 01:47:25,792 INFO 127.0.0.1 - - [22/May/2025 01:47:25] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-05-22 01:47:25,874 INFO 127.0.0.1 - - [22/May/2025 01:47:25] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=EBrGiofv73qSrlfedI9x HTTP/1.1" 200 -
+2025-05-22 01:47:25,890 INFO 127.0.0.1 - - [22/May/2025 01:47:25] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-22 01:48:21,113 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-22 01:48:21,113 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 01:48:21,115 INFO  * Restarting with stat
+2025-05-22 01:48:29,416 WARNING  * Debugger is active!
+2025-05-22 01:48:29,420 INFO  * Debugger PIN: 642-117-793
+2025-05-22 01:48:37,909 INFO 127.0.0.1 - - [22/May/2025 01:48:37] "[33mGET /image-generator HTTP/1.1[0m" 404 -
+2025-05-22 01:48:47,564 INFO 127.0.0.1 - - [22/May/2025 01:48:47] "[33mGET /about HTTP/1.1[0m" 404 -
+2025-05-22 01:48:51,788 INFO 127.0.0.1 - - [22/May/2025 01:48:51] "GET / HTTP/1.1" 200 -
+2025-05-22 01:48:51,913 INFO 127.0.0.1 - - [22/May/2025 01:48:51] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:48:57,000 INFO 127.0.0.1 - - [22/May/2025 01:48:56] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:48:57,014 INFO 127.0.0.1 - - [22/May/2025 01:48:57] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:48:57,039 INFO 127.0.0.1 - - [22/May/2025 01:48:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:48:58,222 INFO 127.0.0.1 - - [22/May/2025 01:48:58] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:48:58,234 INFO 127.0.0.1 - - [22/May/2025 01:48:58] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:48:58,254 INFO 127.0.0.1 - - [22/May/2025 01:48:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:48:58,788 INFO 127.0.0.1 - - [22/May/2025 01:48:58] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:48:58,796 INFO 127.0.0.1 - - [22/May/2025 01:48:58] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:48:58,815 INFO 127.0.0.1 - - [22/May/2025 01:48:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:48:59,177 INFO 127.0.0.1 - - [22/May/2025 01:48:59] "[32mGET /front HTTP/1.1[0m" 302 -
+2025-05-22 01:48:59,186 INFO 127.0.0.1 - - [22/May/2025 01:48:59] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:48:59,202 INFO 127.0.0.1 - - [22/May/2025 01:48:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:48:59,456 INFO 127.0.0.1 - - [22/May/2025 01:48:59] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:48:59,465 INFO 127.0.0.1 - - [22/May/2025 01:48:59] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:48:59,482 INFO 127.0.0.1 - - [22/May/2025 01:48:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:51:07,360 INFO 127.0.0.1 - - [22/May/2025 01:51:07] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:51:07,370 INFO 127.0.0.1 - - [22/May/2025 01:51:07] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:51:07,390 INFO 127.0.0.1 - - [22/May/2025 01:51:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:51:08,381 INFO 127.0.0.1 - - [22/May/2025 01:51:08] "[32mGET /generat HTTP/1.1[0m" 302 -
+2025-05-22 01:51:08,394 INFO 127.0.0.1 - - [22/May/2025 01:51:08] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:51:08,417 INFO 127.0.0.1 - - [22/May/2025 01:51:08] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:52:17,892 INFO 127.0.0.1 - - [22/May/2025 01:52:17] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:52:17,925 INFO 127.0.0.1 - - [22/May/2025 01:52:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:52:20,892 INFO 127.0.0.1 - - [22/May/2025 01:52:20] "[33mGET /generat/front/templates/index.html HTTP/1.1[0m" 404 -
+2025-05-22 01:56:57,485 INFO 127.0.0.1 - - [22/May/2025 01:56:57] "[33mGET /generat/front/templates/index.html HTTP/1.1[0m" 404 -
+2025-05-22 01:57:01,722 INFO 127.0.0.1 - - [22/May/2025 01:57:01] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:57:01,752 INFO 127.0.0.1 - - [22/May/2025 01:57:01] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-22 01:57:04,826 INFO 127.0.0.1 - - [22/May/2025 01:57:04] "[33mGET /front/Templates/index.html HTTP/1.1[0m" 404 -
+2025-05-22 01:57:18,746 INFO 127.0.0.1 - - [22/May/2025 01:57:18] "[33mGET /generat/templates/index.html HTTP/1.1[0m" 404 -
+2025-05-22 01:59:09,111 INFO 127.0.0.1 - - [22/May/2025 01:59:09] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:59:09,141 INFO 127.0.0.1 - - [22/May/2025 01:59:09] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:10,778 INFO 127.0.0.1 - - [22/May/2025 01:59:10] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:59:10,812 INFO 127.0.0.1 - - [22/May/2025 01:59:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:12,796 INFO 127.0.0.1 - - [22/May/2025 01:59:12] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:59:12,818 INFO 127.0.0.1 - - [22/May/2025 01:59:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:13,630 INFO 127.0.0.1 - - [22/May/2025 01:59:13] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:59:13,654 INFO 127.0.0.1 - - [22/May/2025 01:59:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:14,338 INFO 127.0.0.1 - - [22/May/2025 01:59:14] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:59:14,358 INFO 127.0.0.1 - - [22/May/2025 01:59:14] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:15,353 INFO 127.0.0.1 - - [22/May/2025 01:59:15] "GET /generat/ HTTP/1.1" 200 -
+2025-05-22 01:59:15,380 INFO 127.0.0.1 - - [22/May/2025 01:59:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:32,438 INFO 127.0.0.1 - - [22/May/2025 01:59:32] "[35m[1mGET /generat/ HTTP/1.1[0m" 500 -
+2025-05-22 01:59:32,475 INFO 127.0.0.1 - - [22/May/2025 01:59:32] "GET /generat/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-05-22 01:59:32,476 INFO 127.0.0.1 - - [22/May/2025 01:59:32] "GET /generat/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-05-22 01:59:32,539 INFO 127.0.0.1 - - [22/May/2025 01:59:32] "GET /generat/?__debugger__=yes&cmd=resource&f=console.png&s=d1cSlckHDoozU65ByHOi HTTP/1.1" 200 -
+2025-05-22 01:59:32,581 INFO 127.0.0.1 - - [22/May/2025 01:59:32] "GET /generat/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-22 01:59:40,756 INFO 127.0.0.1 - - [22/May/2025 01:59:40] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-22 01:59:40,793 INFO 127.0.0.1 - - [22/May/2025 01:59:40] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-22 01:59:40,793 INFO 127.0.0.1 - - [22/May/2025 01:59:40] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:40,878 INFO 127.0.0.1 - - [22/May/2025 01:59:40] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=d1cSlckHDoozU65ByHOi HTTP/1.1" 200 -
+2025-05-22 01:59:40,958 INFO 127.0.0.1 - - [22/May/2025 01:59:40] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-22 01:59:54,917 INFO 127.0.0.1 - - [22/May/2025 01:59:54] "GET / HTTP/1.1" 200 -
+2025-05-22 01:59:54,950 INFO 127.0.0.1 - - [22/May/2025 01:59:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 01:59:56,209 INFO 127.0.0.1 - - [22/May/2025 01:59:56] "GET /front/ HTTP/1.1" 200 -
+2025-05-22 01:59:56,231 INFO 127.0.0.1 - - [22/May/2025 01:59:56] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:16:47,153 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:16:47,153 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:16:47,154 INFO  * Restarting with stat
+2025-05-22 02:16:54,826 WARNING  * Debugger is active!
+2025-05-22 02:16:54,829 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:17:06,922 INFO 127.0.0.1 - - [22/May/2025 02:17:06] "GET / HTTP/1.1" 200 -
+2025-05-22 02:17:07,072 INFO 127.0.0.1 - - [22/May/2025 02:17:07] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-22 02:17:08,845 INFO 127.0.0.1 - - [22/May/2025 02:17:08] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:17:08,873 INFO 127.0.0.1 - - [22/May/2025 02:17:08] "GET /static/style_gen.css HTTP/1.1" 200 -
+2025-05-22 02:17:21,254 INFO 127.0.0.1 - - [22/May/2025 02:17:21] "[31m[1mPOST /generate_room HTTP/1.1[0m" 400 -
+2025-05-22 02:17:26,338 INFO 127.0.0.1 - - [22/May/2025 02:17:26] "[31m[1mPOST /generate_room HTTP/1.1[0m" 400 -
+2025-05-22 02:17:58,634 INFO 127.0.0.1 - - [22/May/2025 02:17:58] "[31m[1mPOST /analyze HTTP/1.1[0m" 400 -
+2025-05-22 02:18:01,636 INFO 127.0.0.1 - - [22/May/2025 02:18:01] "[31m[1mPOST /generate HTTP/1.1[0m" 400 -
+2025-05-22 02:18:09,791 INFO 127.0.0.1 - - [22/May/2025 02:18:09] "GET / HTTP/1.1" 200 -
+2025-05-22 02:18:09,823 INFO 127.0.0.1 - - [22/May/2025 02:18:09] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:18:11,308 INFO 127.0.0.1 - - [22/May/2025 02:18:11] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:18:11,330 INFO 127.0.0.1 - - [22/May/2025 02:18:11] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:18:14,657 INFO 127.0.0.1 - - [22/May/2025 02:18:14] "[31m[1mPOST /generate_room HTTP/1.1[0m" 400 -
+2025-05-22 02:20:13,247 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:20:13,247 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:20:13,248 INFO  * Restarting with stat
+2025-05-22 02:20:22,590 WARNING  * Debugger is active!
+2025-05-22 02:20:22,593 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:20:22,613 INFO 127.0.0.1 - - [22/May/2025 02:20:22] "GET / HTTP/1.1" 200 -
+2025-05-22 02:20:22,759 INFO 127.0.0.1 - - [22/May/2025 02:20:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:20:26,095 INFO 127.0.0.1 - - [22/May/2025 02:20:26] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:20:26,126 INFO 127.0.0.1 - - [22/May/2025 02:20:26] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:22:33,483 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:22:33,484 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:22:33,485 INFO  * Restarting with stat
+2025-05-22 02:22:42,866 WARNING  * Debugger is active!
+2025-05-22 02:22:42,871 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:22:42,894 INFO 127.0.0.1 - - [22/May/2025 02:22:42] "GET / HTTP/1.1" 200 -
+2025-05-22 02:22:43,013 INFO 127.0.0.1 - - [22/May/2025 02:22:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:22:44,976 INFO 127.0.0.1 - - [22/May/2025 02:22:44] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:22:45,010 INFO 127.0.0.1 - - [22/May/2025 02:22:45] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:25:17,215 INFO  * Detected change in 'c:\\Users\\HONOR\\Documents\\ROOMLY\\front\\app.py', reloading
+2025-05-22 02:25:19,296 INFO  * Restarting with stat
+2025-05-22 02:25:31,515 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:25:31,515 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:25:31,518 INFO  * Restarting with stat
+2025-05-22 02:25:39,802 WARNING  * Debugger is active!
+2025-05-22 02:25:39,807 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:25:39,829 INFO 127.0.0.1 - - [22/May/2025 02:25:39] "GET / HTTP/1.1" 200 -
+2025-05-22 02:25:39,990 INFO 127.0.0.1 - - [22/May/2025 02:25:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:25:47,097 INFO 127.0.0.1 - - [22/May/2025 02:25:47] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:25:47,127 INFO 127.0.0.1 - - [22/May/2025 02:25:47] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:26:20,362 INFO 127.0.0.1 - - [22/May/2025 02:26:20] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 02:26:20,430 INFO 127.0.0.1 - - [22/May/2025 02:26:20] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:28:50,512 INFO  * Detected change in 'c:\\Users\\HONOR\\Documents\\ROOMLY\\front\\app.py', reloading
+2025-05-22 02:28:52,307 INFO  * Restarting with stat
+2025-05-22 02:29:03,511 WARNING  * Debugger is active!
+2025-05-22 02:29:03,517 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:29:44,249 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:29:44,249 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:29:44,251 INFO  * Restarting with stat
+2025-05-22 02:29:53,676 WARNING  * Debugger is active!
+2025-05-22 02:29:53,680 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:29:53,715 INFO 127.0.0.1 - - [22/May/2025 02:29:53] "GET / HTTP/1.1" 200 -
+2025-05-22 02:29:53,895 INFO 127.0.0.1 - - [22/May/2025 02:29:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:29:57,999 INFO 127.0.0.1 - - [22/May/2025 02:29:57] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:29:58,035 INFO 127.0.0.1 - - [22/May/2025 02:29:58] "GET /static/style_gen.css HTTP/1.1" 200 -
+2025-05-22 02:32:38,128 INFO  * Detected change in 'c:\\Users\\HONOR\\Documents\\ROOMLY\\front\\app.py', reloading
+2025-05-22 02:32:40,071 INFO  * Restarting with stat
+2025-05-22 02:32:50,541 WARNING  * Debugger is active!
+2025-05-22 02:32:50,546 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:32:50,577 INFO 127.0.0.1 - - [22/May/2025 02:32:50] "[31m[1mPOST /generate_room HTTP/1.1[0m" 400 -
+2025-05-22 02:33:15,244 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:33:15,244 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:33:15,246 INFO  * Restarting with stat
+2025-05-22 02:33:25,721 WARNING  * Debugger is active!
+2025-05-22 02:33:25,724 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:33:25,752 INFO 127.0.0.1 - - [22/May/2025 02:33:25] "GET / HTTP/1.1" 200 -
+2025-05-22 02:33:25,754 INFO 127.0.0.1 - - [22/May/2025 02:33:25] "GET / HTTP/1.1" 200 -
+2025-05-22 02:33:25,928 INFO 127.0.0.1 - - [22/May/2025 02:33:25] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:33:30,010 INFO 127.0.0.1 - - [22/May/2025 02:33:30] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:33:30,044 INFO 127.0.0.1 - - [22/May/2025 02:33:30] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:34:21,762 INFO 127.0.0.1 - - [22/May/2025 02:34:21] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 02:34:21,843 INFO 127.0.0.1 - - [22/May/2025 02:34:21] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:36:07,600 INFO 127.0.0.1 - - [22/May/2025 02:36:07] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 02:36:07,681 INFO 127.0.0.1 - - [22/May/2025 02:36:07] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:38:20,681 ERROR Generation error: index 1001 is out of bounds for dimension 0 with size 1000
+2025-05-22 02:38:20,681 INFO 127.0.0.1 - - [22/May/2025 02:38:20] "[32mPOST /generate_room HTTP/1.1[0m" 302 -
+2025-05-22 02:38:20,717 INFO 127.0.0.1 - - [22/May/2025 02:38:20] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:38:20,832 INFO 127.0.0.1 - - [22/May/2025 02:38:20] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:38:20,973 INFO 127.0.0.1 - - [22/May/2025 02:38:20] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 02:39:04,449 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 02:39:04,450 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 02:39:04,451 INFO  * Restarting with stat
+2025-05-22 02:39:13,527 WARNING  * Debugger is active!
+2025-05-22 02:39:13,532 INFO  * Debugger PIN: 642-117-793
+2025-05-22 02:39:13,566 INFO 127.0.0.1 - - [22/May/2025 02:39:13] "GET / HTTP/1.1" 200 -
+2025-05-22 02:39:13,708 INFO 127.0.0.1 - - [22/May/2025 02:39:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 02:39:16,822 INFO 127.0.0.1 - - [22/May/2025 02:39:16] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 02:39:16,857 INFO 127.0.0.1 - - [22/May/2025 02:39:16] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 02:39:48,612 INFO 127.0.0.1 - - [22/May/2025 02:39:48] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 02:39:48,702 INFO 127.0.0.1 - - [22/May/2025 02:39:48] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:13:22,634 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 08:13:22,634 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 08:13:22,637 INFO  * Restarting with stat
+2025-05-22 08:13:35,042 WARNING  * Debugger is active!
+2025-05-22 08:13:35,074 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:13:35,121 INFO 127.0.0.1 - - [22/May/2025 08:13:35] "GET / HTTP/1.1" 200 -
+2025-05-22 08:13:35,360 INFO 127.0.0.1 - - [22/May/2025 08:13:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:13:35,505 INFO 127.0.0.1 - - [22/May/2025 08:13:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-22 08:13:37,719 INFO 127.0.0.1 - - [22/May/2025 08:13:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-22 08:13:42,111 INFO 127.0.0.1 - - [22/May/2025 08:13:42] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 08:13:42,147 INFO 127.0.0.1 - - [22/May/2025 08:13:42] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:14:27,482 INFO 127.0.0.1 - - [22/May/2025 08:14:27] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 08:14:27,572 INFO 127.0.0.1 - - [22/May/2025 08:14:27] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:16:11,975 INFO 127.0.0.1 - - [22/May/2025 08:16:11] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:16:12,008 INFO 127.0.0.1 - - [22/May/2025 08:16:12] "GET /static/styles_prof.css HTTP/1.1" 200 -
+2025-05-22 08:16:13,649 INFO 127.0.0.1 - - [22/May/2025 08:16:13] "GET / HTTP/1.1" 200 -
+2025-05-22 08:16:13,693 INFO 127.0.0.1 - - [22/May/2025 08:16:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:20:13,339 INFO  * Detected change in 'c:\\Users\\HONOR\\Documents\\ROOMLY\\front\\app.py', reloading
+2025-05-22 08:20:16,532 INFO  * Restarting with stat
+2025-05-22 08:20:42,927 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 08:20:42,928 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 08:20:42,930 INFO  * Restarting with stat
+2025-05-22 08:20:54,823 WARNING  * Debugger is active!
+2025-05-22 08:20:54,827 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:20:54,850 INFO 127.0.0.1 - - [22/May/2025 08:20:54] "GET / HTTP/1.1" 200 -
+2025-05-22 08:20:54,971 INFO 127.0.0.1 - - [22/May/2025 08:20:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:21:00,307 INFO 127.0.0.1 - - [22/May/2025 08:21:00] "[31m[1mGET /generate_room HTTP/1.1[0m" 405 -
+2025-05-22 08:21:17,645 INFO 127.0.0.1 - - [22/May/2025 08:21:17] "[31m[1mGET /generate_room HTTP/1.1[0m" 405 -
+2025-05-22 08:21:19,856 INFO 127.0.0.1 - - [22/May/2025 08:21:19] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:21:19,881 INFO 127.0.0.1 - - [22/May/2025 08:21:19] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-05-22 08:21:20,960 INFO 127.0.0.1 - - [22/May/2025 08:21:20] "GET / HTTP/1.1" 200 -
+2025-05-22 08:21:20,999 INFO 127.0.0.1 - - [22/May/2025 08:21:20] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:21:21,875 INFO 127.0.0.1 - - [22/May/2025 08:21:21] "[31m[1mGET /generate_room HTTP/1.1[0m" 405 -
+2025-05-22 08:21:57,534 INFO  * Detected change in 'c:\\Users\\HONOR\\Documents\\ROOMLY\\front\\app.py', reloading
+2025-05-22 08:21:58,894 INFO  * Restarting with stat
+2025-05-22 08:23:11,536 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 08:23:11,537 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 08:23:11,540 INFO  * Restarting with stat
+2025-05-22 08:23:22,733 WARNING  * Debugger is active!
+2025-05-22 08:23:22,741 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:23:22,773 INFO 127.0.0.1 - - [22/May/2025 08:23:22] "GET / HTTP/1.1" 200 -
+2025-05-22 08:23:22,929 INFO 127.0.0.1 - - [22/May/2025 08:23:22] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:23:28,616 INFO 127.0.0.1 - - [22/May/2025 08:23:28] "[31m[1mGET /generate_room HTTP/1.1[0m" 405 -
+2025-05-22 08:25:26,235 INFO  * Detected change in 'c:\\Users\\HONOR\\Documents\\ROOMLY\\front\\app.py', reloading
+2025-05-22 08:25:28,184 INFO  * Restarting with stat
+2025-05-22 08:25:40,525 WARNING  * Debugger is active!
+2025-05-22 08:25:40,527 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:26:05,195 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.65.143.29:5000
+2025-05-22 08:26:05,195 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 08:26:05,195 INFO  * Restarting with stat
+2025-05-22 08:26:17,150 WARNING  * Debugger is active!
+2025-05-22 08:26:17,155 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:26:17,178 INFO 127.0.0.1 - - [22/May/2025 08:26:17] "GET / HTTP/1.1" 200 -
+2025-05-22 08:26:17,303 INFO 127.0.0.1 - - [22/May/2025 08:26:17] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:26:24,282 INFO 127.0.0.1 - - [22/May/2025 08:26:24] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 08:26:24,317 INFO 127.0.0.1 - - [22/May/2025 08:26:24] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:27:02,658 INFO 127.0.0.1 - - [22/May/2025 08:27:02] "POST /generate_room HTTP/1.1" 200 -
+2025-05-22 08:38:24,055 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-22 08:38:24,055 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 08:38:24,058 INFO  * Restarting with stat
+2025-05-22 08:38:36,782 WARNING  * Debugger is active!
+2025-05-22 08:38:36,786 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:38:56,795 INFO 127.0.0.1 - - [22/May/2025 08:38:56] "[31m[1mPOST /generate_room HTTP/1.1[0m" 405 -
+2025-05-22 08:39:00,486 INFO 127.0.0.1 - - [22/May/2025 08:39:00] "GET / HTTP/1.1" 200 -
+2025-05-22 08:39:00,630 INFO 127.0.0.1 - - [22/May/2025 08:39:00] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:39:02,295 INFO 127.0.0.1 - - [22/May/2025 08:39:02] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 08:39:02,366 INFO 127.0.0.1 - - [22/May/2025 08:39:02] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:47:56,998 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-22 08:47:56,998 INFO [33mPress CTRL+C to quit[0m
+2025-05-22 08:47:56,998 INFO  * Restarting with stat
+2025-05-22 08:48:07,540 WARNING  * Debugger is active!
+2025-05-22 08:48:07,547 INFO  * Debugger PIN: 642-117-793
+2025-05-22 08:49:03,731 INFO 127.0.0.1 - - [22/May/2025 08:49:03] "[32mGET /rooms HTTP/1.1[0m" 302 -
+2025-05-22 08:49:03,779 INFO 127.0.0.1 - - [22/May/2025 08:49:03] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:49:03,967 INFO 127.0.0.1 - - [22/May/2025 08:49:03] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-05-22 08:49:05,720 INFO 127.0.0.1 - - [22/May/2025 08:49:05] "GET / HTTP/1.1" 200 -
+2025-05-22 08:49:05,742 INFO 127.0.0.1 - - [22/May/2025 08:49:05] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:49:06,781 INFO 127.0.0.1 - - [22/May/2025 08:49:06] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 08:49:06,832 INFO 127.0.0.1 - - [22/May/2025 08:49:06] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:49:34,295 INFO 127.0.0.1 - - [22/May/2025 08:49:34] "GET / HTTP/1.1" 200 -
+2025-05-22 08:49:34,315 INFO 127.0.0.1 - - [22/May/2025 08:49:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:49:36,352 INFO 127.0.0.1 - - [22/May/2025 08:49:36] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:49:36,385 INFO 127.0.0.1 - - [22/May/2025 08:49:36] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-05-22 08:49:38,984 INFO 127.0.0.1 - - [22/May/2025 08:49:38] "[32mPOST /profile HTTP/1.1[0m" 302 -
+2025-05-22 08:49:39,003 INFO 127.0.0.1 - - [22/May/2025 08:49:39] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:49:39,027 INFO 127.0.0.1 - - [22/May/2025 08:49:39] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-05-22 08:49:42,426 INFO 127.0.0.1 - - [22/May/2025 08:49:42] "GET /register HTTP/1.1" 200 -
+2025-05-22 08:49:42,486 INFO 127.0.0.1 - - [22/May/2025 08:49:42] "GET /static/styles_reg.css HTTP/1.1" 200 -
+2025-05-22 08:49:49,994 INFO 127.0.0.1 - - [22/May/2025 08:49:49] "[32mPOST /register HTTP/1.1[0m" 302 -
+2025-05-22 08:49:50,029 INFO 127.0.0.1 - - [22/May/2025 08:49:50] "GET /verify_email HTTP/1.1" 200 -
+2025-05-22 08:49:50,063 INFO 127.0.0.1 - - [22/May/2025 08:49:50] "[36mGET /static/styles_reg.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:08,511 INFO 127.0.0.1 - - [22/May/2025 08:50:08] "[32mPOST /verify_email HTTP/1.1[0m" 302 -
+2025-05-22 08:50:08,578 INFO 127.0.0.1 - - [22/May/2025 08:50:08] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:50:08,637 INFO 127.0.0.1 - - [22/May/2025 08:50:08] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:19,233 INFO 127.0.0.1 - - [22/May/2025 08:50:19] "GET /edit_profile HTTP/1.1" 200 -
+2025-05-22 08:50:19,267 INFO 127.0.0.1 - - [22/May/2025 08:50:19] "[36mGET /static/styles_reg.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:24,099 INFO 127.0.0.1 - - [22/May/2025 08:50:24] "GET /rooms HTTP/1.1" 200 -
+2025-05-22 08:50:24,157 INFO 127.0.0.1 - - [22/May/2025 08:50:24] "GET /static/styles_rooms.css HTTP/1.1" 200 -
+2025-05-22 08:50:30,976 INFO 127.0.0.1 - - [22/May/2025 08:50:30] "GET / HTTP/1.1" 200 -
+2025-05-22 08:50:30,997 INFO 127.0.0.1 - - [22/May/2025 08:50:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:32,508 INFO 127.0.0.1 - - [22/May/2025 08:50:32] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 08:50:32,557 INFO 127.0.0.1 - - [22/May/2025 08:50:32] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:38,711 INFO 127.0.0.1 - - [22/May/2025 08:50:38] "GET /profile HTTP/1.1" 200 -
+2025-05-22 08:50:38,739 INFO 127.0.0.1 - - [22/May/2025 08:50:38] "[36mGET /static/styles_prof.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:40,742 INFO 127.0.0.1 - - [22/May/2025 08:50:40] "GET / HTTP/1.1" 200 -
+2025-05-22 08:50:40,803 INFO 127.0.0.1 - - [22/May/2025 08:50:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-22 08:50:41,883 INFO 127.0.0.1 - - [22/May/2025 08:50:41] "GET /generate_room HTTP/1.1" 200 -
+2025-05-22 08:50:41,925 INFO 127.0.0.1 - - [22/May/2025 08:50:41] "[36mGET /static/style_gen.css HTTP/1.1[0m" 304 -
+2025-05-24 20:29:35,983 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-24 20:29:35,984 INFO [33mPress CTRL+C to quit[0m
+2025-05-24 20:29:35,990 INFO  * Restarting with stat
+2025-05-24 20:29:49,400 WARNING  * Debugger is active!
+2025-05-24 20:29:49,408 INFO  * Debugger PIN: 642-117-793
+2025-05-24 20:29:49,436 INFO 127.0.0.1 - - [24/May/2025 20:29:49] "[33mGET /image-generator HTTP/1.1[0m" 404 -
+2025-05-24 20:29:49,661 INFO 127.0.0.1 - - [24/May/2025 20:29:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-24 20:29:52,255 INFO 127.0.0.1 - - [24/May/2025 20:29:52] "[33mGET /image-generator HTTP/1.1[0m" 404 -
+2025-05-24 20:30:02,921 INFO 127.0.0.1 - - [24/May/2025 20:30:02] "GET / HTTP/1.1" 200 -
+2025-05-24 20:30:03,108 INFO 127.0.0.1 - - [24/May/2025 20:30:03] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-24 20:30:08,563 INFO 127.0.0.1 - - [24/May/2025 20:30:08] "GET /generate_room HTTP/1.1" 200 -
+2025-05-24 20:30:08,635 INFO 127.0.0.1 - - [24/May/2025 20:30:08] "GET /static/style_gen.css HTTP/1.1" 200 -
