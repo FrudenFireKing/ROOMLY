@@ -26,6 +26,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Конфигурация
+ADMIN_EMAIL = "aroomly@yandex.ru"  # Email для уведомлений администратора
 SUPERUSER_USERNAME = "superadmin"
 SUPERUSER_PASSWORD = os.environ.get('SUPERUSER_PASSWORD', "superpassword123")
 METADATA_FILE = 'metadata.txt'
@@ -739,16 +740,19 @@ def book_room(room_id):
                         'error')
                 else:
                     if is_room_available(room_id, start_time, end_time):
+                        cursor = conn.cursor()
                         # Для суперпользователя используем user_id=0, для обычных - их реальный ID
                         user_id = 0 if session.get('is_superuser') else session['user_id']
 
-                        conn.execute(
+                        cursor.execute(
                             '''INSERT INTO bookings 
                             (room_id, user_id, start_time, end_time, purpose) 
                             VALUES (?, ?, ?, ?, ?)''',
                             (room_id, user_id, start_time, end_time, purpose)
                         )
+                        booking_id = cursor.lastrowid
                         conn.commit()
+                        notify_about_booking(booking_id)
                         flash('Комната успешно забронирована!', 'success')
                         return redirect(url_for('profile'))
                     else:
@@ -776,6 +780,7 @@ def book_room(room_id):
     finally:
         if conn:
             conn.close()
+
 
 # Добавляем новый маршрут в app.py с пагинацией
 @app.route('/all_bookings')
@@ -858,7 +863,7 @@ def cancel_booking(booking_id):
             if not booking:
                 flash('Бронирование не найдено или у вас нет прав для его отмены', 'error')
                 return redirect(url_for('profile'))
-
+        notify_about_booking(booking_id, is_cancellation=True)
         conn.execute('DELETE FROM bookings WHERE id = ?', (booking_id,))
         conn.commit()
 
@@ -1105,6 +1110,105 @@ def print_startup_message():
     print("Сервер успешно запущен!")
     print(f"  - Главная страница: http://127.0.0.1:5000/")
     print("=" * 50 + "\n")
+
+
+def send_booking_email(to_email, subject, template_data, is_cancellation=False):
+    try:
+        # Формирование тела письма
+        body = f"""
+        {'❌ УВЕДОМЛЕНИЕ ОБ ОТМЕНЕ' if is_cancellation else '✅ ПОДТВЕРЖДЕНИЕ БРОНИРОВАНИЯ'}
+
+        Комната: {template_data['room_name']}
+        Время: {template_data['start_time']} - {template_data['end_time']}
+        Цель: {template_data['purpose']}
+
+        С уважением,
+        Команда ROOMLY
+        """
+
+        # Создание MIME-сообщения
+        msg = MIMEText(body.strip(), 'plain', 'utf-8')
+        msg['Subject'] = subject
+        msg['From'] = EMAIL_FROM
+        msg['To'] = to_email
+        msg['Content-Type'] = 'text/plain; charset=utf-8'
+
+        # Синхронная отправка через SMTP
+        with smtplib.SMTP(EMAIL_SMTP_SERVER, EMAIL_SMTP_PORT) as server:
+            server.starttls()
+            server.login(EMAIL_SMTP_USER, EMAIL_SMTP_PASSWORD)
+            server.send_message(msg)
+            logger.info(f"Уведомление отправлено: {to_email}")
+
+        return True
+
+    except Exception as e:
+        logger.error(f"Ошибка отправки: {str(e)}")
+        return False
+def notify_about_booking(booking_id, is_cancellation=False):
+    """Отправка уведомлений о бронировании/отмене"""
+    conn = None
+    try:
+        conn = get_db_connection()
+
+        # Получаем данные бронирования
+        booking = conn.execute('''
+            SELECT b.*, r.name as room_name, u.email, u.username 
+            FROM bookings b
+            JOIN rooms r ON b.room_id = r.id
+            JOIN users u ON b.user_id = u.id
+            WHERE b.id = ?
+        ''', (booking_id,)).fetchone()
+
+        if not booking:
+            logger.warning(f"Бронирование {booking_id} не найдено для уведомления")
+            return
+
+        # Формируем данные для письма
+        template_data = {
+            'room_name': booking['room_name'],
+            'start_time': booking['start_time'],
+            'end_time': booking['end_time'],
+            'purpose': booking['purpose'],
+            'initiator': session.get('username', 'ADMIN')
+        }
+
+        # Отправляем уведомления
+        if is_cancellation:
+            # Пользователю
+            send_booking_email(
+                booking['email'],
+                "❌ Бронирование отменено",
+                template_data,
+                is_cancellation=True
+            )
+            # Администратору
+            send_booking_email(
+                ADMIN_EMAIL,
+                "⚠️ Отмена бронирования",
+                template_data,
+                is_cancellation=True
+            )
+        else:
+            # Пользователю
+            send_booking_email(
+                booking['email'],
+                "✅ Бронирование подтверждено",
+                template_data
+            )
+            # Администратору
+            send_booking_email(
+                ADMIN_EMAIL,
+                "✨ Новое бронирование",
+                template_data
+            )
+    except Exception as e:
+        logger.error(f"Ошибка обработки уведомления: {str(e)}")
+    finally:
+        if conn:
+            conn.close()
+
+
 
 
 if __name__ == '__main__':
