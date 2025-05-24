@@ -1,19 +1,23 @@
 import os
+import io
+import base64
 from flask import Flask, request, render_template, jsonify
 from diffusers import StableDiffusionPipeline
 from deep_translator import GoogleTranslator
 import torch
 import uuid
 from PIL import Image
-import io
-import base64
-from transformers import pipeline
-import re
+from gigachat import GigaChat
+from gigachat.models import Chat
+import yagmail
 
 app = Flask(__name__)
 
-# Инициализация модели Stable Diffusion
-model_id = "stabilityai/stable-diffusion-2-1-base"  # Более легкая модель
+# Инициализация переводчика
+translator = GoogleTranslator(source='ru', target='en')
+
+# Настройки Stable Diffusion
+model_id = "stabilityai/stable-diffusion-2-1-base"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Загрузка модели генерации изображений
@@ -21,8 +25,7 @@ pipe = StableDiffusionPipeline.from_pretrained(
     model_id,
     torch_dtype=torch.float16 if device == "cuda" else torch.float32,
     use_auth_token=False
-)
-pipe = pipe.to(device)
+).to(device)
 
 # Оптимизация для GPU
 if device == "cuda":
@@ -33,47 +36,45 @@ if device == "cuda":
     except:
         pass
 
-# Папка для сохранения изображений
-GENERATED_IMAGES_DIR = "generated_images"
-os.makedirs(GENERATED_IMAGES_DIR, exist_ok=True)
+# Инициализация GigaChat
+gigachat = GigaChat(
+    credentials='MWE0ZmRjZjAtNzc3ZS00Y2IwLWExYjQtMWI4MTVkYzk5YTQ4OmI0MDgyNTE2LTEyMzktNDAyYi1iZGI1LTM3NmIyZDFhN2MyZg==',
+    verify_ssl_certs=False
+)
 
-# Переводчик
-translator = GoogleTranslator(source='ru', target='en')
+# Настройки email
+EMAIL_ADDRESS = "aroomly@yandex.ru"
+EMAIL_PASSWORD = "adminroomly123456789"
+yag = yagmail.SMTP(EMAIL_ADDRESS, EMAIL_PASSWORD)
 
-# Инициализация модели для анализа текста
-nlp = pipeline("ner", model="distilbert-base-uncased", tokenizer="distilbert-base-uncased")
-
-# Функция для извлечения требований
 def extract_requirements(text):
-    sentences = re.split(r'[.!?]', text)
-    requirements = []
+    try:
+        messages = [
+            {
+                "role": "user",
+                "content": f"""Проанализируй текст и выдели ТОЛЬКО конкретные требования к переговорной комнате. 
+                Отвечай строго в формате списка без пояснений. Пример:
+                - стол на 6 человек
+                - проектор
+                - бронирование на среду с 14:00 до 16:00
+
+                Текст: "{text}"
+                """
+            }
+        ]
+
+        response = gigachat.chat(
+            Chat(
+                messages=messages,
+                temperature=0.7,
+                max_tokens=1000
+            )
+        )
+        return [line.strip() for line in response.choices[0].message.content.split('\n') if line.strip()]
     
-    for sentence in sentences:
-        sentence = sentence.strip()
-        if not sentence:
-            continue
-            
-        ner_results = nlp(sentence)
-        
-        if "стол" in sentence.lower():
-            requirements.append("нужен круглый стол")
-        if "стуль" in sentence.lower():
-            match = re.search(r'\d+', sentence)
-            if match:
-                requirements.append(f"{match.group()} стульев")
-        if "освещение" in sentence.lower():
-            requirements.append("должно быть хорошее освещение")
-        if "принтер" in sentence.lower():
-            requirements.append("должен быть принтер")
-        if "сканер" in sentence.lower():
-            requirements.append("должен быть сканер")
-        
-        time_match = re.search(r'на\s+(\w+)\s+с\s+(\d+:\d+)\s+до\s+(\d+:\d+)', sentence, re.IGNORECASE)
-        if time_match:
-            day, start, end = time_match.groups()
-            requirements.append(f"бронирование на {day} с {start} до {end}")
-    
-    return requirements
+    except Exception as e:
+        print(f"Ошибка GigaChat: {str(e)}")
+        return []
 
 @app.route('/')
 def index():
@@ -87,23 +88,15 @@ def generate_image():
 
     try:
         translated_description = translator.translate(description)
-    except Exception as e:
-        return jsonify({'error': f'Ошибка перевода: {str(e)}'}), 500
-
-    prompt = f"Modern meeting room, {translated_description}, professional design, high quality, realistic"
-
-    try:
+        prompt = f"Modern meeting room, {translated_description}, professional design, high quality, realistic"
+        
         image = pipe(
             prompt,
-            num_inference_steps=1,  # Шаги генерацияя
+            num_inference_steps=30,
             guidance_scale=7.5,
             width=512,
             height=512
         ).images[0]
-
-        job_id = str(uuid.uuid4())
-        img_path = os.path.join(GENERATED_IMAGES_DIR, f"{job_id}.png")
-        image.save(img_path)
 
         buffered = io.BytesIO()
         image.save(buffered, format="PNG")
@@ -125,6 +118,43 @@ def analyze_text():
     
     requirements = extract_requirements(user_input)
     return jsonify({'requirements': requirements})
+
+@app.route('/submit', methods=['POST'])
+def submit_request():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'success': False, 'error': 'No data provided'}), 400
+
+        email = data.get('email', 'pavelsysuew06@yandex.ru')
+        image_data = data.get('image')
+        requirements = data.get('requirements', [])
+
+        if not image_data or not image_data.startswith('data:image/png;base64,'):
+            return jsonify({'success': False, 'error': 'Invalid image data'}), 400
+
+        # Сохраняем временное изображение
+        image_bytes = base64.b64decode(image_data.split(",")[1])
+        temp_image = "temp_meeting_room.png"
+        with open(temp_image, "wb") as f:
+            f.write(image_bytes)
+
+        # Отправка письма
+        body = "Требования к переговорной комнате:\n\n" + "\n".join(requirements)
+        yag.send(
+            to=email,
+            subject="Заявка на переговорную комнату",
+            contents=body,
+            attachments=temp_image
+        )
+
+        # Удаляем временный файл
+        os.remove(temp_image)
+
+        return jsonify({'success': True})
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
