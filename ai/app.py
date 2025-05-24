@@ -92,7 +92,7 @@ def generate_image():
         
         image = pipe(
             prompt,
-            num_inference_steps=1,
+            num_inference_steps=30,
             guidance_scale=7.5,
             width=512,
             height=512
