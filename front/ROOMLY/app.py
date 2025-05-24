@@ -11,6 +11,10 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 from threading import Thread
+from sqlalchemy import create_engine, event
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -34,7 +38,8 @@ EMAIL_SMTP_SERVER = "smtp.yandex.ru"  # SMTP сервер
 EMAIL_SMTP_PORT = 587
 EMAIL_SMTP_USER = "roomlynoreply@yandex.ru"  # email
 EMAIL_SMTP_PASSWORD = "sklzhhhmyuzxlanj"  # пароль для SMTP
-EMAIL_FROM = "Roomly <roomlynoreply@yandex.ru>"  # email отправителя
+EMAIL_FROM = "ROOMLY <roomlynoreply@yandex.ru>"  # email отправителя
+ADMINS = ["aroomly@yandex.ru"]   # Список суперпользователей
 
 # Глобальный словарь для хранения временных кодов подтверждения
 email_verification_codes = {}
@@ -51,10 +56,7 @@ AVAILABLE_EQUIPMENT = [
     "Wi-Fi",
     "Кондиционер",
     "Кофе",
-    "Конференц-зал",
-    #"Кухня",
-    #"Балкон",
-    #"Библиотека",
+    "Конференц-зал"
 ]
 
 def safe_string_compare(a, b):

@@ -15,15 +15,10 @@
     <header>
         <nav>
             <a href="{{ url_for('home') }}">Главная</a>
+            <a href="{{ url_for('rooms') }}">Комнаты</a>
+            <a href="{{ url_for('profile') }}">Личный кабинет</a>
             <a href="{{ url_for('about') }}">О нас</a>
-            {% if 'user_id' in session %}
-                <a href="{{ url_for('profile') }}">Профиль</a>
-                <a href="{{ url_for('logout') }}">Выйти</a>
-            {% else %}
-                <a href="{{ url_for('personal') }}">Войти</a>
-                <a href="{{ url_for('register') }}">Регистрация</a>
-            {% endif %}
-        </nav>
+            </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
