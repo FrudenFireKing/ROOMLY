@@ -1,92 +1,216 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles_rooms.css') }}">
-    <title>Комнаты</title>
-</head>
-<body>
-    <nav>
-        <a href="{{ url_for('home') }}">Главная</a>
-        <a href="{{ url_for('rooms') }}">Комнаты</a>
-        <a href="{{ url_for('profile') }}">Личный кабинет</a>
-        <a href="{{ url_for('about') }}">О нас</a>
-    </nav>
+{% extends "base.html" %}
 
-    <div class="main-content">
-        <h1>Комнаты</h1>
-        <div class="filter-container">
-            <form method="GET" action="{{ url_for('rooms') }}" class="filter-form">
-                <div class="filter-group">
-                    <label for="capacity">Минимальная вместимость:</label>
-                    <input type="number" id="capacity" name="capacity" min="1"
-                           value="{{ selected_capacity if selected_capacity else '' }}">
-                </div>
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles_rooms.css') }}">
+{% endblock %}
 
-                <div class="filter-group">
-                    <label>Оснащение:</label>
-                    <div class="equipment-checkboxes">
-                        {% for equipment in available_equipment %}
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="equip-{{ loop.index }}"
-                                   name="equipment" value="{{ equipment }}"
-                                   {% if equipment in selected_equipment %}checked{% endif %}>
-                            <label for="equip-{{ loop.index }}">{{ equipment }}</label>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
+{% block content %}
+<div class="main-content">
+  <h1>Комнаты</h1>
 
-                <div class="filter-buttons">
-                    {% if selected_capacity or selected_equipment %}
-                        <a href="{{ url_for('rooms') }}" class="reset-btn">Сбросить фильтры</a>
-                    {% endif %}
-                    <button type="submit" class="filter-btn">Применить фильтры</button>
-                </div>
-            </form>
+  <div class="filter-container">
+    <form method="GET" action="{{ url_for('rooms') }}" class="filter-form">
+      <div class="filter-group">
+        <label for="capacity">Минимальная вместимость:</label>
+        <input type="number" id="capacity" name="capacity" value="{{ selected_capacity }}" min="1">
+      </div>
+      <div class="filter-group">
+        <label>Оснащение:</label>
+        <div class="equipment-checkboxes">
+          {% for equipment in available_equipment %}
+          <div class="checkbox-item">
+            <input type="checkbox" name="equipment" value="{{ equipment }}"
+                   {% if equipment in selected_equipment %}checked{% endif %}>
+            <label>{{ equipment }}</label>
+          </div>
+          {% endfor %}
         </div>
+      </div>
+      <div class="filter-buttons">
+        {% if selected_capacity or selected_equipment %}
+        <a href="{{ url_for('rooms') }}" class="reset-btn">Сбросить фильтры</a>
+        {% endif %}
+        <button type="submit" class="filter-btn">Применить фильтры</button>
+      </div>
+    </form>
+  </div>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
-
-        <div class="rooms-container">
-            {% for room in rooms %}
-            <div class="room-card">
-                <img src="https://i.ibb.co/BVR0ZjRY/peregovorochka.jpg" alt="{{ room.name }}">
-                <h2>{{ room.name }}</h2>
-                <p>Вместимость: {{ room.capacity }} человек</p>
-                <p>Оснащение: {{ room.equipment }}</p>
-
-                {% if session.get('is_admin') %}
-                <div class="admin-actions">
-                    <div class="admin-actions-wrapper">
-                        <a href="{{ url_for('edit_room', room_id=room.id) }}" class="edit-btn">Редактировать</a>
-                        <a href="{{ url_for('book_room', room_id=room.id) }}" class="book-btn">Подробнее</a>
-                        <a href="{{ url_for('delete_room', room_id=room.id) }}" class="delete-btn">Удалить</a>
-                    </div>
-                </div>
-                {% else %}
-                <a href="{{ url_for('book_room', room_id=room.id) }}" class="book-btn">Подробнее</a>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
     </div>
-
-    {% if session.get('is_admin') %}
-        <a href="{{ url_for('add_room') }}" class="btn-add-room">Добавить комнату</a>
     {% endif %}
+  {% endwith %}
 
-    <footer>
-        &copy; 2025 ROOMLY.
-    </footer>
-</body>
-</html>
+  <div class="rooms-container">
+    {% for room in rooms %}
+    <div class="room-card">
+      <h2>{{ room.name }}</h2>
+      <p>Вместимость: {{ room.capacity }} человек</p>
+      <p>Оснащение: {{ room.equipment }}</p>
+      {% if session.get('is_admin') %}
+      <div class="admin-actions">
+        <div class="admin-actions-wrapper">
+          <a href="{{ url_for('edit_room', room_id=room.id) }}" class="edit-btn">Редактировать</a>
+          <a href="{{ url_for('book_room', room_id=room.id) }}" class="book-btn">Подробнее</a>
+          <a href="{{ url_for('delete_room', room_id=room.id) }}" class="delete-btn">Удалить</a>
+        </div>
+      </div>
+      {% else %}
+      <a href="{{ url_for('book_room', room_id=room.id) }}" class="book-btn">Подробнее</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <section class="occupancy-section">
+    <h2>Статистика занятости (за последние {{ occupancy_days }} дней)</h2>
+    <div class="occupancy-filter">
+      <form method="GET" action="{{ url_for('rooms') }}" class="filter-form">
+        <div class="filter-group">
+          <div class="duration-options">
+            <button type="submit" name="occupancy_days" value="7"
+                    class="duration-btn {% if occupancy_days == '7' %}active{% endif %}">
+              7 дней
+            </button>
+            <button type="submit" name="occupancy_days" value="14"
+                    class="duration-btn {% if occupancy_days == '14' %}active{% endif %}">
+              14 дней
+            </button>
+            <button type="submit" name="occupancy_days" value="30"
+                    class="duration-btn {% if occupancy_days == '30' %}active{% endif %}">
+              30 дней
+            </button>
+          </div>
+        </div>
+        <!-- Скрытые поля для сохранения текущих фильтров -->
+        {% if selected_capacity %}
+        <input type="hidden" name="capacity" value="{{ selected_capacity }}">
+        {% endif %}
+        {% for equip in selected_equipment %}
+        <input type="hidden" name="equipment" value="{{ equip }}">
+        {% endfor %}
+      </form>
+    </div>
+    <div class="chart-container">
+      {% if occupancy_data %}
+      <canvas id="occupancyChart"></canvas>
+      {% else %}
+      <div class="chart-loading">
+        Нет данных о бронированиях за выбранный период
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if session.get('is_admin') %}
+  <a href="{{ url_for('add_room') }}" class="btn-add-room">Добавить комнату</a>
+  {% endif %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    {% if occupancy_data %}
+    const ctx = document.getElementById('occupancyChart').getContext('2d');
+    const occupancyData = {{ occupancy_data | tojson }};
+
+    // Собираем все уникальные даты
+    const allDates = new Set();
+    Object.values(occupancyData).forEach(room => {
+      room.dates.forEach(date => allDates.add(date));
+    });
+    const sortedDates = Array.from(allDates).sort();
+
+    // Подготовка данных для графика
+    const datasets = [];
+    const colors = ['#0ABAB5', '#4CAF50', '#FF6384', '#36A2EB', '#FFCE56', '#9966FF'];
+
+    Object.entries(occupancyData).forEach(([roomName, roomData], index) => {
+      // Создаем массив данных для каждой комнаты, соответствующий всем датам
+      const dataPoints = sortedDates.map(date => {
+        const dateIndex = roomData.dates.indexOf(date);
+        return dateIndex !== -1 ? roomData.total_hours[dateIndex] : 0;
+      });
+
+      datasets.push({
+        label: roomName,
+        data: dataPoints,
+        borderColor: colors[index % colors.length],
+        backgroundColor: colors[index % colors.length] + '80',
+        borderWidth: 2,
+        tension: 0.1,
+        fill: true
+      });
+    });
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: sortedDates,
+        datasets: datasets
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              font: {
+                size: 10 /* Уменьшен размер шрифта легенды */
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)} часов`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Дата',
+              font: {
+                size: 10 /* Уменьшен размер шрифта */
+              }
+            },
+            ticks: {
+              font: {
+                size: 8 /* Уменьшен размер шрифта меток */
+              }
+            },
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Часы бронирования',
+              font: {
+                size: 10 /* Уменьшен размер шрифта */
+              }
+            },
+            ticks: {
+              font: {
+                size: 8 /* Уменьшен размер шрифта меток */
+              }
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    {% endif %}
+  });
+</script>
+{% endblock %}

@@ -648,10 +648,11 @@ def rooms():
 
     capacity_filter = request.args.get('capacity')
     equipment_filter = request.args.getlist('equipment')
+    occupancy_days = request.args.get('occupancy_days', '7')  # По умолчанию 7 дней
 
     conn = get_db_connection()
     try:
-        # Базовый запрос
+        # Базовый запрос для комнат
         query = 'SELECT * FROM rooms WHERE 1=1'
         params = []
 
@@ -662,13 +663,8 @@ def rooms():
 
         # Фильтр по оборудованию
         if equipment_filter:
-            # Создаем условия для каждого элемента оборудования
             conditions = []
             for equipment in equipment_filter:
-                # Ищем оборудование в разных вариантах:
-                # - в начале списка: "Проектор, ..."
-                # - в середине списка: "... , Проектор, ..."
-                # - в конце списка: "... , Проектор"
                 conditions.append(
                     "(equipment LIKE ? OR equipment LIKE ? OR equipment LIKE ? OR equipment = ?)"
                 )
@@ -678,15 +674,66 @@ def rooms():
                     f"%, {equipment}",
                     equipment
                 ])
-
             query += " AND (" + " OR ".join(conditions) + ")"
 
         rooms = conn.execute(query, params).fetchall()
+
+        # Получаем данные для графика занятости
+        date_from = (datetime.now() - timedelta(days=int(occupancy_days))).strftime('%Y-%m-%d')
+
+        # Инициализируем данные для всех комнат
+        all_rooms = conn.execute('SELECT id, name FROM rooms').fetchall()
+        occupancy_data = {room['name']: {'dates': [], 'bookings_count': [], 'total_hours': []} for room in all_rooms}
+
+        # Запрос бронирований
+        occupancy_query = '''
+                    SELECT 
+                        r.id as room_id,
+                        r.name as room_name,
+                        date(b.start_time) as booking_date,
+                        COUNT(b.id) as bookings_count,
+                        SUM((strftime('%s', b.end_time) - strftime('%s', b.start_time))/3600.0) as total_hours
+                    FROM rooms r
+                    LEFT JOIN bookings b ON r.id = b.room_id AND date(b.start_time) >= ?
+                    GROUP BY r.id, r.name, date(b.start_time)
+                    ORDER BY r.name, booking_date
+                '''
+        occupancy_rows = conn.execute(occupancy_query, (date_from,)).fetchall()
+
+        # Заполняем occupancy_data
+        for row in occupancy_rows:
+            room_name = row['room_name']
+            if row['booking_date']:  # Проверяем, что booking_date не NULL
+                occupancy_data[room_name]['dates'].append(row['booking_date'])
+                occupancy_data[room_name]['bookings_count'].append(row['bookings_count'])
+                occupancy_data[room_name]['total_hours'].append(row['total_hours'] or 0)
+
+        # Заполняем нулевые значения для комнат без бронирований
+        for room_name in occupancy_data:
+            if not occupancy_data[room_name]['dates']:
+                # Добавляем данные за последние occupancy_days дней
+                for i in range(int(occupancy_days)):
+                    date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
+                    occupancy_data[room_name]['dates'].append(date)
+                    occupancy_data[room_name]['bookings_count'].append(0)
+                    occupancy_data[room_name]['total_hours'].append(0)
+
+                # Сортируем даты по возрастанию
+                sorted_indices = sorted(range(len(occupancy_data[room_name]['dates'])),
+                                        key=lambda k: occupancy_data[room_name]['dates'][k])
+                occupancy_data[room_name]['dates'] = [occupancy_data[room_name]['dates'][i] for i in sorted_indices]
+                occupancy_data[room_name]['bookings_count'] = [occupancy_data[room_name]['bookings_count'][i] for i in
+                                                               sorted_indices]
+                occupancy_data[room_name]['total_hours'] = [occupancy_data[room_name]['total_hours'][i] for i in
+                                                            sorted_indices]
+
         return render_template('rooms.html',
                                rooms=rooms,
                                available_equipment=AVAILABLE_EQUIPMENT,
                                selected_equipment=equipment_filter,
-                               selected_capacity=capacity_filter)
+                               selected_capacity=capacity_filter,
+                               occupancy_data=occupancy_data,
+                               occupancy_days=occupancy_days)
     finally:
         conn.close()
 
