@@ -33,6 +33,7 @@
                     <input type="password" name="password" placeholder="Пароль" required>
                     <button type="submit">Войти</button>
                 </form>
+                <p><a href="{{ url_for('forgot_password') }}">Восстановить пароль</a>.</p>
                 <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a>.</p>
             </div>
         {% else %}

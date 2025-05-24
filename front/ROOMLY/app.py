@@ -53,9 +53,9 @@ AVAILABLE_EQUIPMENT = [
     "Кондиционер",
     "Кофе",
     "Конференц-зал",
-    "Кухня",
-    "Балкон",
-    "Библиотека",
+    #"Кухня",
+    #"Балкон",
+    #"Библиотека",
 ]
 
 def safe_string_compare(a, b):
@@ -518,76 +518,120 @@ def resend_code():
 
     return render_template('resend_code.html')
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+
+# Добавляем в глобальные переменные
+PASSWORD_RESET_CODES = {}
+
+
+# Добавляем новые маршруты
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
     if request.method == 'POST':
-        username = sanitize_input(request.form.get('username', ''))
-        password = request.form.get('password', '')
+        email = sanitize_input(request.form.get('email', ''))
 
-        conn = None
         try:
+            validate_input(email, EMAIL_REGEX, 'email')
+
             conn = get_db_connection()
-
-            # Проверка суперпользователя
-            if (safe_string_compare(username, SUPERUSER_USERNAME) and
-                    safe_string_compare(password, SUPERUSER_PASSWORD)):
-                session['user_id'] = 0
-                session['username'] = SUPERUSER_USERNAME
-                session['is_admin'] = True
-                session['is_superuser'] = True
-                flash('Вход выполнен как суперпользователь', 'success')
-                return redirect(url_for('admin_panel'))
-
-            # Поиск пользователя
-            user = conn.execute(
-                'SELECT * FROM users WHERE username = ?',
-                (username,)
-            ).fetchone()
+            user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+            conn.close()
 
             if not user:
-                flash('Неверное имя пользователя или пароль', 'error')
-                return redirect(url_for('login'))
+                flash('Пользователь с таким email не найден', 'error')
+                return redirect(url_for('forgot_password'))
 
-            # Проверка блокировки после множества попыток
-            if user['failed_attempts'] >= 5:
-                flash('Слишком много неудачных попыток. Попробуйте позже.', 'error')
-                return redirect(url_for('login'))
+            # Генерируем код сброса
+            reset_code = generate_verification_code()
+            PASSWORD_RESET_CODES[email] = {
+                'code': reset_code,
+                'timestamp': datetime.now()
+            }
 
-            # Проверка пароля
-            if checkpw(password.encode('utf-8'), user['password']):
-                # Успешный вход
-                session['user_id'] = user['id']
-                session['username'] = user['username']
-                session['email'] = user['email']
-                session['is_admin'] = bool(user['is_admin'])
-                session['last_login'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            # Отправляем email с кодом
+            Thread(target=send_password_reset_email, args=(email, reset_code)).start()
 
-                # Сбрасываем счётчик неудачных попыток
-                conn.execute(
-                    'UPDATE users SET failed_attempts = 0, last_login = ? WHERE id = ?',
-                    (session['last_login'], user['id'])
-                )
-                conn.commit()
+            session['reset_email'] = email
+            flash('Код для сброса пароля отправлен на вашу почту', 'success')
+            return redirect(url_for('reset_password'))
 
-                flash(f'Добро пожаловать, {user["username"]}!', 'success')
-                return redirect(url_for('profile'))
-            else:
-                # Неверный пароль
-                conn.execute(
-                    'UPDATE users SET failed_attempts = failed_attempts + 1 WHERE id = ?',
-                    (user['id'],)
-                )
-                conn.commit()
-                flash('Неверное имя пользователя или пароль', 'error')
+        except ValueError as e:
+            flash(str(e), 'error')
 
-        except sqlite3.Error as e:
-            logger.error(f"Database error in login: {str(e)}")
-            flash('Ошибка при входе в систему', 'error')
-        finally:
-            if conn:
-                conn.close()
+    return render_template('forgot_password.html')
 
-    return render_template('login.html')
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    if 'reset_email' not in session:
+        flash('Сначала запросите сброс пароля', 'error')
+        return redirect(url_for('forgot_password'))
+
+    email = session['reset_email']
+
+    if request.method == 'POST':
+        code = request.form.get('code', '').strip()
+        new_password = request.form.get('new_password', '')
+        confirm_password = request.form.get('confirm_password', '')
+
+        if not code or not code.isdigit() or len(code) != 6:
+            flash('Пожалуйста, введите 6-значный код', 'error')
+        elif new_password != confirm_password:
+            flash('Пароли не совпадают', 'error')
+        elif len(new_password) < 8:
+            flash('Пароль должен содержать минимум 8 символов', 'error')
+        elif email not in PASSWORD_RESET_CODES:
+            flash('Код сброса не найден или истёк', 'error')
+            return redirect(url_for('forgot_password'))
+        elif (datetime.now() - PASSWORD_RESET_CODES[email]['timestamp']) > timedelta(minutes=30):
+            flash('Срок действия кода истёк', 'error')
+            del PASSWORD_RESET_CODES[email]
+            return redirect(url_for('forgot_password'))
+        elif code != PASSWORD_RESET_CODES[email]['code']:
+            flash('Неверный код подтверждения', 'error')
+        else:
+            # Обновляем пароль
+            hashed_password = hashpw(new_password.encode('utf-8'), gensalt())
+
+            conn = get_db_connection()
+            conn.execute(
+                'UPDATE users SET password = ? WHERE email = ?',
+                (hashed_password, email)
+            )
+            conn.commit()
+            conn.close()
+
+            # Очищаем сессию
+            del PASSWORD_RESET_CODES[email]
+            session.pop('reset_email', None)
+
+            flash('Пароль успешно изменён! Теперь вы можете войти', 'success')
+            return redirect(url_for('profile'))
+
+    return render_template('reset_password.html')
+
+
+def send_password_reset_email(email, code):
+    try:
+        msg = MIMEText(f"""
+        Здравствуйте!
+        Для сброса пароля на ROOMLY используйте следующий код: {code}
+        Если вы не запрашивали сброс пароля, проигнорируйте это письмо.
+        С уважением,
+        Команда ROOMLY
+        """, 'plain', 'utf-8')
+        msg['Subject'] = 'Сброс пароля для ROOMLY'
+        msg['From'] = EMAIL_FROM
+        msg['To'] = email
+        msg['Content-Type'] = 'text/plain; charset=utf-8'
+
+        with smtplib.SMTP(EMAIL_SMTP_SERVER, EMAIL_SMTP_PORT) as server:
+            server.starttls()
+            server.login(EMAIL_SMTP_USER, EMAIL_SMTP_PASSWORD)
+            server.send_message(msg)
+        return True
+    except Exception as e:
+        logger.error(f"Error sending password reset email: {str(e)}")
+        return False
 
 
 @app.route('/logout')
@@ -605,10 +649,11 @@ def rooms():
 
     capacity_filter = request.args.get('capacity')
     equipment_filter = request.args.getlist('equipment')
+    occupancy_days = request.args.get('occupancy_days', '7')  # По умолчанию 7 дней
 
     conn = get_db_connection()
     try:
-        # Базовый запрос
+        # Базовый запрос для комнат
         query = 'SELECT * FROM rooms WHERE 1=1'
         params = []
 
@@ -619,13 +664,8 @@ def rooms():
 
         # Фильтр по оборудованию
         if equipment_filter:
-            # Создаем условия для каждого элемента оборудования
             conditions = []
             for equipment in equipment_filter:
-                # Ищем оборудование в разных вариантах:
-                # - в начале списка: "Проектор, ..."
-                # - в середине списка: "... , Проектор, ..."
-                # - в конце списка: "... , Проектор"
                 conditions.append(
                     "(equipment LIKE ? OR equipment LIKE ? OR equipment LIKE ? OR equipment = ?)"
                 )
@@ -635,15 +675,82 @@ def rooms():
                     f"%, {equipment}",
                     equipment
                 ])
-
             query += " AND (" + " OR ".join(conditions) + ")"
 
         rooms = conn.execute(query, params).fetchall()
+
+        # Создаем список комнат с их фотографиями
+        rooms_data = []
+        for room in rooms:
+            room_dict = dict(room)
+            # Получаем первую фотографию для комнаты (или None, если нет)
+            photo = conn.execute(
+                'SELECT photo_url FROM room_photos WHERE room_id = ? LIMIT 1',
+                (room['id'],)
+            ).fetchone()
+            room_dict['photo_url'] = photo['photo_url'] if photo else None
+            rooms_data.append(room_dict)
+
+        # Получаем данные для графика занятости
+        date_from = (datetime.now() - timedelta(days=int(occupancy_days))).strftime('%Y-%m-%d')
+        available_hours_per_day = 12.0  # 8 AM to 8 PM = 12 часов
+
+        # Инициализируем данные для всех комнат
+        all_rooms = conn.execute('SELECT id, name FROM rooms').fetchall()
+        occupancy_data = {room['name']: {'dates': [], 'bookings_count': [], 'occupancy_percent': []} for room in all_rooms}
+
+        # Запрос бронирований
+        occupancy_query = '''
+            SELECT 
+                r.id as room_id,
+                r.name as room_name,
+                date(b.start_time) as booking_date,
+                COUNT(b.id) as bookings_count,
+                SUM((strftime('%s', b.end_time) - strftime('%s', b.start_time))/3600.0) as total_hours
+            FROM rooms r
+            LEFT JOIN bookings b ON r.id = b.room_id AND date(b.start_time) >= ?
+            GROUP BY r.id, r.name, date(b.start_time)
+            ORDER BY r.name, booking_date
+        '''
+        occupancy_rows = conn.execute(occupancy_query, (date_from,)).fetchall()
+
+        # Заполняем occupancy_data
+        for row in occupancy_rows:
+            room_name = row['room_name']
+            if row['booking_date']:  # Проверяем, что booking_date не NULL
+                total_hours = row['total_hours'] or 0
+                # Ограничиваем total_hours сверху значением available_hours_per_day
+                total_hours = min(total_hours, available_hours_per_day)
+                # Вычисляем процент занятости
+                occupancy_percent = (total_hours / available_hours_per_day) * 100
+                occupancy_data[room_name]['dates'].append(row['booking_date'])
+                occupancy_data[room_name]['bookings_count'].append(row['bookings_count'])
+                occupancy_data[room_name]['occupancy_percent'].append(round(occupancy_percent, 1))
+
+        # Заполняем нулевые значения для комнат без бронирований
+        for room_name in occupancy_data:
+            if not occupancy_data[room_name]['dates']:
+                # Добавляем данные за последние occupancy_days дней
+                for i in range(int(occupancy_days)):
+                    date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
+                    occupancy_data[room_name]['dates'].append(date)
+                    occupancy_data[room_name]['bookings_count'].append(0)
+                    occupancy_data[room_name]['occupancy_percent'].append(0.0)
+
+                # Сортируем даты по возрастанию
+                sorted_indices = sorted(range(len(occupancy_data[room_name]['dates'])),
+                                        key=lambda k: occupancy_data[room_name]['dates'][k])
+                occupancy_data[room_name]['dates'] = [occupancy_data[room_name]['dates'][i] for i in sorted_indices]
+                occupancy_data[room_name]['bookings_count'] = [occupancy_data[room_name]['bookings_count'][i] for i in sorted_indices]
+                occupancy_data[room_name]['occupancy_percent'] = [occupancy_data[room_name]['occupancy_percent'][i] for i in sorted_indices]
+
         return render_template('rooms.html',
-                               rooms=rooms,
+                               rooms=rooms_data,
                                available_equipment=AVAILABLE_EQUIPMENT,
                                selected_equipment=equipment_filter,
-                               selected_capacity=capacity_filter)
+                               selected_capacity=capacity_filter,
+                               occupancy_data=occupancy_data,
+                               occupancy_days=occupancy_days)
     finally:
         conn.close()
 
