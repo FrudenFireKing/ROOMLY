@@ -49,6 +49,11 @@
   <div class="rooms-container">
     {% for room in rooms %}
     <div class="room-card">
+      {% if room.photo_url %}
+      <img src="{{ room.photo_url }}" alt="{{ room.name }} Image" class="room-image">
+      {% else %}
+      <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="No Image" class="room-image">
+      {% endif %}
       <h2>{{ room.name }}</h2>
       <p>Вместимость: {{ room.capacity }} человек</p>
       <p>Оснащение: {{ room.equipment }}</p>
@@ -134,7 +139,7 @@
       // Создаем массив данных для каждой комнаты, соответствующий всем датам
       const dataPoints = sortedDates.map(date => {
         const dateIndex = roomData.dates.indexOf(date);
-        return dateIndex !== -1 ? roomData.total_hours[dateIndex] : 0;
+        return dateIndex !== -1 ? roomData.occupancy_percent[dateIndex] : 0;
       });
 
       datasets.push({
@@ -162,14 +167,14 @@
             position: 'top',
             labels: {
               font: {
-                size: 10 /* Уменьшен размер шрифта легенды */
+                size: 10
               }
             }
           },
           tooltip: {
             callbacks: {
               label: function(context) {
-                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)} часов`;
+                return `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`;
               }
             }
           }
@@ -180,12 +185,12 @@
               display: true,
               text: 'Дата',
               font: {
-                size: 10 /* Уменьшен размер шрифта */
+                size: 10
               }
             },
             ticks: {
               font: {
-                size: 8 /* Уменьшен размер шрифта меток */
+                size: 8
               }
             },
             grid: {
@@ -195,17 +200,21 @@
           y: {
             title: {
               display: true,
-              text: 'Часы бронирования',
+              text: 'Занятость (%)',
               font: {
-                size: 10 /* Уменьшен размер шрифта */
+                size: 10
               }
             },
             ticks: {
               font: {
-                size: 8 /* Уменьшен размер шрифта меток */
+                size: 8
+              },
+              callback: function(value) {
+                return value + '%';
               }
             },
-            beginAtZero: true
+            beginAtZero: true,
+            max: 100
           }
         }
       }

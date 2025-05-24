@@ -678,35 +678,53 @@ def rooms():
 
         rooms = conn.execute(query, params).fetchall()
 
+        # Создаем список комнат с их фотографиями
+        rooms_data = []
+        for room in rooms:
+            room_dict = dict(room)
+            # Получаем первую фотографию для комнаты (или None, если нет)
+            photo = conn.execute(
+                'SELECT photo_url FROM room_photos WHERE room_id = ? LIMIT 1',
+                (room['id'],)
+            ).fetchone()
+            room_dict['photo_url'] = photo['photo_url'] if photo else None
+            rooms_data.append(room_dict)
+
         # Получаем данные для графика занятости
         date_from = (datetime.now() - timedelta(days=int(occupancy_days))).strftime('%Y-%m-%d')
+        available_hours_per_day = 12.0  # 8 AM to 8 PM = 12 часов
 
         # Инициализируем данные для всех комнат
         all_rooms = conn.execute('SELECT id, name FROM rooms').fetchall()
-        occupancy_data = {room['name']: {'dates': [], 'bookings_count': [], 'total_hours': []} for room in all_rooms}
+        occupancy_data = {room['name']: {'dates': [], 'bookings_count': [], 'occupancy_percent': []} for room in all_rooms}
 
         # Запрос бронирований
         occupancy_query = '''
-                    SELECT 
-                        r.id as room_id,
-                        r.name as room_name,
-                        date(b.start_time) as booking_date,
-                        COUNT(b.id) as bookings_count,
-                        SUM((strftime('%s', b.end_time) - strftime('%s', b.start_time))/3600.0) as total_hours
-                    FROM rooms r
-                    LEFT JOIN bookings b ON r.id = b.room_id AND date(b.start_time) >= ?
-                    GROUP BY r.id, r.name, date(b.start_time)
-                    ORDER BY r.name, booking_date
-                '''
+            SELECT 
+                r.id as room_id,
+                r.name as room_name,
+                date(b.start_time) as booking_date,
+                COUNT(b.id) as bookings_count,
+                SUM((strftime('%s', b.end_time) - strftime('%s', b.start_time))/3600.0) as total_hours
+            FROM rooms r
+            LEFT JOIN bookings b ON r.id = b.room_id AND date(b.start_time) >= ?
+            GROUP BY r.id, r.name, date(b.start_time)
+            ORDER BY r.name, booking_date
+        '''
         occupancy_rows = conn.execute(occupancy_query, (date_from,)).fetchall()
 
         # Заполняем occupancy_data
         for row in occupancy_rows:
             room_name = row['room_name']
             if row['booking_date']:  # Проверяем, что booking_date не NULL
+                total_hours = row['total_hours'] or 0
+                # Ограничиваем total_hours сверху значением available_hours_per_day
+                total_hours = min(total_hours, available_hours_per_day)
+                # Вычисляем процент занятости
+                occupancy_percent = (total_hours / available_hours_per_day) * 100
                 occupancy_data[room_name]['dates'].append(row['booking_date'])
                 occupancy_data[room_name]['bookings_count'].append(row['bookings_count'])
-                occupancy_data[room_name]['total_hours'].append(row['total_hours'] or 0)
+                occupancy_data[room_name]['occupancy_percent'].append(round(occupancy_percent, 1))
 
         # Заполняем нулевые значения для комнат без бронирований
         for room_name in occupancy_data:
@@ -716,19 +734,17 @@ def rooms():
                     date = (datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d')
                     occupancy_data[room_name]['dates'].append(date)
                     occupancy_data[room_name]['bookings_count'].append(0)
-                    occupancy_data[room_name]['total_hours'].append(0)
+                    occupancy_data[room_name]['occupancy_percent'].append(0.0)
 
                 # Сортируем даты по возрастанию
                 sorted_indices = sorted(range(len(occupancy_data[room_name]['dates'])),
                                         key=lambda k: occupancy_data[room_name]['dates'][k])
                 occupancy_data[room_name]['dates'] = [occupancy_data[room_name]['dates'][i] for i in sorted_indices]
-                occupancy_data[room_name]['bookings_count'] = [occupancy_data[room_name]['bookings_count'][i] for i in
-                                                               sorted_indices]
-                occupancy_data[room_name]['total_hours'] = [occupancy_data[room_name]['total_hours'][i] for i in
-                                                            sorted_indices]
+                occupancy_data[room_name]['bookings_count'] = [occupancy_data[room_name]['bookings_count'][i] for i in sorted_indices]
+                occupancy_data[room_name]['occupancy_percent'] = [occupancy_data[room_name]['occupancy_percent'][i] for i in sorted_indices]
 
         return render_template('rooms.html',
-                               rooms=rooms,
+                               rooms=rooms_data,
                                available_equipment=AVAILABLE_EQUIPMENT,
                                selected_equipment=equipment_filter,
                                selected_capacity=capacity_filter,
