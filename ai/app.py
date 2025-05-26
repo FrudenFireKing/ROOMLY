@@ -80,7 +80,7 @@ def extract_requirements(text):
 def index():
     return render_template('ai_index.html')
 
-@ai_bp.route('/ai/generate', methods=['POST'])
+@ai_bp.route('/generate', methods=['POST'])
 def generate_image():
     description = request.form.get('description')
     if not description:
@@ -110,7 +110,7 @@ def generate_image():
     except Exception as e:
         return jsonify({'error': f'Ошибка генерации: {str(e)}'}), 500
 
-@ai_bp.route('/ai/analyze', methods=['POST'])
+@ai_bp.route('/analyze', methods=['POST'])
 def analyze_text():
     user_input = request.form.get('user_input')
     if not user_input:
