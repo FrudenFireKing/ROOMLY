@@ -14,11 +14,12 @@
     </form>
     <header>
         <nav>
-            <a href="{{ url_for('home') }}">Главная</a>
-            <a href="{{ url_for('rooms') }}">Комнаты</a>
-            <a href="{{ url_for('profile') }}">Личный кабинет</a>
-            <a href="{{ url_for('about') }}">О нас</a>
-            </nav>
+        <a href="/">Главная</a>
+        <a href="/rooms">Комнаты</a>
+        <a href="/profile">Личный кабинет</a>
+        <a href="{{ url_for('ai.index') }}" class="btn btn-primary">Мероприятия</a>
+        <a href="/about">О нас</a>
+    </nav>
     </header>
     <main>
         {% block content %}{% endblock %}

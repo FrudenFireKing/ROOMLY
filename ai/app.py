@@ -1,7 +1,7 @@
 import os
 import io
 import base64
-from flask import Flask, request, render_template, jsonify
+from flask import Blueprint, request, render_template, jsonify
 from diffusers import StableDiffusionPipeline
 from deep_translator import GoogleTranslator
 import torch
@@ -11,7 +11,7 @@ from gigachat import GigaChat
 from gigachat.models import Chat
 import yagmail
 
-app = Flask(__name__)
+ai_bp = Blueprint('ai', __name__, template_folder='templates')
 
 # Инициализация переводчика
 translator = GoogleTranslator(source='ru', target='en')
@@ -24,7 +24,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 pipe = StableDiffusionPipeline.from_pretrained(
     model_id,
     torch_dtype=torch.float16 if device == "cuda" else torch.float32,
-    use_auth_token=False
+    token=False
 ).to(device)
 
 # Оптимизация для GPU
@@ -76,11 +76,11 @@ def extract_requirements(text):
         print(f"Ошибка GigaChat: {str(e)}")
         return []
 
-@app.route('/')
+@ai_bp.route('/ai')
 def index():
-    return render_template('index.html')
+    return render_template('ai_index.html')
 
-@app.route('/generate', methods=['POST'])
+@ai_bp.route('/ai/generate', methods=['POST'])
 def generate_image():
     description = request.form.get('description')
     if not description:
@@ -92,7 +92,7 @@ def generate_image():
         
         image = pipe(
             prompt,
-            num_inference_steps=30,
+            num_inference_steps=1,
             guidance_scale=7.5,
             width=512,
             height=512
@@ -110,7 +110,7 @@ def generate_image():
     except Exception as e:
         return jsonify({'error': f'Ошибка генерации: {str(e)}'}), 500
 
-@app.route('/analyze', methods=['POST'])
+@ai_bp.route('/ai/analyze', methods=['POST'])
 def analyze_text():
     user_input = request.form.get('user_input')
     if not user_input:
@@ -119,7 +119,7 @@ def analyze_text():
     requirements = extract_requirements(user_input)
     return jsonify({'requirements': requirements})
 
-@app.route('/submit', methods=['POST'])
+@ai_bp.route('/submit', methods=['POST'])
 def submit_request():
     try:
         data = request.get_json()
@@ -156,5 +156,28 @@ def submit_request():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+@ai_bp.after_request
+def add_security_headers(response):
+    if request.path.startswith('/ai/'):
+        # Особые правила для /ai/
+        csp_policy = (
+            "default-src 'self'; "
+            "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com 'unsafe-inline' 'unsafe-eval'; "
+            "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; "
+            "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; "
+            "img-src 'self' data: https://i.imgur.com https://sun9-55.userapi.com; "
+            "connect-src 'self' http://127.0.0.1:5000; "
+            "frame-src 'none'; "
+        )
+    else:
+        # Стандартные правила для остальных страниц
+        csp_policy = (
+            "default-src 'self'; "
+            "script-src 'self' https://cdnjs.cloudflare.com; "
+            "style-src 'self' https://cdnjs.cloudflare.com; "
+            "img-src 'self' data:; "
+        )
+
+    response.headers['Content-Security-Policy'] = csp_policy
+    return response

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROOMLY - Генератор переговорных комнат</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_ai.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/rooms">Комнаты</a>
+        <a href="/profile">Личный кабинет</a>
+        <a href="{{ url_for('ai.index') }}" class="btn btn-primary">Мероприятия</a>
+        <a href="/about">О нас</a>
+    </nav>
+    <div class="container">
+        <h1><i class="fas fa-magic"></i> Генератор идеальной переговорки</h1>
+
+        <div class="input-section">
+            <h2><i class="fas fa-edit"></i> Опишите ваши требования:</h2>
+            <textarea id="user-input" placeholder="Пример: Нужна переговорка на 8 человек с проектором и телевизором, круглый стол, бронирование на четверг с 14:00 до 16:00"></textarea>
+
+            <div class="button-group">
+                <button id="generate-btn"><i class="fas fa-bolt"></i> Сгенерировать</button>
+            </div>
+        </div>
+
+        <div class="output-section">
+            <div class="results-container">
+                <div class="requirements-box">
+                    <h2><i class="fas fa-clipboard-list"></i> Ваши требования:</h2>
+                    <div class="requirements-content">
+                        <ul id="requirements-list">
+                            <li class="placeholder">Здесь появятся извлечённые требования</li>
+                        </ul>
+                    </div>
+                    <div class="progress-container">
+                        <div id="progress-bar"><div id="progress"></div></div>
+                        <p id="progress-text"><i class="fas fa-sync-alt fa-spin"></i> Ожидание действий...</p>
+                    </div>
+                </div>
+
+                <div class="image-box">
+                    <h2><i class="fas fa-image"></i> Визуализация:</h2>
+                    <div class="image-placeholder" id="image-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <p>Изображение переговорки появится здесь</p>
+                    </div>
+                    <img id="generated-image" src="" alt="Сгенерированное изображение переговорки" style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-section" id="submit-section" style="display: none;">
+            <button id="submit-btn"><i class="fas fa-paper-plane"></i> Отправить на рассмотрение</button>
+            <p id="submit-status"></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        let currentRequirements = [];
+        let currentImage = "";
+
+        function updateProgress(start, end, duration, callback) {
+            const progress = $('#progress');
+            let current = start;
+            const step = (end - start) / (duration / 50);
+
+            const timer = setInterval(() => {
+                current += step;
+                progress.css('width', current + '%');
+                if (current >= end) {
+                    clearInterval(timer);
+                    if (callback) callback();
+                }
+            }, 50);
+        }
+
+        $('#generate-btn').click(function() {
+            const description = $('#user-input').val().trim();
+            if (!description) {
+                alert('Пожалуйста, введите описание.');
+                return;
+            }
+
+            $('#requirements-list').empty().append('<li class="loading"><i class="fas fa-spinner fa-spin"></i> Анализ требований...</li>');
+            $('#image-placeholder').show();
+            $('#generated-image').hide();
+            $('#submit-section').hide();
+            $('#progress-text').html('<i class="fas fa-sync-alt fa-spin"></i> Анализируем запрос...');
+            updateProgress(0, 30, 1000);
+
+            // Анализ требований
+            $.ajax({
+                url: '/ai/analyze',
+                type: 'POST',
+                data: { user_input: description },
+                success: function(response) {
+                    $('#requirements-list').empty();
+
+                    if (response.error) {
+                        $('#requirements-list').append(`<li class="error"><i class="fas fa-times-circle"></i> ${response.error}</li>`);
+                        $('#progress-text').html('<i class="fas fa-times-circle"></i> Ошибка анализа');
+                        return;
+                    }
+
+                    currentRequirements = response.requirements;
+                    if (response.requirements.length === 0) {
+                        $('#requirements-list').append('<li class="empty"><i class="fas fa-info-circle"></i> Требования не обнаружены</li>');
+                    } else {
+                        response.requirements.forEach(req => {
+                            $('#requirements-list').append(`<li><i class="fas fa-check-circle"></i> ${req}</li>`);
+                        });
+                    }
+
+                    $('#progress-text').html('<i class="fas fa-sync-alt fa-spin"></i> Генерируем изображение...');
+                    updateProgress(30, 70, 1500, () => {
+                        // Генерация изображения
+                        $.ajax({
+                            url: '/ai/generate',
+                            type: 'POST',
+                            data: { description: description },
+                            success: function(imgResponse) {
+                                if (imgResponse.error) {
+                                    $('#progress-text').html(`<i class="fas fa-times-circle"></i> ${imgResponse.error}`);
+                                } else {
+                                    currentImage = imgResponse.image;
+                                    $('#image-placeholder').hide();
+                                    $('#generated-image')
+                                        .attr('src', imgResponse.image)
+                                        .show();
+                                    $('#progress-text').html('<i class="fas fa-check-circle"></i> Готово!');
+                                    $('#submit-section').fadeIn();
+                                }
+                                updateProgress(70, 100, 500);
+                            }
+                        });
+                    });
+                }
+            });
+        });
+
+        $('#submit-btn').click(function() {
+            if (!currentImage) {
+                $('#submit-status').html('<span style="color: red;">Сначала сгенерируйте изображение</span>');
+                return;
+            }
+
+            $('#submit-status').html('<i class="fas fa-spinner fa-spin"></i> Отправка...');
+            $('#submit-btn').prop('disabled', true);
+
+            $.ajax({
+                url: '/ai/submit',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    email: 'pavelsysuew062@yandex.ru',
+                    image: currentImage,
+                    requirements: currentRequirements
+                }),
+                success: function(response) {
+                    if (response.success) {
+                        $('#submit-status').html('<span style="color: green;"><i class="fas fa-check-circle"></i> Успешно отправлено!</span>');
+                    } else {
+                        $('#submit-status').html(`<span style="color: red;"><i class="fas fa-times-circle"></i> Ошибка: ${response.error || 'Неизвестная ошибка'}</span>`);
+                    }
+                    $('#submit-btn').prop('disabled', false);
+                },
+                error: function() {
+                    $('#submit-status').html('<span style="color: red;"><i class="fas fa-times-circle"></i> Ошибка соединения</span>');
+                    $('#submit-btn').prop('disabled', false);
+                }
+            });
+        });
+    });
+    </script>
+    <footer>
+        &copy; 2025 ROOMLY.
+    </footer>
+</body>
+</html>

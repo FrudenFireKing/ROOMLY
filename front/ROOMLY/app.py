@@ -11,9 +11,7 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 from threading import Thread
-from sqlalchemy import create_engine, event
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
+from ai.app import ai_bp
 
 
 app = Flask(__name__)
@@ -1159,6 +1157,7 @@ def delete_room(room_id):
 def add_security_headers(response):
     csp_policy = (
         "default-src 'self'; "
+        "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com 'unsafe-inline'; "
         "script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; "
         "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; "
         "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; "
@@ -1318,7 +1317,7 @@ def notify_about_booking(booking_id, is_cancellation=False):
             conn.close()
 
 
-
+app.register_blueprint(ai_bp, url_prefix='/ai')
 
 if __name__ == '__main__':
     # Проверяем и инициализируем БД
