@@ -1,0 +1,224 @@
+
+                        /* Анимированный градиентный фон */
+        body {
+            width: 100%;
+            height: 100vh; /* На всю высоту экрана */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Чтобы избежать скролла */
+
+            /* Градиентный фон с анимацией */
+            background: linear-gradient(
+                -45deg,
+                #7FFFD4,  /* Основной цвет Tiffany */
+                #AFEEEE,  /* Светлый оттенок Tiffany (цвет который мне не нравится) */
+                #7FFFD4,  /* Тёмный оттенок Tiffany */
+                #00FFFF,  /* Голубоватый оттенок */
+                #7FFFD4
+            );
+            background-size: 400% 400%;
+            animation: gradient 7.5s ease infinite;
+        }
+
+        /* Анимация градиента */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: Courier New, monospace;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+            font-family: Courier New, monospace;
+        }
+
+        .white-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #0ABAB5;
+            outline: none;
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+        }
+
+        .save-btn {
+            background-color: #0ABAB5;
+            color: white;
+        }
+
+        .save-btn:hover {
+            background-color: #089e9e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(10, 186, 181, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cancel-btn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.2);
+        }
+
+        .photo-url-group {
+            margin-bottom: 15px;
+        }
+
+        .add-photo-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .add-photo-btn:hover {
+            background-color: #45a049;
+        }
+
+        .equipment-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            align-items: center;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 30px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 1024px) {
+            .white-container {
+                padding: 30px;
+            }
+        }
+
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #c3e6cb;
+            margin-bottom: 15px;
+        }
+
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 15px;
+        }

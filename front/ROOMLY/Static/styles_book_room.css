@@ -1,7 +1,6 @@
 /* styles_book_room.css */
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-/* Основные стили */
 body {
     width: 100%;
     height: 100vh;
@@ -11,7 +10,6 @@ body {
     background: linear-gradient(-45deg, #7FFFD4, #AFEEEE, #7FFFD4, #00FFFF, #7FFFD4);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
-    min-height: 100vh;
 }
 
 @keyframes gradient {
@@ -20,7 +18,6 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Навигация */
 nav {
     background-color: #333;
     padding: 15px;
@@ -43,7 +40,6 @@ nav a:hover {
     color: #ffcc00;
 }
 
-/* Основной контент */
 .main-content {
     max-width: 1400px;
     margin: 80px auto 30px;
@@ -60,96 +56,26 @@ nav a:hover {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Контейнер комнаты */
 .room-container {
     display: flex;
     gap: 40px;
     align-items: flex-start;
 }
 
-/* Галерея */
-.room-gallery {
-    position: relative;
-    height: 450px;
-    overflow: hidden;
-}
-
-.gallery-container {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease;
-}
-
-.gallery-slide {
-    min-width: 100%;
-    height: 100%;
-}
-
-.gallery-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.gallery-nav {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-.gallery-btn {
-    background: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-}
-
-.gallery-btn:hover {
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.gallery-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.gallery-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.gallery-dot.active {
-    background: #0ABAB5;
-}
-
-/* Информация о комнате */
 .room-info-card {
     flex: 3;
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    width: 100%;
+}
+
+.room-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
 }
 
 .room-details {
@@ -169,11 +95,9 @@ nav a:hover {
     font-size: 18px;
     color: #555;
     line-height: 1.6;
-    font-family: 'Russo One', sans-serif;
     opacity: 1;
 }
 
-/* Форма бронирования */
 .booking-form-container {
     flex: 1.5;
     min-width: 400px;
@@ -184,6 +108,7 @@ nav a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
+    width: 100%;
 }
 
 .form-group {
@@ -275,7 +200,6 @@ nav a:hover {
     background-color: #d32f2f;
 }
 
-/* Уведомления */
 .alert {
     padding: 15px;
     margin-bottom: 25px;
@@ -295,55 +219,52 @@ nav a:hover {
     border: 1px solid #a5d6a7;
 }
 
-/* Футер */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
+    font-family: Courier New, monospace;
     padding: 10px;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    z-index: 1000;
 }
 
-/* Адаптивность */
 @media (max-width: 1200px) {
     .room-container {
         flex-direction: column;
+    }
+
+    .room-info-card {
+        margin-left: 0;
     }
 
     .booking-form-container {
         margin-top: 40px;
         min-width: 100%;
     }
+
+    .room-image {
+        height: 400px;
+    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .page-title {
-        font-size: 28px;
+        font-size: 36px;
     }
 
     .duration-options {
         flex-direction: column;
     }
 
-    .btn-group {
-        flex-direction: column;
-    }
-
-    .room-gallery {
+    .room-image {
         height: 300px;
     }
-}
 
-@media (max-width: 480px) {
-    .main-content {
-        padding: 0 15px;
-    }
-
-    nav a {
-        margin: 0 10px;
-        font-size: 14px;
+    .btn-group {
+        flex-direction: column;
     }
 }
