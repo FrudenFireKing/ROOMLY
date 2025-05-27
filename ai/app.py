@@ -92,7 +92,7 @@ def generate_image():
         
         image = pipe(
             prompt,
-            num_inference_steps=1,
+            num_inference_steps=15,
             guidance_scale=7.5,
             width=512,
             height=512
@@ -159,25 +159,20 @@ def submit_request():
 
 @ai_bp.after_request
 def add_security_headers(response):
-    if request.path.startswith('/ai/'):
-        # Особые правила для /ai/
-        csp_policy = (
-            "default-src 'self'; "
-            "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com 'unsafe-inline' 'unsafe-eval'; "
-            "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; "
-            "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; "
-            "img-src 'self' data: https://i.imgur.com https://sun9-55.userapi.com; "
-            "connect-src 'self' http://127.0.0.1:5000; "
-            "frame-src 'none'; "
-        )
-    else:
-        # Стандартные правила для остальных страниц
-        csp_policy = (
-            "default-src 'self'; "
-            "script-src 'self' https://cdnjs.cloudflare.com; "
-            "style-src 'self' https://cdnjs.cloudflare.com; "
-            "img-src 'self' data:; "
-        )
+    csp_policy = (
+        "default-src 'self'; "
+        "script-src 'self' https://cdnjs.cloudflare.com https://code.jquery.com; "
+        "style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; "
+        "img-src 'self' data: blob:; "
+        "connect-src 'self' http://localhost:5000; "
+        "frame-src 'none'; "
+        "base-uri 'self'; "
+        "form-action 'self'; "
+        "object-src 'none'; "
+    )
 
     response.headers['Content-Security-Policy'] = csp_policy
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
     return response
