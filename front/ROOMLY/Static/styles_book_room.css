@@ -106,7 +106,7 @@
 /* Увеличиваем размер галереи и изображений */
 .gallery-container {
     width: 100%;
-    height: 570px; /* Увеличиваем высоту галереи */
+    height: 571px; /* Увеличиваем высоту галереи */
     overflow: hidden;
     position: relative;
 }
