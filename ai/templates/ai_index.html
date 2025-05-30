@@ -87,6 +87,19 @@
             }, 50);
         }
 
+        function dataURLtoBlob(dataurl) {
+            const arr = dataurl.split(',');
+            const mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while(n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type: mime});
+        }
+
+
         $('#generate-btn').click(function() {
             const description = $('#user-input').val().trim();
             if (!description) {
@@ -148,8 +161,6 @@
                         });
                     });
                 }
-
-
             });
         });
 
@@ -162,25 +173,40 @@
             $('#submit-status').html('<i class="fas fa-spinner fa-spin"></i> Отправка...');
             $('#submit-btn').prop('disabled', true);
 
+            const formData = new FormData();
+            formData.append('email', 'gorbachev.fyodorgorbachev@yandex.ru');
+            formData.append('requirements', JSON.stringify(currentRequirements));
+
+            const blob = dataURLtoBlob(currentImage);
+            formData.append('image', blob, 'meeting_room.png');
+
             $.ajax({
                 url: '/ai/submit',
                 type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    email: 'pavelsysuew062@yandex.ru',
-                    image: currentImage,
-                    requirements: currentRequirements
-                }),
+                processData: false,
+                contentType: false,
+                data: formData,
+                headers: {
+                    'X-CSRFToken': csrfToken
+                },
                 success: function(response) {
                     if (response.success) {
                         $('#submit-status').html('<span style="color: green;"><i class="fas fa-check-circle"></i> Успешно отправлено!</span>');
                     } else {
                         $('#submit-status').html(`<span style="color: red;"><i class="fas fa-times-circle"></i> Ошибка: ${response.error || 'Неизвестная ошибка'}</span>`);
                     }
-                    $('#submit-btn').prop('disabled', false);
                 },
-                error: function() {
-                    $('#submit-status').html('<span style="color: red;"><i class="fas fa-times-circle"></i> Ошибка соединения</span>');
+                error: function(xhr) {
+                    let errorMsg = 'Ошибка соединения';
+                    try {
+                        const resp = JSON.parse(xhr.responseText);
+                        errorMsg = resp.error || errorMsg;
+                    } catch (e) {}
+
+                    $('#submit-status').html(`<span style="color: red;"><i class="fas fa-times-circle"></i> ${errorMsg}</span>`);
+                    console.error('Submit error:', xhr.responseText);
+                },
+                complete: function() {
                     $('#submit-btn').prop('disabled', false);
                 }
             });

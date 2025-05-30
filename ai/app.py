@@ -1,6 +1,7 @@
 import os
 import io
 import base64
+import json
 from flask import Blueprint, request, render_template, jsonify
 from diffusers import StableDiffusionPipeline
 from deep_translator import GoogleTranslator
@@ -92,7 +93,7 @@ def generate_image():
         
         image = pipe(
             prompt,
-            num_inference_steps=15,
+            num_inference_steps=30,
             guidance_scale=7.5,
             width=512,
             height=512
@@ -119,42 +120,58 @@ def analyze_text():
     requirements = extract_requirements(user_input)
     return jsonify({'requirements': requirements})
 
+
 @ai_bp.route('/submit', methods=['POST'])
 def submit_request():
     try:
-        data = request.get_json()
-        if not data:
-            return jsonify({'success': False, 'error': 'No data provided'}), 400
+        # Проверяем наличие файла изображения
+        if 'image' not in request.files:
+            return jsonify({'success': False, 'error': 'No image provided'}), 400
 
-        email = data.get('email', 'pavelsysuew06@yandex.ru')
-        image_data = data.get('image')
-        requirements = data.get('requirements', [])
+        image_file = request.files['image']
+        if image_file.filename == '':
+            return jsonify({'success': False, 'error': 'No selected image'}), 400
 
-        if not image_data or not image_data.startswith('data:image/png;base64,'):
-            return jsonify({'success': False, 'error': 'Invalid image data'}), 400
+        # Получаем остальные данные
+        email = request.form.get('email', 'aroomly@yandex.ru')
+        requirements = json.loads(request.form.get('requirements', '[]'))
 
-        # Сохраняем временное изображение
-        image_bytes = base64.b64decode(image_data.split(",")[1])
-        temp_image = "temp_meeting_room.png"
-        with open(temp_image, "wb") as f:
-            f.write(image_bytes)
+        # Создаем уникальное имя файла
+        temp_image = f"temp_meeting_room_{uuid.uuid4().hex}.png"
+        image_file.save(temp_image)
 
-        # Отправка письма
-        body = "Требования к переговорной комнате:\n\n" + "\n".join(requirements)
+        # Формируем тело письма
+        body = f"""
+        <h2>Новая заявка на переговорную комнату</h2>
+        <h3>От: {email}</h3>
+        <h3>Требования:</h3>
+        <ul>
+        {"".join(f"<li>{req}</li>" for req in requirements)}
+        </ul>
+        <p>Сгенерированное изображение прикреплено к письму.</p>
+        """
+
+        # Отправляем письмо
         yag.send(
-            to=email,
-            subject="Заявка на переговорную комнату",
+            to='aroomly@yandex.ru',
+            subject="Новая заявка на переговорную комнату",
             contents=body,
-            attachments=temp_image
+            attachments=temp_image,
+            headers={"Content-Type": "text/html"}
         )
 
-        # Удаляем временный файл
-        os.remove(temp_image)
-
-        return jsonify({'success': True})
+        return jsonify({
+            'success': True,
+            'message': 'Заявка успешно отправлена!'
+        })
 
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+    finally:
+        # Удаляем временный файл, если он существует
+        if os.path.exists(temp_image):
+            os.remove(temp_image)
 
 
 @ai_bp.after_request
