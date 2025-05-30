@@ -7,7 +7,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     
     background: linear-gradient(
         -45deg,
@@ -33,6 +34,10 @@ nav {
             background-color: #333; /* Цвет фона меню */
             padding: 10px; /* Отступы внутри меню */
             text-align: center; /* Выравнивание по центру */
+            width: 100%;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
         }
 
 nav a {
