@@ -7,7 +7,6 @@ from diffusers import StableDiffusionPipeline
 from deep_translator import GoogleTranslator
 import torch
 import uuid
-from PIL import Image
 from gigachat import GigaChat
 from gigachat.models import Chat
 import yagmail
