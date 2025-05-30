@@ -1,41 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-/* Анимированный градиентный фон */
-body {
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    overflow: auto;
-    
-    background: linear-gradient(
-        -45deg,
-        #7FFFD4,
-        #AFEEEE,
-        #7FFFD4,
-        #00FFFF,
-        #7FFFD4
-    );
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
-    text-align: center;
-    padding: 2em;
-}
+         /* Анимированный градиентный фон */
+        body {
+            width: 100%;
+            height: 100vh; /* На всю высоту экрана */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Чтобы избежать скролла */
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+            /* Градиентный фон с анимацией */
+            background: linear-gradient(
+                -45deg,
+                #7FFFD4,  /* Основной цвет Tiffany */
+                #AFEEEE,  /* Светлый оттенок Tiffany */
+                #7FFFD4,  /* Тёмный оттенок Tiffany */
+                #00FFFF,  /* Голубоватый оттенок */
+                #7FFFD4
+            );
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
 
-nav {
+        /* Анимация градиента */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Стили для навигационного меню */
+        nav {
             background-color: #333; /* Цвет фона меню */
             padding: 10px; /* Отступы внутри меню */
             text-align: center; /* Выравнивание по центру */
         }
-
-nav a {
+        nav a {
             color: white; /* Цвет текста ссылок */
             margin: 0 15px; /* Отступы между ссылками */
             text-decoration: none; /* Убираем подчёркивание */
