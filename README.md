@@ -1,6 +1,8 @@
 # ROOMLY
 RUS/РУС
-ROOMLY - это веб-сервис для удобного бронирования переговорных комнат в офисе. Сервис предоставляет следующие возможности:
+ROOMLY - это веб-сервис для удобного бронирования переговорных комнат в офисе. 
+Презентация: https://docs.google.com/presentation/d/1nd4-lQ-h5AhN-JcS0fhbY4HjLUP6-ED6/edit?usp=sharing&ouid=109050647314759633910&rtpof=true&sd=true
+Сервис предоставляет следующие возможности:
 - Управление аккаунтами пользователей с тремя уровнями доступа
 - Просмотр доступных переговорных комнат с фильтрацией по оборудованию и вместимости
 - Бронирование комнат на выбранное время с указанием цели встречи
@@ -26,7 +28,9 @@ ROOMLY - это веб-сервис для удобного бронирован
 
 
 ENG/АНГ
-ROOMLY is a web service for convenient booking of meeting rooms in the office. The service provides the following features:
+ROOMLY is a web service for convenient booking of meeting rooms in the office. 
+Presentation: https://docs.google.com/presentation/d/1bF_Id52fnwQ6w0DsEO83SpJs_RTLggFJ/edit?usp=sharing&ouid=109050647314759633910&rtpof=true&sd=true
+The service provides the following features:
 - User account management with three access levels
 - View available meeting rooms filtered by equipment and capacity
 - Reservation of rooms for the selected time, indicating the purpose of the meeting
